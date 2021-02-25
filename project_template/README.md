@@ -26,4 +26,13 @@ root                    (project root folder)
 
 ## Authors
 ---
-[list author names and emails]
+
+Reed Hunsaker | hun20010@byui.edu
+
+Jordan McIntyre | mci20007@byui.edu
+
+Juliano Nascimento | nas19008@byui.edu
+
+Adrianna Lund | ran08001@byui.edu
+
+Isabel Aranguren | lar19030@byui.edu
