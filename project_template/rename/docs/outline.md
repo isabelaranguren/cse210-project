@@ -12,15 +12,13 @@ Sprites
 ```
 
 ## Features List
-
 - (1) Top priority
 - (2) Middle priority
 - (3) Lowest priority 
 
 ## (1) Main Scene
-
 (2) Play button
-(3) Help buttont
+(3) Help button
 
 ## (1) Game Scene
 (1) User-controlled tank
