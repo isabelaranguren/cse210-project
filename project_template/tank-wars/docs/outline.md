@@ -1,12 +1,13 @@
 # Planning Guide
 
+## Overview
+The goal is to destroy the enemy thanks by careful calibration of your next shot.
 
 ## Technologies: 
 
 ```
 Python 2.8.0
 Arcade 2.5.0
-random — Generate pseudo-random numbers
 math — Mathematical functions
 Sprites
 ```
@@ -57,7 +58,8 @@ Sprites
 - (3) Sad face animation
 
 
-## Timeline: 5 weeks
+## Timeline: 
+### 5 weeks
 1. Alpha Release
     - Main screen
     -  Background/Sprites (basic shooting)
@@ -82,7 +84,10 @@ Sprites
    - Final testing and polishing
    - SUBMIT TO CONTEST!
 
+<hr>
+
 Potential images to use: 
 https://www.vecteezy.com/free-vector/tank
 https://www.vecteezy.com/vector-art/354057-tank-vector-icon
 
+random 
