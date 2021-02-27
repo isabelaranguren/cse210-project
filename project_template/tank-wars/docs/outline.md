@@ -59,28 +59,28 @@ Sprites
 
 ## Timeline: 5 weeks
 1. Alpha Release
-  - Main screen
-  - Background/Sprites (basic shooting)
+    - Main screen
+    -  Background/Sprites (basic shooting)
 2. Beta Release 
-  - Shooting
-  - Impact on tank when shooting
-  - Impact on tank when shot
-  - Impact on ground
-  - Aim/Angle/MATH
-  - Wind
-  - Change each turn
-  - Random int
+   - Shooting
+   - Impact on tank when shooting
+   - Impact on tank when shot
+   - Impact on ground
+   - Aim/Angle/MATH
+   - Wind
+   - Change each turn
+   - Random int
 3. Release Candidate
-  - Polish
+   - Polish
 4. Extra bullets
-  - Bonuses
-  - UI polished
-  - Testing
-  - Stable
-  - More testing and polishing
+   - Bonuses
+   - UI polished
+   - Testing
+   - Stable
+   - More testing and polishing
 5. Release to Manufacturing
-  - Final testing and polishing
-  - SUBMIT TO CONTEST!
+   - Final testing and polishing
+   - SUBMIT TO CONTEST!
 
 Potential images to use: 
 https://www.vecteezy.com/free-vector/tank
