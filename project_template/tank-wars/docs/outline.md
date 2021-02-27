@@ -74,7 +74,7 @@ Sprites
   - Polish
 4. Extra bullets
   - Bonuses
-  - UI works
+  - UI polished
   - Testing
   - Stable
   - More testing and polishing
