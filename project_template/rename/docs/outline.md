@@ -21,25 +21,25 @@ Sprites
 - (3) Help button
 
 ## (1) Game Scene
-(1) User-controlled tank
-   - Move tank’s cannon moves for angle
-   - Left/Right arrow change tank angle
-   - Up/down change power
-(1) Angled bullets/Ammo movement
-   - Selected Power
-   - Wind
-   - Different Sizes
-   - (3) Extra: limit ammo and earn bigger sizes
-(1) Ground
-   - Destructible
-   - Randomized each new game
-(1) Collision detection
-(2) Life display
-(2) Score display
-(2) Sound effects
-   - Shooting
-   - Hitting tank/ground
-   - Background music
+1. (1) User-controlled tank     
+    - Move tank’s cannon moves for angle
+    - Left/Right arrow change tank angle
+    - Up/down change power
+2. (1) Angled bullets/Ammo movement
+    - Selected Power
+    - Wind
+    - Different Sizes
+    - (3) Extra: limit ammo and earn bigger sizes
+3. Ground
+    - Destructible
+    - Randomized each new game
+4. (1) Collision detection
+5. (2) Life display
+6.  Score display
+7. (2) Sound effects
+    - Shooting
+    - Hitting tank/ground
+    - Background music
 (3) Extra: Personalized Sprite 
 (3) Extra: Add prizes (more ammo, Scenery (i.e. trees))
 
