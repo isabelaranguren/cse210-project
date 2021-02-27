@@ -17,8 +17,8 @@ Sprites
 - (3) Lowest priority 
 
 ## (1) Main Scene
-(2) Play button
-(3) Help button
+- (2) Play button
+- (3) Help button
 
 ## (1) Game Scene
 (1) User-controlled tank
@@ -48,13 +48,13 @@ Sprites
 (3) Back button
 
 ## (2) Win Scene
-(2) Announcement
-(3) Smiley face animation
+- (2) Announcement
+- (3) Smiley face animation
 
 ## (2) Lose Scene
-(2) Announcement
-(2) Restart button
-(3) Sad face animation
+- (2) Announcement
+- (2) Restart button
+- (3) Sad face animation
 
 
 ## Timeline: 5 weeks
