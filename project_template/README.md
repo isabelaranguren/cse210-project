@@ -1,7 +1,7 @@
 # Tank Wars 
 
 Tank Wars is the remake of the famous artillery game in retro pixel graphics!
-Your goal is to destroy the enemy thanks by careful calibration of your next shot.
+Your goal is to destroy the enemy tanks by careful calibration of your next shot.
 The game is easy to learn but hard to master.
 
 ```
@@ -11,7 +11,7 @@ After you've installed the required libraries, open a terminal and browse to the
 project's root folder. Start the program by running the following command.
 
 ```
-python3 tankwars
+python3 tank-wars
 ```
 You can also run the program from an IDE like Visual Studio Code. Start your IDE 
 and open the project folder. Select the main module inside the hunter folder and 

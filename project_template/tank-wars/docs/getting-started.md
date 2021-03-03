@@ -1,7 +1,7 @@
 # Planning Guide
 
 ## Overview
-The goal is to destroy the enemy thanks by careful calibration of your next shot.
+The goal is to destroy the enemy tanks by careful calibration of your next shot.
 
 ## Technologies: 
 
