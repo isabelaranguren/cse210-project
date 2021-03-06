@@ -12,12 +12,20 @@ from game.point import Point
 def main():
    # create the cast {key: tag, value: list}
     cast = {}
-    
+    # must put .scale (if don't want change put = 1)
     tank = Actor("assets/tank-pack/tanks_tankGrey1.png")
     tank.scale = 1
-    tank.center_x = 250
-    tank.center_y = 250
+    tank.center_x = 150
+    tank.center_y = game.constants.TANK_Y
     cast["tank"] = tank
+
+    cast["grounds"] = []
+    for x in range(0, 1250, 64):
+        ground = Actor(":resources:images/tiles/dirtRight.png")
+        ground.scale = 1
+        ground.center_x = x
+        ground.center_y = 32
+        cast["grounds"].append(ground)
 
     # create the script {key: tag, value: list}
     script = {}

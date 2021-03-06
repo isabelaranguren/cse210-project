@@ -20,8 +20,14 @@ class Output_service(arcade.Window):
         """
         Set up the game/ restart
         """
-        self.sprite_list = arcade.SpriteList()
-        self.sprite_list.append(cast)
+        if type(cast) != list:
+            self.sprite_list = arcade.SpriteList()
+            self.sprite_list.append(cast)
+        else:
+            for x in cast:
+                self.sprite_list.append(x)
+
+        
         # #Sprite lists
         # self.player_list = arcade.SpriteList()
         # self.enemy_list = arcade.SpriteList()
