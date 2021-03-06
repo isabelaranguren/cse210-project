@@ -1,5 +1,6 @@
 import arcade
 from game import constants
+import sys
 
 class Output_service(arcade.Window):
     def __init__(self):
@@ -7,12 +8,13 @@ class Output_service(arcade.Window):
 
         self.player_list = None
         self.wall_list = None
-
-
         self.player_sprite = None
-
+        
+        # Used to keep track of our scrolling
+        self.view_bottom = 0
+        self.view_left = 0
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
-
+        
     def setup(self):
         """
         Set up the game/ restart
@@ -20,19 +22,33 @@ class Output_service(arcade.Window):
         #Sprite lists
         self.player_list = arcade.SpriteList()
         self.wall_list = arcade.SpriteList(use_spatial_hash= True)
+        
+        # Used to keep track of our scrolling
+        self.view_bottom = 0
+        self.view_left = 0
+  # --- Load in a map from the tiled editor ---
 
-        #player sprite
-        self.player_sprite = arcade.Sprite("assets/Tank2.png")
-        self.player_sprite.center_x = 250
-        self.player_sprite.center_y = 250
-        self.player_list.append(self.player_sprite)
+        # Name of map file to load
+        map_name = "project_template/tank-wars/assets/map.tmx"
+        # Name of the layer in the file that has our platforms/walls
+        platforms_layer_name = 'Platforms'
+        
+        # Read in the tiled map
+        my_map = arcade.tilemap.read_tmx(map_name)
 
-        #ground sprite
-        for x in range(0, 1250, 64):
-            wall = arcade.Sprite(":resources:images/tiles/dirtRight.png")
-            wall.center_x = x
-            wall.center_y = 32
-            self.wall_list.append(wall)
+        # -- Platforms
+        self.wall_list = arcade.tilemap.process_layer(map_object=my_map,
+                                                      layer_name=platforms_layer_name,
+                                                      scaling= constants.TILE_SCALING,
+                                                      use_spatial_hash=True)
+    
+        if my_map.background_color:
+            arcade.set_background_color(my_map.background_color)
+
+        # Create the 'physics engine'
+        self.physics_engine = arcade.PhysicsEnginePlatformer(self.player_sprite,
+                                                             self.wall_list,
+                                                             constants.GRAVITY)
 
     def on_draw(self):
         """ Render the Screen """
@@ -40,4 +56,4 @@ class Output_service(arcade.Window):
 
         #draw to screen
         self.wall_list.draw()
-        self.player_list.draw()
+    
