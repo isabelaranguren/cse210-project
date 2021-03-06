@@ -36,6 +36,5 @@ class DrawActorsAction(Action):
         Contributor:
             Template
         """
-        self._output_service.clear_screen()
         for group in cast.values():
-            self._output_service.draw_actors(group)
+            self._output_service.setup(group)
