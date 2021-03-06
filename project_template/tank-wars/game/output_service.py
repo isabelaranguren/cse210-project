@@ -27,12 +27,27 @@ class Output_service(arcade.Window):
         self.player_sprite.center_y = 250
         self.player_list.append(self.player_sprite)
 
+        #bullet sprites
+        """
+        select type of bullet and set sprite accordingly
+        get xy of end of barrel to shoot from
+        determine velocity and trajectory
+        """
+        self.bullet_sprite = arcade.Sprite("assets/tank-pack/tank_bulletFly6.png")
+        self.bullet_sprite.center_x = #TODO
+        self.bullet_sprite.center_y = #TODO
+        #TODO add to bullet sprite list - create list
+
         #ground sprite
         for x in range(0, 1250, 64):
             wall = arcade.Sprite(":resources:images/tiles/dirtRight.png")
             wall.center_x = x
             wall.center_y = 32
             self.wall_list.append(wall)
+
+    def shoot(self):
+        """shoot bullet"""
+
 
     def on_draw(self):
         """ Render the Screen """

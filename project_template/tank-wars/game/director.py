@@ -4,10 +4,6 @@ from game import constants
 class Director:
 
     def __init__(self, cast, script):
-        self._cast = cast
-        self._script = script
-
-    def __init__(self, cast, script):
         """The class constructor.
         
         Args:
