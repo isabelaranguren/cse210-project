@@ -1,5 +1,6 @@
 from time import sleep
 from game import constants
+import arcade
 
 class Director:
 
@@ -27,11 +28,10 @@ class Director:
             Jordan McIntyre
         """
         while True:
-            self._cue_action("input")
-            self._cue_action("update")
+            # self._cue_action("input")
+            # self._cue_action("update")
             self._cue_action("output")
-            sleep(constants.FRAME_LENGTH)
-
+            arcade.run()
     def _cue_action(self, tag):
         """Executes the actions with the given tag.
         
