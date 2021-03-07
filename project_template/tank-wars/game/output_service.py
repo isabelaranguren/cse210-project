@@ -27,7 +27,9 @@ class Output_service(arcade.Window):
             for x in cast:
                 self.sprite_list.append(x)
 
-        
+    def get_sprite_list(self):
+        return self.sprite_list
+
         # #Sprite lists
         # self.player_list = arcade.SpriteList()
         # self.enemy_list = arcade.SpriteList()

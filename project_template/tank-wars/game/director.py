@@ -29,9 +29,10 @@ class Director:
         """
         while True:
             # self._cue_action("input")
-            self._cue_action("update")
+            # self._cue_action("update")
             self._cue_action("output")
             arcade.run()
+
     def _cue_action(self, tag):
         """Executes the actions with the given tag.
         
@@ -44,4 +45,5 @@ class Director:
             Jordan McIntyre
         """ 
         for action in self._script[tag]:
+            # action.execute()
             action.execute(self._cast)
