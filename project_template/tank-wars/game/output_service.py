@@ -2,6 +2,21 @@ import arcade
 from game import constants
 
 class Output_service(arcade.Window):
+    """Outputs the game state. The responsibility of the class of objects is to draw the game state on the terminal. 
+    
+    Stereotype: 
+        Service Provider
+    Attributes:
+        _screen (Screen): An Asciimatics screen.
+    Contributors:
+        Template
+        Adrianna Lund
+        Reed Hunsaker
+        Juliano Nascimento
+        Jordan McIntyre
+        Isabel Aranguren 
+        """
+    
     def __init__(self):
         super().__init__(constants.X_CONSTANT, constants.Y_CONSTANT, constants.SCREEN_TITLE)
 
