@@ -16,7 +16,7 @@ class Output_service(arcade.Window):
 
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
 
-    def setup(self,cast):
+    def setup(self, cast):
         """
         Set up the game/ restart
         """
@@ -61,7 +61,7 @@ class Output_service(arcade.Window):
         get xy of end of barrel to shoot from
         determine velocity and trajectory
         """
-        self.bullet_sprite = arcade.Sprite("assets/tank-pack/tank_bulletFly6.png")
+        # self.bullet_sprite = arcade.Sprite("assets/tank-pack/tank_bulletFly6.png")
         # self.bullet_sprite.center_x = #TODO
         # self.bullet_sprite.center_y = #TODO
         #TODO add to bullet sprite list - create list

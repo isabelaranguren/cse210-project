@@ -22,13 +22,24 @@ class Actor(arcade.Sprite):
         self.scale = ""
         self.center_x = None
         self.center_y = None
+        self.velocity_x = None
+        self.velocity_y = None
         self.velocity = None
-    def get_y(self):
-        return self.y
 
     def get_y(self):
-        return self.x
+        return self.center_y
+
+    def get_x(self):
+        return self.center_x
     
     def get_velocity(self):
         return self.velocity
 
+    def get_position(self):
+        return self.position
+
+    def get_velocity_x(self):
+        return self.velocity_x
+
+    def get_velocity_y(self):
+        return self.velocity_y
