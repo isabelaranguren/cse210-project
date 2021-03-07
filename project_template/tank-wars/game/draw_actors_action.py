@@ -36,5 +36,6 @@ class DrawActorsAction(Action):
         Contributor:
             Template
         """
+        bullet = cast["bullet"]
         for group in cast.values():
-            self._output_service.setup(group)
+            self._output_service.setup(group, bullet)

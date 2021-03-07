@@ -16,10 +16,11 @@ class Output_service(arcade.Window):
 
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
 
-    def setup(self,cast):
+    def setup(self,cast, bullet):
         """
         Set up the game/ restart
         """
+        self.bullet = bullet
         if type(cast) != list:
             self.sprite_list = arcade.SpriteList()
             self.sprite_list.append(cast)
@@ -80,11 +81,28 @@ class Output_service(arcade.Window):
     def on_draw(self):
         """ Render the Screen """
         arcade.start_render()
-        self.sprite_draw()
-
-    def sprite_draw(self):
         self.sprite_list.draw()
-        # self.wall_list.draw()
-        # self.player_list.draw()
-        # self.enemy_list.draw()
-        # self.cactus_list.draw()
+
+    def on_update(self, delta_time: float):
+        """Update the positions and statuses of all game objects
+        If paused, do nothing
+        Arguments:
+            delta_time {float} -- Time since the last update
+        """
+
+        # If paused, don't update anything
+        # if self.paused:
+        #     return
+        # Did you hit anything? If so, end the game
+        if self.bullet.collides_with_list(self.sprite_list):
+            # arcade.close_window()
+            # self.explosion = arcade.Sprite(r"cse210-project\project_template\tank-wars\assets\tank-pack\tank_explosion2.png",1)
+            # self.explosion.center_x = self.bullet.right
+            # self.explosion.center_y = self.bullet.center_y
+            # self.explosions.append(self.explosion)
+            # self.explosions.update()
+            # self.explosions.update_animation()
+            self.bullet.kill()
+        
+        self.sprite_list.update()
+        self.sprite_list.update_animation()
