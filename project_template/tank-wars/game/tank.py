@@ -1,8 +1,7 @@
 from game import constants
-from game.point import Point
 import arcade
 
-class Actor(arcade.Sprite):
+class Tank(arcade.Sprite):
     """A visible, moveable thing that participates in the game. The responsibility of Actor is to keep track of its appearance, position 
     and velocity in 2d space.
 
@@ -19,11 +18,11 @@ class Actor(arcade.Sprite):
     def __init__(self, filename):
         """The class constructor."""
         super().__init__(filename)
-        self.scale = ""
+        self.scale = 1
         self.center_x = None
         self.center_y = None
         self.velocity = None
-    
+        
     def get_y(self):
         return self.y
 
@@ -32,4 +31,3 @@ class Actor(arcade.Sprite):
     
     def get_velocity(self):
         return self.velocity
-

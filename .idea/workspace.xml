@@ -19,14 +19,24 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/TestingAdrianna" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Jordan" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cad7a16-2ea1-467c-b73a-80debad10f0d" name="Default Changelist" comment="" />
+    <list default="true" id="3cad7a16-2ea1-467c-b73a-80debad10f0d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/project_template/tank-wars/game/control_actors_action.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_template/tank-wars/game/ground.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_template/tank-wars/game/tank.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_template/tank-wars/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_template/tank-wars/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_template/tank-wars/game/actor.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_template/tank-wars/game/actor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_template/tank-wars/game/draw_actors_action.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_template/tank-wars/game/draw_actors_action.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_template/tank-wars/game/input_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_template/tank-wars/game/input_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_template/tank-wars/game/output_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_template/tank-wars/game/output_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_template/tank-wars/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_template/tank-wars/test.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +84,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/TestingAdrianna" />
+                        <option value="Jordan" />
                       </list>
                     </value>
                   </entry>
@@ -88,9 +98,13 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1473" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1615078261489">
+    <state x="1486" y="500" key="MultipleFileMergeDialog" timestamp="1615501664664">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="1473" y="348" width="670" height="676" key="search.everywhere.popup/0.23.2560.1417@0.23.2560.1417" timestamp="1615078261489" />
+    <state x="1486" y="500" key="MultipleFileMergeDialog/0.23.2560.1417@0.23.2560.1417" timestamp="1615501664664" />
+    <state x="1473" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1615426436695">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1473" y="348" width="670" height="676" key="search.everywhere.popup/0.23.2560.1417@0.23.2560.1417" timestamp="1615426436695" />
   </component>
 </project>

@@ -5,67 +5,57 @@ import random
 import game.constants
 from game.output_service import Output_service
 from game.draw_actors_action import DrawActorsAction
-from game.handle_collisions_action import HandleCollisionsAction
-from game.move_actors_action import MoveActorsAction
 from game.director import Director
+from game.control_actors_action import ControlActorsAction
+from game.input_service import Input_Service
 from game.actor import Actor
 from game.point import Point
 
-
 def main():
-    # create the cast {key: tag, value: list}
+   # create the cast {key: tag, value: list}
     cast = {}
     # must put .scale (if don't want change put = 1)
-
-    tank = Actor("project_template/tank-wars/assets/tank-pack/tanks_tankGreen1.png")
-    tank.scale = 0.85
-    tank.center_x = 125
+    tank = Actor("assets/tank-pack/tanks_tankGrey1.png")
+    tank.scale = 0.65
+    tank.center_x = 150
+    tank.velocity = (0,0)
     tank.center_y = game.constants.TANK_Y
-    # tank.velocity_x = 0
-    # tank.velocity_y = 0
     cast["tank"] = tank
-    cast["enemy"] = []
-    enemy = Actor("project_template/tank-wars/assets/tank-pack/tanks_tankNavy1.png")
-    enemy.scale = 0.85
-    enemy.center_x = 675
-    enemy.center_y = game.constants.TANK_Y
-    # enemy.velocity_x = 0
-    # enemy.velocity_y = 0
-    cast["enemy"].append(enemy)
-    cast["bullets"] = []
-    bullet = Actor("project_template/tank-wars/assets/tank-pack/tank_bullet1.png")
-    bullet.scale = 0.65
-    bullet.center_x = 50
-    bullet.center_y = 140
-    bullet.velocity = (15, 10)
-    # bullet.velocity_x = 15
-    # bullet.velocity_y = 10
-    cast["bullets"].append(bullet)
+
+    tank2 = Actor("assets/tank-pack/tanks_tankGreen1.png")
+    tank2.scale = 0.65
+    tank2.center_x = 650
+    tank2.center_y = game.constants.TANK_Y
+    tank2.velocity = (0,0)
+    cast["tank2"] = tank2
+
+    bullet = Actor("assets/tank-pack/tank_bulletFly4.png")
+    bullet.scale = 0.75
+    bullet.center_y = 155
+    bullet.center_x = 300
+    bullet.velocity = (5,0)
+    cast["bullet"] = bullet
+
     cast["grounds"] = []
     for x in range(0, 1250, 64):
         ground = Actor(":resources:images/tiles/dirtRight.png")
         ground.scale = 1
         ground.center_x = x
         ground.center_y = 32
+        ground.velocity = (0,0)
         cast["grounds"].append(ground)
-
-    """sprite_list = arcade.SpriteList()
-    for group in cast:
-        for actor in group:
-            sprite_list.append(sprite_list, "some type")
-            arcade.SpriteList.append(actor)"""
-
+    # print(cast)
     # create the script {key: tag, value: list}
     script = {}
 
+    input_service = Input_Service()
     output_service = Output_service()
     draw_actors_action = DrawActorsAction(output_service)
-    # move_actors_action = MoveActorsAction(sprite_list)
-    # handle_collisions_action = HandleCollisionsAction()
+    control_actors_action = ControlActorsAction(input_service)
     # output_service.setup()
     # arcade.run()
     # script["input"] = [control_actors_action]
-    # script["update"] = [move_actors_action, handle_collisions_action]
+    # script["update"] = [move_actors_action, handle_collisions_acition]
     script["output"] = [draw_actors_action]
 
     # start the game

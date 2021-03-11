@@ -12,8 +12,18 @@
 #     x = round(x, 0)
 #     print(x)
 
-from PIL import Image
+# from PIL import Image
 
-image = Image.open("assets/tank.jpg")
+# image = Image.open("assets/tank.jpg")
+# width,height = image.size
+# print(width,height)
+
+from PIL import Image
+import os
+
+cwd = os.getcwd()
+
+
+image = Image.open(f"{cwd}/assets/tank.jpg")
 width,height = image.size
 print(width,height)
