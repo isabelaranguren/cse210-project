@@ -17,7 +17,7 @@ def main():
     cast = {}
     # must put .scale (if don't want change put = 1)
 
-    tank = Actor("tank-wars/assets/tank-pack/tanks_tankGreen1.png")
+    tank = Actor("project_template/tank-wars/assets/tank-pack/tanks_tankGreen1.png")
     tank.scale = 0.85
     tank.center_x = 125
     tank.center_y = game.constants.TANK_Y
@@ -25,7 +25,7 @@ def main():
     # tank.velocity_y = 0
     cast["tank"] = tank
     cast["enemy"] = []
-    enemy = Actor("tank-wars/assets/tank-pack/tanks_tankNavy1.png")
+    enemy = Actor("project_template/tank-wars/assets/tank-pack/tanks_tankNavy1.png")
     enemy.scale = 0.85
     enemy.center_x = 675
     enemy.center_y = game.constants.TANK_Y
@@ -33,7 +33,7 @@ def main():
     # enemy.velocity_y = 0
     cast["enemy"].append(enemy)
     cast["bullets"] = []
-    bullet = Actor("tank-wars/assets/tank-pack/tank_bullet1.png")
+    bullet = Actor("project_template/tank-wars/assets/tank-pack/tank_bullet1.png")
     bullet.scale = 0.65
     bullet.center_x = 50
     bullet.center_y = 140
