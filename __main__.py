@@ -1,6 +1,5 @@
 import arcade
 import game.constants
-from game.tanks import Run
 from game.gameview import Gameview
 
 def main():
