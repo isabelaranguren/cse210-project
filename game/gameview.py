@@ -41,7 +41,7 @@ class GameView(arcade.View):
         
         # self.physics_engine.step()
         
-        if self.bullet.bullet.collides_with_list(self.tanks.sprite_list):
+        if self.bullet.bullet.collides_with_sprite(self.tanks.player2):
             self.bullet.bullet.kill()
             
         self.bullet.bullet_sprite_list.update()
