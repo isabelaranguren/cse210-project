@@ -7,9 +7,12 @@ from game.bullet import Bullet
 from typing import Optional
 
 
-class Gameview(arcade.View):
+class GameView(arcade.View):
     def __init__(self):
         super().__init__()
+        
+        self.window.set_mouse_visible(False)
+        arcade.set_background_color(arcade.color.SMOKY_BLACK)
 
         self.setup()
         self.up: bool = False
@@ -27,6 +30,7 @@ class Gameview(arcade.View):
         self.bullet.shoot_bullet()
     
     def on_draw(self):
+        arcade.start_render()
         self.tanks.sprite_list.draw()
         self.ground.ground_sprite_list.draw()
         self.bullet.bullet_sprite_list.draw()
@@ -45,7 +49,6 @@ class Gameview(arcade.View):
         P: Pause/Unpause the game
         W/A/S/D: Move Up, Left, Down, Right
         Arrows: Move Up, Left, Down, Right
-
         Arguments:
             symbol {int} -- Which key was pressed
             modifiers {int} -- Which modifiers were pressed
@@ -72,7 +75,6 @@ class Gameview(arcade.View):
     
     def on_key_release(self, symbol: int, modifiers: int):
         """Undo movement vectors when movement keys are released
-
         Arguments:
             symbol {int} -- Which key was pressed
             modifiers {int} -- Which modifiers were pressed
