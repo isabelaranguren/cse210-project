@@ -18,13 +18,13 @@ TANK_SCALE = 0.85
 #Player 1
 PLAYER1_X = 150
 PLAYER1_SPRITE = assets / 'tank-pack' / 'tanks_tankGrey1.png'
-# PLAYER1_SPRITE = f”{cwd}/assets/tank-pack/tanks_tankGrey1.png”
+# PLAYER1_SPRITE = f"{cwd}/assets/tank-pack/tanks_tankGrey1.png"
 #player 2
 PLAYER2_SPRITE = assets / 'tank-pack' / 'tanks_tankGreen1.png'
-# PLAYER2_SPRITE = f”{cwd}/assets/tank-pack/tanks_tankGreen1.png”
+# PLAYER2_SPRITE = f"{cwd}/assets/tank-pack/tanks_tankGreen1.png"
 PLAYER2_X = 600
 #bullet
 BULLET_SPRITE = assets/ 'tank-pack' / 'tank_bulletFly4.png'
-# BULLET_SPRITE = f”{cwd}assets/tank-pack/tank_bulletFly4.png”
+# BULLET_SPRITE = f"{cwd}assets/tank-pack/tank_bulletFly4.png"
 #time
 FRAME_LENGTH = 0.1
