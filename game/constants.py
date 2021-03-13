@@ -4,7 +4,7 @@ from pathlib import Path
 #path stuff
 
 cwd = Path.cwd()
-assets = cwd / 'assets'
+assets: Path = Path(__file__).parent / 'assets'
 home = Path.home()
 
 #frame
