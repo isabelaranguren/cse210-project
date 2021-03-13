@@ -20,4 +20,3 @@ class Gameview(arcade.View):
 
     def on_update(self, delta_time: float):
         pass
-        
