@@ -10,6 +10,9 @@ TITLE = "TANK WARS"
 X_CONSTANT = 800
 Y_CONSTANT = 600
 
+#sounds
+TANK_FIRE = assets / 'sounds' / 'tank-fire.wav'
+
 #sprites
 #ground
 GROUND_SPRITE = f":resources:images/tiles/dirtRight.png"

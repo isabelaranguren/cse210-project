@@ -8,6 +8,8 @@ class BulletSprite(arcade.Sprite):
         self.texture = arcade.load_texture(file_name= constants.BULLET_SPRITE)
         self.scale = constants.BULLET_SCALE
 
+        self.tank_fire = arcade.load_sound(constants.TANK_FIRE)
+
 
 class Bullet:
     def __init__(self):
@@ -22,3 +24,4 @@ class Bullet:
         self.bullet.velocity = constants.BULLET_INITIAL_VELOCITY
         self.bullet_sprite_list = arcade.SpriteList()
         self.bullet_sprite_list.append(self.bullet)
+        arcade.play_sound(self.tank_fire)
