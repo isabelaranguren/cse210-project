@@ -16,10 +16,8 @@ class Ground:
     def __init__(self):
         
         self.ground_sprite_list = arcade.SpriteList(use_spatial_hash= True)
-        for x in range(0,1250,64):
-            ry = randint(0,32)
-            for y in range(0, ry):
-                self.ground = GroundSprite()
-                self.ground.center_x = x
-                self.ground.center_y = y
-                self.ground_sprite_list.append(self.ground)
+        for y in (0, 600, 200):
+            self.ground = GroundSprite()
+            self.ground.center_x = 400
+            self.ground.center_y = y
+            self.ground_sprite_list.append(self.ground)

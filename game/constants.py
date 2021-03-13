@@ -12,7 +12,7 @@ X_CONSTANT = 800
 Y_CONSTANT = 600
 
 #sounds
-TANK_FIRE = assets / 'sounds' / 'tank-fire.ogg'
+TANK_FIRE = assets / 'sounds' / 'tank-fire.wav'
 
 #sprites
 #ground
@@ -23,13 +23,16 @@ GROUND_Y = 32
 #Tanks
 TANK_Y = 125
 TANK_SCALE = 0.85
-
+TANK_SPEED = 5
+TANK_ANGLE_SPEED = 5
 #Player 1
 PLAYER1_X = 150
-PLAYER1_SPRITE = assets / 'tank-pack' / 'tanks_tankGrey1.png'
+PLAYER1_SPRITE = ":resources:images/topdown_tanks/tank_blue.png"
+# PLAYER1_SPRITE = assets / 'tank-pack' / 'tanks_tankGrey1.png'
 
 #player 2
-PLAYER2_SPRITE = assets / 'tank-pack' / 'tanks_tankGreen1.png'
+# PLAYER2_SPRITE = assets / 'tank-pack' / 'tanks_tankGreen1.png'
+PLAYER2_SPRITE = ":resources:images/topdown_tanks/tank_red.png"
 PLAYER2_X = 600
 
 GAME_OVER = assets / 'game-over.jpg'

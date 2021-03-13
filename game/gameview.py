@@ -12,6 +12,7 @@ class GameView(arcade.View):
         
         self.window.set_mouse_visible(False)
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
+        self.physics_engine = None
 
         self.setup()
         self.up: bool = False
@@ -27,6 +28,8 @@ class GameView(arcade.View):
         self.bullet = Bullet()
         # self.physics_engine.add_sprite(self.bullet)
         self.bullet.shoot_bullet(constants.PLAYER1_X,constants.TANK_Y)
+
+        self.physics_engine = arcade.PhysicsEngineSimple(self.tanks.player1, self.ground.ground_sprite_list)
     
     def on_draw(self):
         arcade.start_render()
@@ -35,63 +38,52 @@ class GameView(arcade.View):
         self.bullet.bullet_sprite_list.draw()
 
     def on_update(self, delta_time: float):
-        # if self.up:
-        #     force = (-8000, 0)
-        #     self.physics_engine.apply_force(self.bullet, force)
         
-        # self.physics_engine.step()
+        self.physics_engine.update()
+
         
-        if self.bullet.bullet.collides_with_sprite(self.tanks.player2):
+        if self.bullet.bullet.collides_with_sprite(self.tanks.player2) or self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
             self.bullet.bullet.kill()
-            
+        
+        self.tanks.player1.update()
+        self.tanks.player2.update()
         self.bullet.bullet_sprite_list.update()
         self.bullet.bullet_sprite_list.update_animation()
 
-    def on_key_press(self, symbol, modifiers):
-        """Handle user keyboard input
-        Q: Quit the game
-        P: Pause/Unpause the game
-        W/A/S/D: Move Up, Left, Down, Right
-        Arrows: Move Up, Left, Down, Right
-        Arguments:
-            symbol {int} -- Which key was pressed
-            modifiers {int} -- Which modifiers were pressed
-            actor -- which sprite will be modified (tank1 or tank2)
-        """
-        if symbol == arcade.key.Q:
-            # Quit immediately
-            arcade.close_window()
+    def on_key_press(self, key, modifiers):
+        """Called whenever a key is pressed. """
 
-        if symbol == arcade.key.P:
-            self.paused = not self.paused
+        # Forward/back
+        if key == arcade.key.DOWN:
+            self.tanks.player1.speed = constants.TANK_SPEED
+        elif key == arcade.key.UP:
+            self.tanks.player1.speed = -constants.TANK_SPEED
 
-        if symbol == arcade.key.W or symbol == arcade.key.UP:
-            self.up = True
+        elif key == arcade.key.S:
+            self.tanks.player2.speed = constants.TANK_SPEED
+        elif key == arcade.key.W:
+            self.tanks.player2.speed = -constants.TANK_SPEED
 
-        if symbol == arcade.key.S or symbol == arcade.key.DOWN:
-            self.down = True
-
-        if symbol == arcade.key.D or symbol == arcade.key.LEFT:
-            self.left = True
-
-        if symbol == arcade.key.A or symbol == arcade.key.RIGHT:
-            self.right = True
-    
-    def on_key_release(self, symbol: int, modifiers: int):
-        """Undo movement vectors when movement keys are released
-        Arguments:
-            symbol {int} -- Which key was pressed
-            modifiers {int} -- Which modifiers were pressed
-            actor -- which will be modified (tank1 or tank2)
-        """
-        if symbol == arcade.key.W or symbol == arcade.key.UP:
-            self.up = False
-
-        if symbol == arcade.key.S or symbol == arcade.key.DOWN:
-            self.down = False
+        # Rotate left/right
+        elif key == arcade.key.LEFT:
+            self.tanks.player1.change_angle = constants.TANK_ANGLE_SPEED
+        elif key == arcade.key.RIGHT:
+            self.tanks.player1.change_angle = -constants.TANK_ANGLE_SPEED
         
-        if symbol == arcade.key.D or symbol == arcade.key.LEFT:
-            self.left = False
+        elif key == arcade.key.A:
+            self.tanks.player2.change_angle = constants.TANK_ANGLE_SPEED
+        elif key == arcade.key.D:
+            self.tanks.player2.change_angle = -constants.TANK_ANGLE_SPEED
 
-        if symbol == arcade.key.A or symbol == arcade.key.RIGHT:
-            self.right = False
+    def on_key_release(self, key, modifiers):
+        """Called when the user releases a key. """
+
+        if key == arcade.key.UP or key == arcade.key.DOWN:
+            self.tanks.player1.speed = 0
+        elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
+            self.tanks.player1.change_angle = 0
+        
+        elif key == arcade.key.W or key == arcade.key.S:
+            self.tanks.player2.speed = 0
+        elif key == arcade.key.A or key == arcade.key.D:
+            self.tanks.player2.change_angle = 0

@@ -1,5 +1,6 @@
 import arcade
 import game.constants as constants
+import math
 
 class Tanks(arcade.Sprite):
     """Changes apply to both tanks
@@ -10,6 +11,7 @@ class Tanks(arcade.Sprite):
 
         #common tank values
         self._life = 100
+        self.speed = 0
         self.center_y = constants.TANK_Y
         self.scale = constants.TANK_SCALE
         #player textures load
@@ -21,6 +23,17 @@ class Tanks(arcade.Sprite):
             return False
         else:
             return True
+    
+    def update(self):
+        # Convert angle in degrees to radians.
+        angle_rad = math.radians(self.angle)
+
+        # Rotate the ship
+        self.angle += self.change_angle
+
+        # Use math to find our change based on our speed and angle
+        self.center_x += -self.speed * math.sin(angle_rad)
+        self.center_y += self.speed * math.cos(angle_rad)
 
 class Player1(Tanks):
     """Changes apply to Player1
