@@ -17,6 +17,8 @@ def main():
     # must put .scale (if don't want change put = 1)
     tank = Actor("assets/tank-pack/tanks_tankGrey1.png")
     tank.scale = 0.65
+    tank = Actor("project_template/tank-wars/assets/tank-pack/tanks_tankGreen1.png")
+    tank.scale = 1
     tank.center_x = 150
     tank.velocity = (0,0)
     tank.center_y = game.constants.TANK_Y
