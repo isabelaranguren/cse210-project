@@ -7,9 +7,12 @@ from game.bullet import Bullet
 from typing import Optional
 
 
-class Gameview(arcade.View):
+class GameView(arcade.View):
     def __init__(self):
         super().__init__()
+        
+        self.window.set_mouse_visible(False)
+        arcade.set_background_color(arcade.color.SMOKY_BLACK)
 
         self.setup()
         self.up: bool = False
@@ -27,6 +30,7 @@ class Gameview(arcade.View):
         self.bullet.shoot_bullet()
     
     def on_draw(self):
+        arcade.start_render()
         self.tanks.sprite_list.draw()
         self.ground.ground_sprite_list.draw()
         self.bullet.bullet_sprite_list.draw()
