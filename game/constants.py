@@ -11,6 +11,9 @@ TITLE = "TANK WARS"
 X_CONSTANT = 800
 Y_CONSTANT = 600
 
+#sounds
+TANK_FIRE = assets / 'sounds' / 'tank-fire.ogg'
+
 #sprites
 #ground
 GROUND_SPRITE = f":resources:images/tiles/dirtRight.png"
@@ -35,7 +38,7 @@ CAMO = assets / 'camo.jpg'
 
 #bullet
 BULLET_SPRITE = assets/ 'tank-pack' / 'tank_bulletFly4.png'
-BULLET_INITIAL_VELOCITY = (1,0)
+BULLET_INITIAL_VELOCITY = (3,0)
 BULLET_SCALE = 0.75
 
 #time
