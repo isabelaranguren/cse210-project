@@ -27,7 +27,7 @@ PLAYER2_X = 600
 
 #bullet
 BULLET_SPRITE = assets/ 'tank-pack' / 'tank_bulletFly4.png'
-BULLET_INITIAL_VELOCITY = (1,0)
+BULLET_INITIAL_VELOCITY = (3,0)
 BULLET_SCALE = 0.75
 
 #time

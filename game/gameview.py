@@ -1,6 +1,5 @@
 import arcade
-
-import game.constants
+import game.constants as constants
 from game.tanks import Run
 from game.ground import Ground
 from game.bullet import Bullet
@@ -24,7 +23,7 @@ class Gameview(arcade.View):
         self.ground = Ground()
         self.bullet = Bullet()
         # self.physics_engine.add_sprite(self.bullet)
-        self.bullet.shoot_bullet()
+        self.bullet.shoot_bullet(constants.PLAYER1_X,constants.TANK_Y)
     
     def on_draw(self):
         self.tanks.sprite_list.draw()
@@ -35,10 +34,15 @@ class Gameview(arcade.View):
         # if self.up:
         #     force = (-8000, 0)
         #     self.physics_engine.apply_force(self.bullet, force)
+        
+        # self.physics_engine.step()
+        
+        if self.bullet.bullet.collides_with_list(self.tanks.sprite_list):
+            self.bullet.bullet.kill()
+            
         self.bullet.bullet_sprite_list.update()
         self.bullet.bullet_sprite_list.update_animation()
-        # self.physics_engine.step()
-    
+
     def on_key_press(self, symbol, modifiers):
         """Handle user keyboard input
         Q: Quit the game
