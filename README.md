@@ -17,6 +17,18 @@ You can also run the program from an IDE like Visual Studio Code. Start your IDE
 and open the project folder. Select the main module inside the hunter folder and 
 click the "run" icon.
 
+
+## How to play
+
+### Blue player 
+Up left down arrow keys to move
+SPACE BAR to shoot 
+
+### Red player
+a w d keys to move
+q to shoot
+
+
 ## Project Structure
 ---
 The project files and folders are organized as follows:
