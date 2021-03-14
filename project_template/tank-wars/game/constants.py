@@ -20,6 +20,7 @@ GROUND_SPRITE = f":resources:images/tiles/dirtRight.png"
 GROUND_SCALE = 1
 GROUND_Y = 32
 
+
 #Tanks
 TANK_Y = 125
 TANK_SCALE = 0.85
@@ -29,7 +30,7 @@ TANK_ANGLE_SPEED = 5
 PLAYER1_X = 150
 PLAYER1_SPRITE = ":resources:images/topdown_tanks/tank_blue.png"
 # PLAYER1_SPRITE = assets / 'tank-pack' / 'tanks_tankGrey1.png'
-
+MAP = assets / 'map.tmx'
 #player 2
 # PLAYER2_SPRITE = assets / 'tank-pack' / 'tanks_tankGreen1.png'
 PLAYER2_SPRITE = ":resources:images/topdown_tanks/tank_red.png"

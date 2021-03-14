@@ -23,7 +23,7 @@ class Ground:
     def __init__(self):
         
         # Name of map file to load
-        map_name = "game/assets/kenney_topdowntanksredux/map.tmx"
+        map_name = constants.MAP
         # Name of the layer in the file that has our platforms/walls
         platforms_layer_name = 'Platforms'
         
