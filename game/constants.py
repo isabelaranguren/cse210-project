@@ -42,7 +42,15 @@ CAMO = assets / 'camo.jpg'
 #bullet
 BULLET_SPRITE = assets/ 'tank-pack' / 'tank_bulletFly4.png'
 BULLET_INITIAL_VELOCITY = (3,0)
-BULLET_SCALE = 0.75
+BULLET_SCALE = 0.5
+BULLET_SPEED = 5
+
+#explosion
+EXPLOSION_TEXTURE_LIST = []
+for i in range(1, 13):
+    ex_tex = assets / 'tank-pack' / f'tank_explosion{i}.png'
+    EXPLOSION_TEXTURE_LIST.append(ex_tex)
+EXPLOSION_4 = assets / 'tank-pack' / 'tank_explosion4.png'
 
 #time
 FRAME_LENGTH = 0.1
