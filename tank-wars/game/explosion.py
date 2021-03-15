@@ -10,7 +10,6 @@ class Explosion(arcade.Sprite):
         self.texture = self.load_tex
     
     def update(self):
-
         self.current_texture +=1
         if self.current_texture < len(self.textures):
             self.set_texture(self.current_texture)

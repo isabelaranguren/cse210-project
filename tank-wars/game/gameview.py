@@ -7,20 +7,19 @@ from game.explosion import Explosion
 from typing import Optional
 import math
 
-
 class GameView(arcade.View):
     def __init__(self):
         super().__init__()
         
+        self.texture = arcade.load_texture(constants.BACKGROUND)
+        
         self.window.set_mouse_visible(False)
-        arcade.set_background_color(arcade.color.SMOKY_BLACK)
         self.physics_engine = None
         self.physics_engine2 = None
-
-        self.setup()
         self.bullet_list = None
         self.explosion_list = None
 
+        self.setup()
 
     
     def setup(self):
@@ -34,8 +33,11 @@ class GameView(arcade.View):
     
     def on_draw(self):
         arcade.start_render()
+        self.texture.draw_sized(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2,
+                                constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         self.tanks.sprite_list.draw()
         self.ground.ground_sprite_list.draw()
+
         if self.bullet.bullet_sprite_list is not None:
             self.bullet.bullet_sprite_list.draw()
         if self.explosion_list is not None:
