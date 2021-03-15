@@ -1,9 +1,10 @@
 import arcade
+from game.score import Score
 import game.constants as constants
 from game.tanks import Run
 from game.ground import Ground
-from game.bullet import Bullet
-from game.explosion import Explosion
+from game import Bullet
+from game import Explosion
 from typing import Optional
 import math
 
@@ -11,6 +12,7 @@ class GameView(arcade.View):
     def __init__(self):
         super().__init__()
         
+        self._score = Score()
         self.texture = arcade.load_texture(constants.BACKGROUND)
         
         self.window.set_mouse_visible(False)

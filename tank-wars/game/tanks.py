@@ -14,6 +14,7 @@ class Tanks(arcade.Sprite):
         self.speed = 0
         self.center_y = constants.TANK_Y
         self.scale = constants.TANK_SCALE
+     
         #player textures load
         self.player1_texture = arcade.load_texture(file_name = constants.PLAYER1_SPRITE)
         self.player2_texture = arcade.load_texture(file_name = constants.PLAYER2_SPRITE)
