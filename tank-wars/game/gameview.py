@@ -3,8 +3,8 @@ from game.score import Score
 import game.constants as constants
 from game.tanks import Run
 from game.ground import Ground
-from game import Bullet
-from game import Explosion
+from game.bullet import Bullet
+from game.explosion import Explosion
 from typing import Optional
 import math
 
