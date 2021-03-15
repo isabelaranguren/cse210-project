@@ -1,5 +1,5 @@
 import arcade
-import game.constants as constants
+import game as constants
 
 class Explosion(arcade.Sprite):
     def __init__(self):
