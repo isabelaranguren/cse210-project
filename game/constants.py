@@ -4,11 +4,11 @@ home = Path.home()
 assets: Path = Path(__file__).parent / 'assets'
 
 #frame
-SCREEN_WIDTH = 800
+SCREEN_WIDTH = 750
 SCREEN_HEIGHT = 600
 TITLE = "TANK WARS"
 
-X_CONSTANT = 800
+X_CONSTANT = 750
 Y_CONSTANT = 600
 
 #sounds
