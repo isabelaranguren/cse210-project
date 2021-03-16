@@ -38,7 +38,7 @@ PLAYER2_X = 600
 
 GAME_OVER = assets / 'game-over.jpg'
 BACKGROUND = assets / 'background.png'
-CAMO = assets / 'camo.jpg'
+CAMO = assets / 'camo.png'
 
 WALLS = assets / '1bitpack' / 'Tilemap' / 'sample_urban2.tmx'
 TILE_SCALING = 1.5
