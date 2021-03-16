@@ -20,6 +20,7 @@ class GameView(arcade.View):
         self.physics_engine2 = None
         self.bullet_list = None
         self.explosion_list = None
+        self.all_sprites = arcade.SpriteList()
 
         self.setup()
 
@@ -48,20 +49,39 @@ class GameView(arcade.View):
         
         self.physics_engine.update()
         self.physics_engine2.update()
-    
+        # self.bullet.bullet_sprite_list.update()
 
-        try:
-            if self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
-                # explosion = Explosion()
-                # explosion.center_x = self.bullet.bullet.center_X
-                # explosion.center_y = self.bullet.bullet.center_y
-                # # explosion.update()
-                # self.explosion_list.append(explosion)
-                self.bullet.bullet.kill()
-            elif self.bullet.bullet.collides_with_list(self.tanks.sprite_list):
-                self.bullet.bullet.kill()
-        except AttributeError:
-            pass
+        for sprite in self.bullet.bullet_sprite_list:
+            self.all_sprites.append(sprite)
+        
+        for sprite in self.tanks.sprite_list:
+            self.all_sprites.append(sprite)
+        
+        for sprite in self.ground.ground_sprite_list:
+            self.all_sprites.append(sprite)
+        
+        # check for collisions and remove bullets
+        for self.bullet.bullet in self.bullet.bullet_sprite_list:
+            hit_list = arcade.check_for_collision_with_list(self.bullet.bullet,self.all_sprites)
+
+            if len(hit_list) > 0:
+                self.bullet.bullet.remove_from_sprite_lists()
+            
+            if self.bullet.bullet.bottom > constants.SCREEN_HEIGHT or self.bullet.bullet.top < 0 or self.bullet.bullet.right < 0 or self.bullet.bullet.left > constants.SCREEN_WIDTH:
+                self.bullet.bullet.remove_from_sprite_lists()
+
+        # try:
+        #     if self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
+        #         # explosion = Explosion()
+        #         # explosion.center_x = self.bullet.bullet.center_X
+        #         # explosion.center_y = self.bullet.bullet.center_y
+        #         # # explosion.update()
+        #         # self.explosion_list.append(explosion)
+        #         self.bullet.bullet.kill()
+        #     elif self.bullet.bullet.collides_with_list(self.tanks.sprite_list):
+        #         self.bullet.bullet.kill()
+        # except AttributeError:
+        #     pass
         
         # Check player1 for out-of-bounds
         if self.tanks.player1.left < 0:
