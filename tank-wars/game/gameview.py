@@ -31,7 +31,6 @@ class GameView(arcade.View):
         self.explosion_list = arcade.SpriteList()
         self.physics_engine = arcade.PhysicsEngineSimple(self.tanks.player1, self.ground.ground_sprite_list)
         self.physics_engine2 = arcade.PhysicsEngineSimple(self.tanks.player2, self.ground.ground_sprite_list)
-        
     
     def on_draw(self):
         arcade.start_render()
@@ -49,6 +48,7 @@ class GameView(arcade.View):
         
         self.physics_engine.update()
         self.physics_engine2.update()
+    
 
         try:
             if self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
@@ -63,6 +63,28 @@ class GameView(arcade.View):
         except AttributeError:
             pass
         
+        # Check player1 for out-of-bounds
+        if self.tanks.player1.left < 0:
+            self.tanks.player1.left = 0
+        elif self.tanks.player1.right > constants.SCREEN_WIDTH - 1:
+            self.tanks.player1.right = constants.SCREEN_WIDTH - 1
+
+        if self.tanks.player1.bottom < 0:
+            self.tanks.player1.bottom = 0
+        elif self.tanks.player1.top > constants.SCREEN_HEIGHT - 1:
+            self.tanks.player1.top = constants.SCREEN_HEIGHT - 1
+
+        # Check player2 for out of bounds    
+        if self.tanks.player2.left < 0:
+            self.tanks.player2.left = 0
+        elif self.tanks.player2.right > constants.SCREEN_WIDTH - 1:
+            self.tanks.player2.right = constants.SCREEN_WIDTH - 1
+
+        if self.tanks.player2.bottom < 0:
+            self.tanks.player2.bottom = 0
+        elif self.tanks.player2.top > constants.SCREEN_HEIGHT - 1:
+            self.tanks.player2.top = constants.SCREEN_HEIGHT - 1
+
         self.tanks.player1.update()
         self.tanks.player2.update()
         if self.bullet.bullet_sprite_list is not None:
@@ -113,3 +135,5 @@ class GameView(arcade.View):
             self.tanks.player2.speed = 0
         elif key == arcade.key.A or key == arcade.key.D:
             self.tanks.player2.change_angle = 0
+    
+        
