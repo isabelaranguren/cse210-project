@@ -51,6 +51,7 @@ class GameView(arcade.View):
         self.physics_engine2.update()
         # self.bullet.bullet_sprite_list.update()
 
+        # create list of all sprites
         for sprite in self.bullet.bullet_sprite_list:
             self.all_sprites.append(sprite)
         
