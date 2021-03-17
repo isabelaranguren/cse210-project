@@ -39,6 +39,12 @@ class Tanks(arcade.Sprite):
         else:
             return True
     
+    def set_life(self, points_change):
+        self._life += points_change
+    
+    def get_life(self):
+        return self._life
+    
     def update(self):
         """Updates the sprite as it rotates on the screen
         Contributors:
@@ -66,6 +72,7 @@ class Player1(Tanks):
     """
     def __init__(self):
         super().__init__()
+        self.name = 0
         self.center_x = constants.PLAYER1_X
         self.texture = self.player1_texture
 
@@ -81,6 +88,7 @@ class Player2(Tanks):
     """
     def __init__(self):
         super().__init__()
+        self.name = 1
         self.center_x = constants.PLAYER2_X
         self.texture = self.player2_texture
 

@@ -1,13 +1,16 @@
 import arcade
 from game import constants
 
+
+
 class GameOverView(arcade.View):
     """ View to show when game is over """
 
-    def __init__(self):
+    def __init__(self, loser):
         """ This is run once when we switch to this view """
         super().__init__()
         self.texture = arcade.load_texture(constants.GAME_OVER)
+        self.loser = loser
 
         # Reset the viewport, necessary if we have a scrolling game and we need
         # to reset the viewport back to the start so we can see what we draw.

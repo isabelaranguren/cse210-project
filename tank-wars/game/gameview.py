@@ -98,9 +98,15 @@ class GameView(arcade.View):
                     bullets -= 1
                 
                 for tank in hit_list_tank:
-                    tank.kill()
+                    tank.set_life(-25)
                     bullet.kill()
-                    self.switch_game_over_view()
+        
+        for tank in self.tanks.sprite_list:
+            alive = tank.is_alive()
+            if alive == False:
+                name = tank.name
+                tank.kill()
+                self.switch_game_over_view(name)
 
         # try:
         #     if self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
