@@ -9,6 +9,21 @@ from typing import Optional
 import math
 
 class GameView(arcade.View):
+    """Game view for Tank Wars
+    Stereotype:
+        Controller
+    Attributes:
+        _score (Score): initalizes the score class
+        texture (arcade.load_texture): load background texture
+        physicis_engine (None): declares physics engine variable
+        physics_engine2 (None): declares physics engine 2 variable
+        bullet_list (None): declares bullet list bariable
+        explosion_list (None): declares explosion list variable
+    Contributors:
+        Reed Hunsaker
+        Adrianna Lund
+        Isabel Aranguren
+    """
     def __init__(self):
         super().__init__()
         
@@ -20,11 +35,15 @@ class GameView(arcade.View):
         self.physics_engine2 = None
         self.bullet_list = None
         self.explosion_list = None
+        self.all_sprites = arcade.SpriteList(use_spatial_hash= True)
 
         self.setup()
 
     
     def setup(self):
+        """
+
+        """
         self.tanks = Run()
         self.ground = Ground()
         self.bullet = Bullet()
@@ -34,6 +53,7 @@ class GameView(arcade.View):
     
     def on_draw(self):
         arcade.start_render()
+        
         self.texture.draw_sized(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2,
                                 constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         self.tanks.sprite_list.draw()
@@ -48,20 +68,49 @@ class GameView(arcade.View):
         
         self.physics_engine.update()
         self.physics_engine2.update()
-    
 
-        try:
-            if self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
-                # explosion = Explosion()
-                # explosion.center_x = self.bullet.bullet.center_X
-                # explosion.center_y = self.bullet.bullet.center_y
-                # # explosion.update()
-                # self.explosion_list.append(explosion)
-                self.bullet.bullet.kill()
-            elif self.bullet.bullet.collides_with_list(self.tanks.sprite_list):
-                self.bullet.bullet.kill()
-        except AttributeError:
-            pass
+        #combine sprite lists
+        # try:
+        #     for sprite in self.bullet.bullet_sprite_list:
+        #         self.all_sprites.append(sprite)
+        # except AttributeError:
+        #     pass
+        # for sprite in self.tanks.sprite_list:
+        #     self.all_sprites.append(sprite)
+        for sprite in self.ground.ground_sprite_list:
+            self.all_sprites.append(sprite)
+        
+        bullets = len(self.bullet.bullet_sprite_list)
+
+        if bullets > 0:
+            for bullet in self.bullet.bullet_sprite_list:
+                hit_list_wall = arcade.check_for_collision_with_list(bullet, self.all_sprites)
+                hit_list_tank = arcade.check_for_collision_with_list(bullet, self.tanks.sprite_list)
+
+                if len(hit_list_wall) > 0:
+                    bullet.kill()
+                    bullets -= 1
+
+                elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
+                    bullet.kill()
+                    bullets -= 1
+                
+                for tank in hit_list_tank:
+                    tank.kill()
+                    bullet.kill()
+
+        # try:
+        #     if self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
+        #         # explosion = Explosion()
+        #         # explosion.center_x = self.bullet.bullet.center_X
+        #         # explosion.center_y = self.bullet.bullet.center_y
+        #         # # explosion.update()
+        #         # self.explosion_list.append(explosion)
+        #         self.bullet.bullet.kill()
+        #     elif self.bullet.bullet.collides_with_list(self.tanks.sprite_list):
+        #         self.bullet.bullet.kill()
+        # except AttributeError:
+        #     pass
         
         # Check player1 for out-of-bounds
         if self.tanks.player1.left < 0:

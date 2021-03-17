@@ -3,8 +3,18 @@ import game.constants as constants
 import math
 
 class Tanks(arcade.Sprite):
-    """Changes apply to both tanks
-
+    """Class that represent the tank sprites on screen.
+    Stereotype:
+        Information Holder
+    Attributes:
+        _life (integer): Life value of the tanks
+        speed (integer): speed of tanks
+        center_y (integer): y value pixel of tank spirte
+        scale (integer): scale of sprite
+        player1_texture (arcade.load_texture): file path for player1 sprite using arcade.load_texture
+        player2_texture (arcade.load_texture): file path for player2 sprite using arcade.load_texture
+    Contributors:
+        Reed Hunsaker
     """
     def __init__(self):
         super().__init__()
@@ -20,16 +30,24 @@ class Tanks(arcade.Sprite):
         self.player2_texture = arcade.load_texture(file_name = constants.PLAYER2_SPRITE)
 
     def is_alive(self):
+        """checks to see if take is alive
+        Contributors:
+            Reed Hunsaker
+        """
         if self._life <= 0:
             return False
         else:
             return True
     
     def update(self):
+        """Updates the sprite as it rotates on the screen
+        Contributors:
+            Reed Hunsaker
+        """
         # Convert angle in degrees to radians.
         angle_rad = math.radians(self.angle)
 
-        # Rotate the ship
+        # Rotate the tank
         self.angle += self.change_angle
 
         # Use math to find our change based on our speed and angle
@@ -37,7 +55,14 @@ class Tanks(arcade.Sprite):
         self.center_y += self.speed * math.cos(angle_rad)
 
 class Player1(Tanks):
-    """Changes apply to Player1
+    """Class that represent the player1 on screen.
+    Stereotype:
+        Information Holder
+    Attributes:
+        center_x (integer): x pixel value of the center of sprite
+        texture (string): file path of player1 sprite
+    Contributors:
+        Reed Hunsaker
     """
     def __init__(self):
         super().__init__()
@@ -45,7 +70,14 @@ class Player1(Tanks):
         self.texture = self.player1_texture
 
 class Player2(Tanks):
-    """Changes apply to Player2
+    """Class that represent the player2 on screen.
+    Stereotype:
+        Information Holder
+    Attributes:
+        center_x (integer): x pixel value of the center of sprite
+        texture (string): file path of player2 sprite
+    Contributors:
+        Reed Hunsaker
     """
     def __init__(self):
         super().__init__()
@@ -54,8 +86,15 @@ class Player2(Tanks):
 
 
 class Run:
-    """Public class will be the one called
-    to make changes throughout program
+    """Class that represent the player2 on screen.
+    Stereotype:
+        Controller
+    Attributes:
+        sprite_list (aracde.SpriteList): creates sprite list for the tanks
+        player1 (Player1): initializes player1
+        player2 (Player2): initializes player2
+    Contributors:
+        Reed Hunsaker
     """
     def __init__(self):
         self.sprite_list = arcade.SpriteList()
