@@ -1,14 +1,31 @@
 import arcade
+from time import sleep
 from game.score import Score
 import game.constants as constants
 from game.tanks import Run
 from game.ground import Ground
 from game.bullet import Bullet
 from game.explosion import Explosion
+from game.game_over_view import GameOverView
 from typing import Optional
 import math
 
 class GameView(arcade.View):
+    """Game view for Tank Wars
+    Stereotype:
+        Controller
+    Attributes:
+        _score (Score): initalizes the score class
+        texture (arcade.load_texture): load background texture
+        physicis_engine (None): declares physics engine variable
+        physics_engine2 (None): declares physics engine 2 variable
+        bullet_list (None): declares bullet list bariable
+        explosion_list (None): declares explosion list variable
+    Contributors:
+        Reed Hunsaker
+        Adrianna Lund
+        Isabel Aranguren
+    """
     def __init__(self):
         super().__init__()
         
@@ -20,12 +37,15 @@ class GameView(arcade.View):
         self.physics_engine2 = None
         self.bullet_list = None
         self.explosion_list = None
-        self.all_sprites = arcade.SpriteList()
+        self.all_sprites = arcade.SpriteList(use_spatial_hash= True)
 
         self.setup()
 
     
     def setup(self):
+        """
+
+        """
         self.tanks = Run()
         self.ground = Ground()
         self.bullet = Bullet()
@@ -35,6 +55,7 @@ class GameView(arcade.View):
     
     def on_draw(self):
         arcade.start_render()
+        
         self.texture.draw_sized(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2,
                                 constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         self.tanks.sprite_list.draw()
@@ -49,27 +70,37 @@ class GameView(arcade.View):
         
         self.physics_engine.update()
         self.physics_engine2.update()
-        # self.bullet.bullet_sprite_list.update()
 
-        # create list of all sprites
-        for sprite in self.bullet.bullet_sprite_list:
-            self.all_sprites.append(sprite)
-        
-        for sprite in self.tanks.sprite_list:
-            self.all_sprites.append(sprite)
-        
+        #combine sprite lists
+        # try:
+        #     for sprite in self.bullet.bullet_sprite_list:
+        #         self.all_sprites.append(sprite)
+        # except AttributeError:
+        #     pass
+        # for sprite in self.tanks.sprite_list:
+        #     self.all_sprites.append(sprite)
         for sprite in self.ground.ground_sprite_list:
             self.all_sprites.append(sprite)
         
-        # check for collisions and remove bullets
-        for self.bullet.bullet in self.bullet.bullet_sprite_list:
-            hit_list = arcade.check_for_collision_with_list(self.bullet.bullet,self.all_sprites)
+        bullets = len(self.bullet.bullet_sprite_list)
 
-            if len(hit_list) > 0:
-                self.bullet.bullet.remove_from_sprite_lists()
-            
-            if self.bullet.bullet.bottom > constants.SCREEN_HEIGHT or self.bullet.bullet.top < 0 or self.bullet.bullet.right < 0 or self.bullet.bullet.left > constants.SCREEN_WIDTH:
-                self.bullet.bullet.remove_from_sprite_lists()
+        if bullets > 0:
+            for bullet in self.bullet.bullet_sprite_list:
+                hit_list_wall = arcade.check_for_collision_with_list(bullet, self.all_sprites)
+                hit_list_tank = arcade.check_for_collision_with_list(bullet, self.tanks.sprite_list)
+
+                if len(hit_list_wall) > 0:
+                    bullet.kill()
+                    bullets -= 1
+
+                elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
+                    bullet.kill()
+                    bullets -= 1
+                
+                for tank in hit_list_tank:
+                    tank.kill()
+                    bullet.kill()
+                    self.switch_game_over_view()
 
         # try:
         #     if self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
@@ -157,4 +188,6 @@ class GameView(arcade.View):
         elif key == arcade.key.A or key == arcade.key.D:
             self.tanks.player2.change_angle = 0
     
-        
+    def switch_game_over_view(self):
+        game_over = GameOverView()
+        self.window.show_view(game_over)

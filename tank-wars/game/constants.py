@@ -38,7 +38,7 @@ PLAYER2_X = 600
 
 GAME_OVER = assets / 'game-over.jpg'
 BACKGROUND = assets / 'background.png'
-CAMO = assets / 'camo.jpg'
+CAMO = assets / 'camo.png'
 
 WALLS = assets / '1bitpack' / 'Tilemap' / 'sample_urban2.tmx'
 TILE_SCALING = 1.5
@@ -49,6 +49,8 @@ BULLET_SPRITE = assets/ 'tank-pack' / 'tank_bullet1.png'
 BULLET_INITIAL_VELOCITY = (3,0)
 BULLET_SCALE = 0.5
 BULLET_SPEED = 5
+BULLET_X_SCALE = 7
+BULLET_Y_SCALE = 7
 
 #explosion
 EXPLOSION_TEXTURE_LIST = []
