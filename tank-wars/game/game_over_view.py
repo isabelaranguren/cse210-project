@@ -1,6 +1,5 @@
 import arcade
 from game import constants
-from game import GameView
 
 class GameOverView(arcade.View):
     """ View to show when game is over """

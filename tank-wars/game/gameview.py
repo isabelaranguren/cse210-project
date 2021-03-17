@@ -1,10 +1,12 @@
 import arcade
+from time import sleep
 from game.score import Score
 import game.constants as constants
 from game.tanks import Run
 from game.ground import Ground
 from game.bullet import Bullet
 from game.explosion import Explosion
+from game.game_over_view import GameOverView
 from typing import Optional
 import math
 
@@ -98,6 +100,7 @@ class GameView(arcade.View):
                 for tank in hit_list_tank:
                     tank.kill()
                     bullet.kill()
+                    self.switch_game_over_view()
 
         # try:
         #     if self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
@@ -185,4 +188,6 @@ class GameView(arcade.View):
         elif key == arcade.key.A or key == arcade.key.D:
             self.tanks.player2.change_angle = 0
     
-        
+    def switch_game_over_view(self):
+        game_over = GameOverView()
+        self.window.show_view(game_over)
