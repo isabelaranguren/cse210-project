@@ -24,9 +24,9 @@ class GameOverView(arcade.View):
                                 constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         arcade.draw_text(f"{self.win_text}", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 4-75,
                          arcade.color.WHITE, font_size=20, anchor_x="center")
-        arcade.draw_text(f"Player 1: {self.window.score.get_score_player1()} | Player 2: {self.window.score.get_score_player2()}", 
+        arcade.draw_text(f"Blue Tank: {self.window.score.get_score_player1()} | Red Tank: {self.window.score.get_score_player2()}", 
         constants.SCREEN_WIDTH / 2,
-        constants.SCREEN_HEIGHT / 6-75,
+        constants.SCREEN_HEIGHT / 6 -75,
         arcade.color.WHITE, 
         font_size=20, 
         anchor_x="center")
