@@ -70,50 +70,33 @@ class GameView(arcade.View):
         
         self.physics_engine.update()
         self.physics_engine2.update()
-
-        #combine sprite lists
-        # try:
-        #     for sprite in self.bullet.bullet_sprite_list:
-        #         self.all_sprites.append(sprite)
-        # except AttributeError:
-        #     pass
-        # for sprite in self.tanks.sprite_list:
-        #     self.all_sprites.append(sprite)
-        for sprite in self.ground.ground_sprite_list:
-            self.all_sprites.append(sprite)
         
         bullets = len(self.bullet.bullet_sprite_list)
 
         if bullets > 0:
             for bullet in self.bullet.bullet_sprite_list:
-                hit_list_wall = arcade.check_for_collision_with_list(bullet, self.all_sprites)
+                hit_list_wall = arcade.check_for_collision_with_list(bullet, self.ground.ground_sprite_list)
                 hit_list_tank = arcade.check_for_collision_with_list(bullet, self.tanks.sprite_list)
 
                 if len(hit_list_wall) > 0:
-                    bullet.kill()
-                    bullets -= 1
+                    self.bullet.bullet_bounce(bullet, bullet.angle)
+                     
 
                 elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
                     bullet.kill()
                     bullets -= 1
                 
                 for tank in hit_list_tank:
-                    tank.kill()
+                    tank.set_life(-25)
                     bullet.kill()
-                    self.switch_game_over_view()
-
-        # try:
-        #     if self.bullet.bullet.collides_with_list(self.ground.ground_sprite_list):
-        #         # explosion = Explosion()
-        #         # explosion.center_x = self.bullet.bullet.center_X
-        #         # explosion.center_y = self.bullet.bullet.center_y
-        #         # # explosion.update()
-        #         # self.explosion_list.append(explosion)
-        #         self.bullet.bullet.kill()
-        #     elif self.bullet.bullet.collides_with_list(self.tanks.sprite_list):
-        #         self.bullet.bullet.kill()
-        # except AttributeError:
-        #     pass
+                    bullets -= 1
+        
+        for tank in self.tanks.sprite_list:
+            alive = tank.is_alive()
+            if alive == False:
+                name = tank.name
+                tank.kill()
+                self.switch_game_over_view(name)
         
         # Check player1 for out-of-bounds
         if self.tanks.player1.left < 0:
@@ -188,6 +171,6 @@ class GameView(arcade.View):
         elif key == arcade.key.A or key == arcade.key.D:
             self.tanks.player2.change_angle = 0
     
-    def switch_game_over_view(self):
-        game_over = GameOverView()
+    def switch_game_over_view(self, loser):
+        game_over = GameOverView(loser)
         self.window.show_view(game_over)

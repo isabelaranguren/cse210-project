@@ -1,6 +1,7 @@
 import arcade
 import game.constants as constants
 import math
+import numpy as np
 
 class BulletSprite(arcade.Sprite):
     """Class that represent bullet sprites on the screen
@@ -38,6 +39,7 @@ class Bullet:
     def __init__(self):
         super().__init__()
         self.bullet_sprite_list = arcade.SpriteList()
+        self.bounce = 0
         
     def shoot_bullet(self,tank_x, tank_y, tank_angle):
         """Function to shoot the bullet and to rotate bullet to match tank angle
@@ -61,4 +63,12 @@ class Bullet:
         arcade.play_sound(self.bullet.tank_fire)
         # Convert angle in degrees to radians.
         self.bullet.update()
-        
+    
+    def bullet_bounce(self, bullet, tank_angle):
+        bullet.change_y = -math.cos(math.radians(np.pi + tank_angle)) * self.bullet.speed
+        bullet.change_x = math.sin(math.radians(np.pi + tank_angle)) * self.bullet.speed
+        bullet.angle = math.degrees(math.atan2(bullet.change_y, bullet.change_x))
+    
+    def get_bounces(self):
+        self.bounce +=1
+        return self.bounce
