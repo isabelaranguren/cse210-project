@@ -2,12 +2,11 @@ import arcade
 import game as constants
 
 class Explosion(arcade.Sprite):
-    def __init__(self):
+    def __init__(self, texture_list):
         super().__init__()
 
         self.current_texture = 0
-        self.load_tex = arcade.load_texture(constants.EXPLOSION_4)
-        self.texture = self.load_tex
+        self.textures = texture_list
     
     def update(self):
         self.current_texture +=1

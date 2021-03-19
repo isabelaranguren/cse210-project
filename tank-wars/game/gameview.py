@@ -36,10 +36,20 @@ class GameView(arcade.View):
         self.physics_engine = None
         self.physics_engine2 = None
         self.bullet_list = None
-        self.explosion_list = None
+        self.explosions_list = None
         self.all_sprites = arcade.SpriteList(use_spatial_hash= True)
 
         self.setup()
+        #setup explosions - needs to be here to speed up game
+        self.explosion_texture_list = []
+
+        columns = 16
+        count = 18
+        sprite_width = 256
+        sprite_height = 256
+        file_name = ":resources:images/spritesheets/explosion.png"
+
+        self.explosion_texture_list = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, count)
 
     
     def setup(self):
@@ -49,7 +59,7 @@ class GameView(arcade.View):
         self.tanks = Run()
         self.ground = Ground()
         self.bullet = Bullet()
-        self.explosion_list = arcade.SpriteList()
+        self.explosions_list = arcade.SpriteList()
         self.physics_engine = arcade.PhysicsEngineSimple(self.tanks.player1, self.ground.ground_sprite_list)
         self.physics_engine2 = arcade.PhysicsEngineSimple(self.tanks.player2, self.ground.ground_sprite_list)
     
@@ -63,13 +73,14 @@ class GameView(arcade.View):
 
         if self.bullet.bullet_sprite_list is not None:
             self.bullet.bullet_sprite_list.draw()
-        if self.explosion_list is not None:
-            self.explosion_list.draw()
+        if self.explosions_list is not None:
+            self.explosions_list.draw()
 
     def on_update(self, delta_time: float):
         
         self.physics_engine.update()
         self.physics_engine2.update()
+        self.explosions_list.update()
         
         bullets = len(self.bullet.bullet_sprite_list)
 
@@ -80,7 +91,16 @@ class GameView(arcade.View):
 
                 if len(hit_list_wall) > 0:
                     self.bullet.bullet_bounce(bullet, bullet.angle)
-                     
+                    
+                if len(hit_list_tank) > 0:    
+                    explosion = Explosion(self.explosion_texture_list)
+                    # set explosion center to location of first hit in list
+                    explosion.center_x = hit_list_tank[0].center_x
+                    explosion.center_y = hit_list_tank[0].center_y
+
+                    # update explosion (sets first image)
+                    explosion.update()
+                    self.explosions_list.append(explosion)
 
                 elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
                     bullet.kill()
@@ -125,8 +145,8 @@ class GameView(arcade.View):
         if self.bullet.bullet_sprite_list is not None:
             self.bullet.bullet_sprite_list.update()
             self.bullet.bullet_sprite_list.update_animation()
-        if self.explosion_list is not None:
-            self.explosion_list.update()
+        if self.explosions_list is not None:
+            self.explosions_list.update()
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
