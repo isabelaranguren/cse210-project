@@ -57,11 +57,18 @@ HEALTH_POWER_UP_SPRITE = assets / 'tank-pack' / 'tanks_crateWood.png'
 HEALTH_POWER_DOWN_SPRITE = assets / 'tank-pack' / 'tanks_crateRepair.png'
 
 #explosion
-EXPLOSION_TEXTURE_LIST = []
-for i in range(1, 13):
-    ex_tex = assets / 'tank-pack' / f'tank_explosion{i}.png'
-    EXPLOSION_TEXTURE_LIST.append(ex_tex)
-EXPLOSION_4 = assets / 'tank-pack' / 'tank_explosion4.png'
+# EXPLOSION_TEXTURE_LIST = []
+# columns = 16
+# count = 60
+# sprite_width = 256
+# sprite_height = 256
+# file_name = ":resources:images/spritesheets/explosion.png"
+
+# EXPLOSION_TEXTURE_LIST = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, count)
+# for i in range(1, 13):
+#     ex_tex = assets / 'tank-pack' / f'tank_explosion{i}.png'
+#     EXPLOSION_TEXTURE_LIST.append(ex_tex)
+# EXPLOSION_4 = assets / 'tank-pack' / 'tank_explosion4.png'
 
 #time
 FRAME_LENGTH = 0.1
