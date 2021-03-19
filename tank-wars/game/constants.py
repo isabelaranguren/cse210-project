@@ -25,7 +25,7 @@ GROUND_Y = 32
 TANK_Y = 125
 TANK_SCALE = 0.85
 TANK_SPEED = 5
-TANK_ANGLE_SPEED = 5
+TANK_ANGLE_SPEED = 2
 #Player 1
 PLAYER1_X = 150
 PLAYER1_SPRITE = ":resources:images/topdown_tanks/tank_blue.png"
@@ -51,6 +51,10 @@ BULLET_SCALE = 0.5
 BULLET_SPEED = 5
 BULLET_X_SCALE = 7
 BULLET_Y_SCALE = 7
+
+# powers
+HEALTH_POWER_UP_SPRITE = assets / 'tank-pack' / 'tanks_crateWood.png'
+HEALTH_POWER_DOWN_SPRITE = assets / 'tank-pack' / 'tanks_crateRepair.png'
 
 #explosion
 EXPLOSION_TEXTURE_LIST = []

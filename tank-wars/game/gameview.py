@@ -5,6 +5,7 @@ import game.constants as constants
 from game.tanks import Run
 from game.ground import Ground
 from game.bullet import Bullet
+from game.powerups import SpawnPowerDown, SpawnPowerUp
 from game.explosion import Explosion
 from game.game_over_view import GameOverView
 from typing import Optional
@@ -49,6 +50,8 @@ class GameView(arcade.View):
         self.tanks = Run()
         self.ground = Ground()
         self.bullet = Bullet()
+        self.power_up = SpawnPowerUp()
+        self.power_down = SpawnPowerDown()
         self.explosion_list = arcade.SpriteList()
         self.physics_engine = arcade.PhysicsEngineSimple(self.tanks.player1, self.ground.ground_sprite_list)
         self.physics_engine2 = arcade.PhysicsEngineSimple(self.tanks.player2, self.ground.ground_sprite_list)
@@ -60,6 +63,8 @@ class GameView(arcade.View):
                                 constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         self.tanks.sprite_list.draw()
         self.ground.ground_sprite_list.draw()
+        self.power_up.sprite_list.draw()
+        self.power_down.sprite_list.draw()
 
         if self.bullet.bullet_sprite_list is not None:
             self.bullet.bullet_sprite_list.draw()
@@ -90,7 +95,54 @@ class GameView(arcade.View):
                     tank.set_life(-25)
                     bullet.kill()
                     bullets -= 1
-        
+
+        power_ups = len(self.power_up.sprite_list)
+        power_downs = len(self.power_down.sprite_list)
+
+        if power_downs > 0 and power_ups > 0:
+            for power_up in self.power_up.sprite_list:
+                power_up.kill()
+                power_ups -= 1
+
+        if power_downs > 0:
+            for power_down in self.power_down.sprite_list:
+                hit_list_wall = arcade.check_for_collision_with_list(power_down, self.ground.ground_sprite_list)
+                hit_list_tank = arcade.check_for_collision_with_list(power_down, self.tanks.sprite_list)
+                # hit_list_bullet = arcade.check_for_collision_with_list(power_up, self.bullet.bullet_sprite_list)
+
+                if len(hit_list_wall) > 0:
+                    power_down.kill()
+                    power_downs -= 1
+                    self.power_down = SpawnPowerDown()
+
+                """ # Paired with checker above in bullet collision checks
+                if len(hit_list_bullet) > 0:
+                    power_up.kill()
+                    power_ups -= 1
+                    self.power_up = Spawn()"""
+
+                for tank in hit_list_tank:
+                    tank.set_life(-25)
+                    power_down.kill()
+                    power_downs -= 1
+                    self.power_up = SpawnPowerUp()
+
+        if power_ups > 0:
+            for power_up in self.power_up.sprite_list:
+                hit_list_wall = arcade.check_for_collision_with_list(power_up, self.ground.ground_sprite_list)
+                hit_list_tank = arcade.check_for_collision_with_list(power_up, self.tanks.sprite_list)
+
+                if len(hit_list_wall) > 0:
+                    power_up.kill()
+                    power_ups -= 1
+                    self.power_up = SpawnPowerUp()
+
+                for tank in hit_list_tank:
+                    tank.set_life(50)
+                    power_up.kill()
+                    power_ups -= 1
+                    self.power_down = SpawnPowerDown()
+
         for tank in self.tanks.sprite_list:
             alive = tank.is_alive()
             if alive == False:
