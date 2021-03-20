@@ -1,5 +1,4 @@
 import arcade
-import game as constants
 
 class Explosion(arcade.Sprite):
     def __init__(self, texture_list):

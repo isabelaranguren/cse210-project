@@ -12,7 +12,7 @@ from typing import Optional
 import math
 
 class GameView(arcade.View):
-    """Game view for Tank Wars
+    """ Game view for Tank Wars
     Stereotype:
         Controller
     Attributes:
@@ -26,6 +26,7 @@ class GameView(arcade.View):
         Reed Hunsaker
         Adrianna Lund
         Isabel Aranguren
+        Jordan 
     """
     def __init__(self):
         super().__init__()
@@ -40,8 +41,6 @@ class GameView(arcade.View):
         self.explosions_list = None
         self.all_sprites = arcade.SpriteList(use_spatial_hash= True)
 
-        self.setup()
-        #setup explosions - needs to be here to speed up game
         self.explosion_texture_list = []
 
         columns = 16
@@ -54,9 +53,10 @@ class GameView(arcade.View):
 
     
     def setup(self):
+        """ 
+        Set up the game and initialize the variables. 
         """
 
-        """
         self.tanks = Run()
         self.ground = Ground()
         self.bullet = Bullet()
@@ -71,13 +71,19 @@ class GameView(arcade.View):
     def on_draw(self):
         arcade.start_render()
         
+        self.wrap()
         self.texture.draw_sized(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2,
                                 constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         self.tanks.sprite_list.draw()
+        
+        for tank in self.tanks.sprite_list:
+            tank.draw_life_bar()
+            tank.draw_life_number()
+        
         self.ground.ground_sprite_list.draw()
         self.power_up.sprite_list.draw()
         self.power_down.sprite_list.draw()
-
+        
         if self.bullet.bullet_sprite_list is not None:
             self.bullet.bullet_sprite_list.draw()
         if self.explosions_list is not None:
@@ -145,6 +151,7 @@ class GameView(arcade.View):
 
                 for tank in hit_list_tank:
                     tank.set_life(-25)
+                    tank.cur_life -= 1
                     power_down.kill()
                     power_downs -= 1
                     self.power_up = SpawnPowerUp()
@@ -171,6 +178,9 @@ class GameView(arcade.View):
                 name = tank.name
                 tank.kill()
                 self.switch_game_over_view(name)
+                
+        
+    def wrap(self):
         
         # Check player1 for out-of-bounds
         if self.tanks.player1.left < 0:
