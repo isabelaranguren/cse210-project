@@ -13,6 +13,6 @@ class Explosion(arcade.Sprite):
         self.current_texture +=1
         if self.current_texture < len(self.textures):
             self.set_texture(self.current_texture)
-            arcade.play_sound(self.tank_explode)
+            arcade.play_sound(self.tank_explode,.5)
         else:
             self.remove_from_sprite_lists()

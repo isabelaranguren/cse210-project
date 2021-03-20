@@ -14,10 +14,11 @@ Y_CONSTANT = 540
 #sounds
 TANK_FIRE = assets / 'sounds' / 'shoot.wav'
 EXPLOSION_SOUND = assets / 'sounds' / 'small_explosion.mp3'
-# MAIN_SCREEN_SOUND = assets / '' / ''
-# GAME_BACKGROUND_SOUND = assets / '' / ''
-# GAME_OVER_SOUND = assets / '' / ''
-# POWERUPS_SOUND = assets / '' / ''
+MAIN_SCREEN_SOUND = assets / 'sounds' / 'IntroScreen.mp3'
+# GAME_BACKGROUND_SOUND = assets / 'sounds' / ''
+# GAME_OVER_SOUND = assets / 'sounds' / ''
+POWERUPS_SOUND = assets / 'sounds' / 'powerup.ogg'
+POWERDOWN_SOUND = assets / 'sounds' / 'powerdown.flac'
 
 #sprites
 #ground
