@@ -151,7 +151,6 @@ class GameView(arcade.View):
 
                 for tank in hit_list_tank:
                     tank.set_life(-25)
-                    tank.cur_life -= 1
                     power_down.kill()
                     power_downs -= 1
                     self.power_up = SpawnPowerUp()
