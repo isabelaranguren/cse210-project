@@ -12,7 +12,12 @@ X_CONSTANT = 860
 Y_CONSTANT = 540
 
 #sounds
-TANK_FIRE = assets / 'sounds' / 'tank-fire.wav'
+TANK_FIRE = assets / 'sounds' / 'shoot.wav'
+EXPLOSION_SOUND = assets / 'sounds' / 'small_explosion.mp3'
+# MAIN_SCREEN_SOUND = assets / '' / ''
+# GAME_BACKGROUND_SOUND = assets / '' / ''
+# GAME_OVER_SOUND = assets / '' / ''
+# POWERUPS_SOUND = assets / '' / ''
 
 #sprites
 #ground
@@ -24,7 +29,7 @@ GROUND_Y = 32
 #Tanks
 TANK_Y = 125
 TANK_SCALE = 0.85
-TANK_SPEED = 5
+TANK_SPEED = 2
 TANK_ANGLE_SPEED = 2
 #Player 1
 PLAYER1_X = 150
