@@ -14,6 +14,7 @@ class Window(arcade.Window):
     def reset_gameview(self):
         gameview = GameView()
         return gameview
+
 def main():
     window = Window()
     start_view = InstructionView()

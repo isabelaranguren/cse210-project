@@ -1,8 +1,6 @@
 import arcade
 from game import constants
 
-
-
 class GameOverView(arcade.View):
     """ View to show when game is over """
 
@@ -13,10 +11,7 @@ class GameOverView(arcade.View):
         self.loser = loser
         self.win_text = ""
         self.winner()
-
-        # Reset the viewport, necessary if we have a scrolling game and we need
-        # to reset the viewport back to the start so we can see what we draw.
-
+        
     def on_draw(self):
         """ Draw this view """
         arcade.start_render()
@@ -45,4 +40,4 @@ class GameOverView(arcade.View):
             self.window.score.add_score_player1()
             self.win_text = "Blue Tank Wins!"
         else:
-            self.win_text = "404 no winner found"
+            self.win_text = '404 no winner found'
