@@ -13,6 +13,7 @@ class PowerUp(arcade.Sprite):
 
         self.health_boost_texture = arcade.load_texture(file_name=constants.HEALTH_POWER_UP_SPRITE)
         self.health_penalty_texture = arcade.load_texture(file_name=constants.HEALTH_POWER_DOWN_SPRITE)
+        
 
 
 class PowerDown(PowerUp):

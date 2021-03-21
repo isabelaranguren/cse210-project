@@ -40,7 +40,10 @@ class GameView(arcade.View):
         self.bullet_list = None
         self.explosions_list = None
         self.all_sprites = arcade.SpriteList(use_spatial_hash= True)
-
+        
+        self.powerup_sound = arcade.load_sound(constants.POWERUPS_SOUND)
+        self.powerdown_sound = arcade.load_sound(constants.POWERDOWN_SOUND)
+        self.tank_explode = arcade.load_sound(constants.EXPLOSION_SOUND)
         self.explosion_texture_list = []
 
         columns = 16
@@ -120,6 +123,7 @@ class GameView(arcade.View):
                 
                 for tank in hit_list_tank:
                     tank.set_life(-25)
+                    arcade.play_sound(self.tank_explode,.5)
                     bullet.kill()
                     bullets -= 1
 
@@ -150,7 +154,7 @@ class GameView(arcade.View):
 
                 for tank in hit_list_tank:
                     tank.set_life(-25)
-                    tank.cur_health -= 1
+                    arcade.play_sound(self.powerdown_sound,.8)
                     power_down.kill()
                     power_downs -= 1
                     self.power_up = SpawnPowerUp()
@@ -167,6 +171,7 @@ class GameView(arcade.View):
 
                 for tank in hit_list_tank:
                     tank.set_life(50)
+                    arcade.play_sound(self.powerup_sound)
                     power_up.kill()
                     power_ups -= 1
                     self.power_down = SpawnPowerDown()
