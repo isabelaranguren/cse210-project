@@ -56,7 +56,6 @@ class GameView(arcade.View):
         """ 
         Set up the game and initialize the variables. 
         """
-
         self.tanks = Run()
         self.ground = Ground()
         self.bullet = Bullet()

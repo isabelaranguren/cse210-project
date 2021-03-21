@@ -68,7 +68,4 @@ class Bullet:
         bullet.change_y = -math.cos(math.radians(np.pi + tank_angle)) * self.bullet.speed
         bullet.change_x = math.sin(math.radians(np.pi + tank_angle)) * self.bullet.speed
         bullet.angle = math.degrees(math.atan2(bullet.change_y, bullet.change_x))
-    
-    def get_bounces(self):
-        self.bounce +=1
-        return self.bounce
+
