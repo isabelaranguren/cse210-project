@@ -12,8 +12,8 @@ X_CONSTANT = 860
 Y_CONSTANT = 540
 
 #sounds
-TANK_FIRE = assets / 'sounds' / 'shoot.wav'
-EXPLOSION_SOUND = assets / 'sounds' / 'small_explosion.mp3'
+TANK_FIRE = assets / 'sounds' / 'tank-fire.wav'
+EXPLOSION_SOUND = assets / 'sounds' / 'Explosion+7.wav'
 MAIN_SCREEN_SOUND = assets / 'sounds' / 'IntroScreen.mp3'
 # GAME_BACKGROUND_SOUND = assets / 'sounds' / ''
 # GAME_OVER_SOUND = assets / 'sounds' / ''

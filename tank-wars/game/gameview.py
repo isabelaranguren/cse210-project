@@ -44,23 +44,22 @@ class GameView(arcade.View):
         
         self.powerup_sound = arcade.load_sound(constants.POWERUPS_SOUND)
         self.powerdown_sound = arcade.load_sound(constants.POWERDOWN_SOUND)
-
+        self.tank_explode = arcade.load_sound(constants.EXPLOSION_SOUND)
         self.explosion_texture_list = []
 
         columns = 16
-        count = 18
+        self.count = 18
         sprite_width = 256
         sprite_height = 256
         file_name = ":resources:images/spritesheets/explosion.png"
 
-        self.explosion_texture_list = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, count)
+        self.explosion_texture_list = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, self.count)
 
     
     def setup(self):
         """ 
         Set up the game and initialize the variables. 
         """
-
         self.tanks = Run()
         self.ground = Ground()
         self.bullet = Bullet()
@@ -125,6 +124,7 @@ class GameView(arcade.View):
                 
                 for tank in hit_list_tank:
                     tank.set_life(-25)
+                    arcade.play_sound(self.tank_explode,.5)
                     bullet.kill()
                     bullets -= 1
 
@@ -180,6 +180,13 @@ class GameView(arcade.View):
         for tank in self.tanks.sprite_list:
             alive = tank.is_alive()
             if alive == False:
+                # self.count = 75
+                # explosion = Explosion(self.explosion_texture_list)
+                # explosion.center_x = tank.center_x
+                # explosion.center_y = tank.center_y
+
+                # explosion.update()
+                # self.explosions_list.append(explosion)
                 name = tank.name
                 count = 35
                 explosion = Explosion(self.explosion_texture_list)
@@ -230,6 +237,7 @@ class GameView(arcade.View):
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
 
+
         # Forward/back
         if key == arcade.key.DOWN:
             self.tanks.player1.speed = constants.TANK_SPEED
@@ -257,6 +265,8 @@ class GameView(arcade.View):
         elif key == arcade.key.D:
             self.tanks.player2.change_angle = -constants.TANK_ANGLE_SPEED
 
+        elif key == arcade.key.ESCAPE:
+            quit()
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
 
