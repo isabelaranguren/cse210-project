@@ -53,14 +53,16 @@ class Bullet:
             Adrianna Lund
         """
         self.bullet = BulletSprite()
-        self.bullet.change_y = -math.cos(math.radians(tank_angle)) * self.bullet.speed
-        self.bullet.change_x = math.sin(math.radians(tank_angle)) * self.bullet.speed
+        self.bullet.change_y = -math.cos(math.radians(tank_angle)) * self.bullet.speed  # This might be messing up the speed of the bullets, randomizing it
+        self.bullet.change_x = math.sin(math.radians(tank_angle)) * self.bullet.speed  # Same here
+        # self.bullet.change_x = -self.bullet.speed
+        # self.bullet.change_y = self.bullet.speed
         self.bullet.center_x = tank_x + (self.bullet.change_x * constants.BULLET_X_SCALE)
         self.bullet.center_y = tank_y + (self.bullet.change_y * constants.BULLET_Y_SCALE)
         self.bullet.angle = math.degrees(math.atan2(self.bullet.change_y, self.bullet.change_x))
         # self.bullet.velocity = constants.BULLET_INITIAL_VELOCITY
         self.bullet_sprite_list.append(self.bullet)
-        arcade.play_sound(self.bullet.tank_fire)
+        arcade.play_sound(self.bullet.tank_fire,.4)
         # Convert angle in degrees to radians.
         self.bullet.update()
     
@@ -68,7 +70,4 @@ class Bullet:
         bullet.change_y = -math.cos(math.radians(np.pi + tank_angle)) * self.bullet.speed
         bullet.change_x = math.sin(math.radians(np.pi + tank_angle)) * self.bullet.speed
         bullet.angle = math.degrees(math.atan2(bullet.change_y, bullet.change_x))
-    
-    def get_bounces(self):
-        self.bounce +=1
-        return self.bounce
+

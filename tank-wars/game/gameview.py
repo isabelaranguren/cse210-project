@@ -5,7 +5,7 @@ import game.constants as constants
 from game.tanks import Run
 from game.ground import Ground
 from game.bullet import Bullet
-from game.powerups import SpawnPowerDown, SpawnPowerUp
+from game.powerups import SpawnPowerDown, SpawnPowerUp, SpawnRandom
 from game.explosion import Explosion
 from game.game_over_view import GameOverView
 from typing import Optional
@@ -40,23 +40,25 @@ class GameView(arcade.View):
         self.bullet_list = None
         self.explosions_list = None
         self.all_sprites = arcade.SpriteList(use_spatial_hash= True)
-
+        
+        self.powerup_sound = arcade.load_sound(constants.POWERUPS_SOUND)
+        self.powerdown_sound = arcade.load_sound(constants.POWERDOWN_SOUND)
+        self.tank_explode = arcade.load_sound(constants.EXPLOSION_SOUND)
         self.explosion_texture_list = []
 
         columns = 16
-        count = 18
+        self.count = 18
         sprite_width = 256
         sprite_height = 256
         file_name = ":resources:images/spritesheets/explosion.png"
 
-        self.explosion_texture_list = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, count)
+        self.explosion_texture_list = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, self.count)
 
     
     def setup(self):
         """ 
         Set up the game and initialize the variables. 
         """
-
         self.tanks = Run()
         self.ground = Ground()
         self.bullet = Bullet()
@@ -121,6 +123,7 @@ class GameView(arcade.View):
                 
                 for tank in hit_list_tank:
                     tank.set_life(-25)
+                    arcade.play_sound(self.tank_explode,.5)
                     bullet.kill()
                     bullets -= 1
 
@@ -136,44 +139,74 @@ class GameView(arcade.View):
             for power_down in self.power_down.sprite_list:
                 hit_list_wall = arcade.check_for_collision_with_list(power_down, self.ground.ground_sprite_list)
                 hit_list_tank = arcade.check_for_collision_with_list(power_down, self.tanks.sprite_list)
-                # hit_list_bullet = arcade.check_for_collision_with_list(power_up, self.bullet.bullet_sprite_list)
+                hit_list_bullet = arcade.check_for_collision_with_list(power_down, self.bullet.bullet_sprite_list)
 
                 if len(hit_list_wall) > 0:
                     power_down.kill()
                     power_downs -= 1
                     self.power_down = SpawnPowerDown()
 
-                """ # Paired with checker above in bullet collision checks
+                # Paired with checker above in bullet collision checks. destroys/blocks bullet
                 if len(hit_list_bullet) > 0:
-                    power_up.kill()
+                    power_down.kill()
                     power_ups -= 1
-                    self.power_up = Spawn()"""
+                    self.power_up = SpawnRandom()
 
                 for tank in hit_list_tank:
-                    tank.set_life(-25)
+                    # combine this set of if statements with the identical one below, and change power_up/down to power
+                    # Really combine the entire powerups checker to work for any amount of powerups.
+                    if self.power_down.sprite_list[-1].description == "Bad":
+                        print("Tis a bomb")
+                        tank.set_life(-25)
+                        arcade.play_sound(self.powerdown_sound,.8)
+                    if self.power_down.sprite_list[-1].description == "Good":
+                        print("Tis a power up")
+                        tank.set_life(50)
+                        arcade.play_sound(self.powerup_sound)
                     power_down.kill()
                     power_downs -= 1
-                    self.power_up = SpawnPowerUp()
+                    self.power_up = SpawnRandom()
 
         if power_ups > 0:
             for power_up in self.power_up.sprite_list:
                 hit_list_wall = arcade.check_for_collision_with_list(power_up, self.ground.ground_sprite_list)
                 hit_list_tank = arcade.check_for_collision_with_list(power_up, self.tanks.sprite_list)
+                hit_list_bullet = arcade.check_for_collision_with_list(power_up, self.bullet.bullet_sprite_list)
 
                 if len(hit_list_wall) > 0:
                     power_up.kill()
                     power_ups -= 1
                     self.power_up = SpawnPowerUp()
 
-                for tank in hit_list_tank:
-                    tank.set_life(50)
+                # Paired with checker above in bullet collision checks. destroys/blocks bullet
+                if len(hit_list_bullet) > 0:
                     power_up.kill()
                     power_ups -= 1
-                    self.power_down = SpawnPowerDown()
+                    self.power_down = SpawnRandom()
+
+                for tank in hit_list_tank:
+                    if self.power_up.sprite_list[-1].description == "Good":
+                        print("Tis a power up")
+                        tank.set_life(50)
+                        arcade.play_sound(self.powerup_sound)
+                    if self.power_up.sprite_list[-1].description == "Bad":
+                        print("Tis a bomb")
+                        tank.set_life(-25)
+                        arcade.play_sound(self.powerdown_sound, .8)
+                    power_up.kill()
+                    power_ups -= 1
+                    self.power_down = SpawnRandom()
 
         for tank in self.tanks.sprite_list:
             alive = tank.is_alive()
             if alive == False:
+                # self.count = 75
+                # explosion = Explosion(self.explosion_texture_list)
+                # explosion.center_x = tank.center_x
+                # explosion.center_y = tank.center_y
+
+                # explosion.update()
+                # self.explosions_list.append(explosion)
                 name = tank.name
                 tank.kill()
                 self.switch_game_over_view(name)
@@ -241,6 +274,8 @@ class GameView(arcade.View):
         elif key == arcade.key.D:
             self.tanks.player2.change_angle = -constants.TANK_ANGLE_SPEED
 
+        elif key == arcade.key.ESCAPE:
+            quit()
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
 
