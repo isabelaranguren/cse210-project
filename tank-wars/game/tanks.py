@@ -1,6 +1,7 @@
 import arcade
 import game.constants as constants
 import math
+from game.explosion import Explosion
 
 
 class Tanks(arcade.Sprite):
@@ -24,7 +25,18 @@ class Tanks(arcade.Sprite):
     """
     def __init__(self):
         super().__init__()
-        
+        self.explosions_list = None
+        self.tank_explode = arcade.load_sound(constants.EXPLOSION_SOUND)
+        self.explosion_texture_list = []
+
+        columns = 16
+        count = 18
+        sprite_width = 256
+        sprite_height = 256
+        file_name = ":resources:images/spritesheets/explosion.png"
+
+        self.explosion_texture_list = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, count)
+        self.explosions_list = arcade.SpriteList()
 
         #common tank values
         self._life = 300
@@ -39,12 +51,17 @@ class Tanks(arcade.Sprite):
         
 
 
-    def is_alive(self):
+    def is_alive(self,tank_x,tank_y):
         """checks to see if take is alive
         Contributors:
             Reed Hunsaker
         """
         if self._life <= 0:
+            explosion = Explosion(self.explosion_texture_list)
+            explosion.center_x = tank_x
+            explosion.center_y = tank_y
+            self.explosions_list.append(explosion)
+            explosion.update()
             return False
         else:
             return True

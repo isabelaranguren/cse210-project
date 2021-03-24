@@ -199,18 +199,19 @@ class GameView(arcade.View):
                     self.power_down = SpawnRandom()
 
         for tank in self.tanks.sprite_list:
-            alive = tank.is_alive()
+            alive = tank.is_alive(tank.center_x,tank.center_y)
             if alive == False:
                 # self.count = 75
                 # explosion = Explosion(self.explosion_texture_list)
                 # explosion.center_x = tank.center_x
                 # explosion.center_y = tank.center_y
-
-                # explosion.update()
                 # self.explosions_list.append(explosion)
+                # explosion.update()
                 name = tank.name
                 tank.kill()
-                self.switch_game_over_view(name)
+                if len(self.tanks.sprite_list) < 2:
+                    time.sleep(10)
+                    self.switch_game_over_view(name)
                 
         
     def wrap(self):
