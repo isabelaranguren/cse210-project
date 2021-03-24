@@ -188,18 +188,8 @@ class GameView(arcade.View):
                 # explosion.update()
                 # self.explosions_list.append(explosion)
                 name = tank.name
-                count = 35
-                explosion = Explosion(self.explosion_texture_list)
-                # set explosion center to location of tank
-                explosion.center_x = tank.center_x
-                explosion.center_y = tank.center_y
-
-                # update explosion (sets first image)
-                explosion.update()
-                self.explosions_list.append(explosion)
-                # time.sleep(10)
-                # tank.kill()
-                # self.switch_game_over_view(name)
+                tank.kill()
+                self.switch_game_over_view(name)
                 
         
     def wrap(self):
