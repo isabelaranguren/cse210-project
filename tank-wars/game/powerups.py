@@ -21,7 +21,7 @@ class PowerDown(PowerUp):
         super(PowerDown, self).__init__()
         self.scale = constants.TANK_SCALE / 2
         self.texture = self.health_penalty_texture  # self.health_boost_texture  #
-        self.description = "Power Down Box"
+        self.description = "Bad"
 
 
 class HealthBoost(PowerUp):
@@ -31,7 +31,7 @@ class HealthBoost(PowerUp):
         # self.center_y = constants.TANK_Y + 150  # can randomize
         # self.center_x = constants.PLAYER1_X - 50  # can randomize
         self.scale = constants.TANK_SCALE / 2
-        self.description = "Health Boost"
+        self.description = "Good"
 
 
 class SpawnPowerDown:
@@ -54,5 +54,13 @@ class SpawnPowerUp:
         self.sprite_list.append(self.power_up)
 
 
+class SpawnRandom:
+    def __init__(self):
+        self.sprite_list = arcade.SpriteList()
+        random_number = randint(0, 1)
+        if random_number % 2 == 0:
+            self.power = HealthBoost()
+        elif random_number % 2 == 1:
+            self.power = PowerDown()
 
-
+        self.sprite_list.append(self.power)

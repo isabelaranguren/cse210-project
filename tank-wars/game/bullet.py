@@ -53,8 +53,10 @@ class Bullet:
             Adrianna Lund
         """
         self.bullet = BulletSprite()
-        self.bullet.change_y = -math.cos(math.radians(tank_angle)) * self.bullet.speed
-        self.bullet.change_x = math.sin(math.radians(tank_angle)) * self.bullet.speed
+        self.bullet.change_y = -math.cos(math.radians(tank_angle)) * self.bullet.speed  # This might be messing up the speed of the bullets, randomizing it
+        self.bullet.change_x = math.sin(math.radians(tank_angle)) * self.bullet.speed  # Same here
+        # self.bullet.change_x = -self.bullet.speed
+        # self.bullet.change_y = self.bullet.speed
         self.bullet.center_x = tank_x + (self.bullet.change_x * constants.BULLET_X_SCALE)
         self.bullet.center_y = tank_y + (self.bullet.change_y * constants.BULLET_Y_SCALE)
         self.bullet.angle = math.degrees(math.atan2(self.bullet.change_y, self.bullet.change_x))
