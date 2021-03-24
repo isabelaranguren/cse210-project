@@ -47,13 +47,13 @@ class GameView(arcade.View):
         self.tank_explode = arcade.load_sound(constants.EXPLOSION_SOUND)
         self.explosion_texture_list = []
 
-        columns = 16
-        self.count = 18
-        sprite_width = 256
-        sprite_height = 256
-        file_name = ":resources:images/spritesheets/explosion.png"
+        self.columns = 16
+        self.count = 16
+        self.sprite_width = 256
+        self.sprite_height = 256
+        self.file_name = ":resources:images/spritesheets/explosion.png"
 
-        self.explosion_texture_list = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, self.count)
+        self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
 
     
     def setup(self):
@@ -66,7 +66,6 @@ class GameView(arcade.View):
 
         self.power_up = SpawnPowerUp()
         self.power_down = SpawnPowerDown()
-        self.explosion_list = arcade.SpriteList()
         self.explosions_list = arcade.SpriteList()
         self.physics_engine = arcade.PhysicsEngineSimple(self.tanks.player1, self.ground.ground_sprite_list)
         self.physics_engine2 = arcade.PhysicsEngineSimple(self.tanks.player2, self.ground.ground_sprite_list)
@@ -199,18 +198,20 @@ class GameView(arcade.View):
                     self.power_down = SpawnRandom()
 
         for tank in self.tanks.sprite_list:
-            alive = tank.is_alive(tank.center_x,tank.center_y)
+            alive = tank.is_alive()
             if alive == False:
-                # self.count = 75
-                # explosion = Explosion(self.explosion_texture_list)
-                # explosion.center_x = tank.center_x
-                # explosion.center_y = tank.center_y
-                # self.explosions_list.append(explosion)
-                # explosion.update()
-                name = tank.name
-                tank.kill()
-                if len(self.tanks.sprite_list) < 2:
-                    time.sleep(10)
+                self.count = 30
+                self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
+                explosion = Explosion(self.explosion_texture_list)
+                explosion.center_x = tank.center_x
+                explosion.center_y = tank.center_y
+                
+                cur_text = explosion.update()
+                self.explosions_list.append(explosion)
+
+                if cur_text == self.count - 1:
+                    name = tank.name
+                    tank.kill()
                     self.switch_game_over_view(name)
                 
         
