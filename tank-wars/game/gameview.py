@@ -94,8 +94,9 @@ class GameView(arcade.View):
         self.physics_engine.update()
         self.physics_engine2.update()
         self.explosions_list.update()
-        
+
         bullets = len(self.bullet.bullet_sprite_list)
+
 
         if bullets > 0:
             for bullet in self.bullet.bullet_sprite_list:
@@ -141,6 +142,10 @@ class GameView(arcade.View):
 
                 # Paired with checker above in bullet collision checks. destroys/blocks bullet
                 if len(hit_list_bullet) > 0:
+                    """if self.power.sprite_list[-1].get_value() == 2:
+                        for angle in range(0, 360, 15):
+                            if bullets < 30:
+                                self.bullet.shoot_bullet(self.power.sprite_list[-1]._get_center_x(), self.power.sprite_list[-1]._get_center_y(), angle)"""
                     power.kill()
                     powers -= 1
                     self.power = SpawnRandom()
@@ -157,8 +162,10 @@ class GameView(arcade.View):
                         arcade.play_sound(self.powerup_sound)
                         # this next if statement is still experimental. it needs delays between shots
                     if self.power.sprite_list[-1].get_value() == 2:
-                        for _ in range(1, 5):
-                            self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), tank.angle)
+                        # This stops the bullets from spawning if there are more than 30 on the map
+                        if bullets < 30:
+                            for angle in range(0, 360, 15):
+                                self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), tank.angle + angle)
                     power.kill()
                     powers -= 1
                     self.power = SpawnRandom()
