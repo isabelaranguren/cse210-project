@@ -20,6 +20,8 @@ MAIN_SCREEN_SOUND = assets / 'sounds' / 'IntroScreen.mp3'
 POWERUPS_SOUND = assets / 'sounds' / 'powerup.ogg'
 POWERDOWN_SOUND = assets / 'sounds' / 'powerdown.flac'
 
+DEFAULT_VOLUME = 0.0
+
 #sprites
 #ground
 GROUND_SPRITE = f":resources:images/tiles/dirtRight.png"
@@ -70,7 +72,42 @@ HEALTH_NUMBER_OFFSET_X = -10
 HEALTH_NUMBER_OFFSET_Y = -25
 
 
+#Buttons
 
+BUTTON_Y = 175
+
+BUTTON_WIDTH = 48
+BUTTON_HEIGHT = 48
+
+#Play Buttons
+
+PLAY_X = 425
+
+PLAY_SPRITE = assets / "startButton.png"
+
+
+#instructions button
+
+INSTRUCT_X = 100
+
+INSTRUCT_SPRITE = assets / "instructionsButton.png"
+
+#Setting Buttons
+
+SETTINGS_X = 815
+SETTINGS_Y = 495
+
+SETTINGS_SPRITE = assets / 'settings.png'
+SETTINGS_WIDTH = 100
+SETTINGS_HEIGHT = 100
+
+#back button
+
+BACK_SPRITE = assets / 'backButton.png'
+
+BACK_X = 125
+
+BACK_Y = 50
 
 #explosion
 # EXPLOSION_TEXTURE_LIST = []
@@ -80,11 +117,6 @@ HEALTH_NUMBER_OFFSET_Y = -25
 # sprite_height = 256
 # file_name = ":resources:images/spritesheets/explosion.png"
 
-# EXPLOSION_TEXTURE_LIST = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, count)
-# for i in range(1, 13):
-#     ex_tex = assets / 'tank-pack' / f'tank_explosion{i}.png'
-#     EXPLOSION_TEXTURE_LIST.append(ex_tex)
-# EXPLOSION_4 = assets / 'tank-pack' / 'tank_explosion4.png'
 
 #time
 FRAME_LENGTH = 0.1

@@ -1,7 +1,5 @@
 
 import random
-
-
 from game.tanks import Tanks
 
 class Score(Tanks):

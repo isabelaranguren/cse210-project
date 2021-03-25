@@ -61,7 +61,7 @@ class Tanks(arcade.Sprite):
     def draw_life_number(self):
         """ Draw how many hit points we have """
 
-        health_string = f"{self.cur_health}/{self._life}"
+        health_string = f"{self._life}/{self.cur_health}"
         arcade.draw_text(health_string,
                          start_x=self.center_x + constants.HEALTH_NUMBER_OFFSET_X,
                          start_y=self.center_y + constants.HEALTH_NUMBER_OFFSET_Y,
@@ -99,8 +99,8 @@ class Tanks(arcade.Sprite):
         self.angle += self.change_angle
 
         # Use math to find our change based on our speed and angle
-        self.center_x += -self.speed * math.sin(angle_rad)
-        self.center_y += self.speed * math.cos(angle_rad)
+        self.center_x += -self.speed * math.sin(angle_rad) # This could be essing with the tank speed, sort of randomizing it
+        self.center_y += self.speed * math.cos(angle_rad)  # same here
 
 class Player1(Tanks):
     """ Class that represent the player1 on screen.

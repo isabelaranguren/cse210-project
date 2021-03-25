@@ -1,0 +1,15 @@
+Grade:
+10/10 - Exceeds requirements
+
+Added advanced features like health bars, bullet ricochet, sound effects,
+power ups and downs, score, and play again. Also polished and upgraded 
+the map.
+
+
+Repository:
+
+https://github.com/isabelaranguren/cse210-project.git
+
+Hash:
+
+commit 602830d21b91b648cd61d6e240a76004c2bdde26 (HEAD -> main, origin/main, origin/ReedNew, ReedNew)
