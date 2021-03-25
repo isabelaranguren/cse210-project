@@ -10,6 +10,7 @@ from game.explosion import Explosion
 from game.game_over_view import GameOverView
 from typing import Optional
 import math
+import time
 
 class GameView(arcade.View):
     """ Game view for Tank Wars
@@ -37,6 +38,8 @@ class GameView(arcade.View):
         self.window.set_mouse_visible(False)
         self.physics_engine = None
         self.physics_engine2 = None
+        self.physics_engine3 = None
+        self.physics_engine4 = None
         self.bullet_list = None
         self.explosions_list = None
         self.all_sprites = arcade.SpriteList(use_spatial_hash= True)
@@ -46,13 +49,13 @@ class GameView(arcade.View):
         self.tank_explode = arcade.load_sound(constants.EXPLOSION_SOUND)
         self.explosion_texture_list = []
 
-        columns = 16
-        self.count = 18
-        sprite_width = 256
-        sprite_height = 256
-        file_name = ":resources:images/spritesheets/explosion.png"
+        self.columns = 16
+        self.count = 16
+        self.sprite_width = 256
+        self.sprite_height = 256
+        self.file_name = ":resources:images/spritesheets/explosion.png"
 
-        self.explosion_texture_list = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, self.count)
+        self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
 
     
     def setup(self):
@@ -65,10 +68,11 @@ class GameView(arcade.View):
 
         self.power_up = SpawnPowerUp()
         self.power_down = SpawnPowerDown()
-        self.explosion_list = arcade.SpriteList()
         self.explosions_list = arcade.SpriteList()
         self.physics_engine = arcade.PhysicsEngineSimple(self.tanks.player1, self.ground.ground_sprite_list)
         self.physics_engine2 = arcade.PhysicsEngineSimple(self.tanks.player2, self.ground.ground_sprite_list)
+        self.physics_engine3 = arcade.PhysicsEngineSimple(self.tanks.player1, self.tanks.sprite_list)
+        self.physics_engine4 = arcade.PhysicsEngineSimple(self.tanks.player2, self.tanks.sprite_list)
     
     def on_draw(self):
         arcade.start_render()
@@ -95,8 +99,11 @@ class GameView(arcade.View):
         
         self.physics_engine.update()
         self.physics_engine2.update()
+        self.physics_engine3.update()
+        self.physics_engine4.update()
         self.explosions_list.update()
         
+        # handle bullet collisions
         bullets = len(self.bullet.bullet_sprite_list)
 
         if bullets > 0:
@@ -136,9 +143,13 @@ class GameView(arcade.View):
             if alive == False:
                 name = tank.name
                 tank.kill()
+                # arcade.finish_render()
+                # arcade.schedule(self.end_game(name),90)
+                # arcade.unschedule(self.end_game(name))
                 # TODO DELAY GAME OVER VIEW
-                # self.switch_game_over_view(name)
+                self.switch_game_over_view(name)
 
+        # handle power ups
         power_ups = len(self.power_up.sprite_list)
         power_downs = len(self.power_down.sprite_list)
 
@@ -207,22 +218,7 @@ class GameView(arcade.View):
                         arcade.play_sound(self.powerdown_sound, .8)
                     power_up.kill()
                     power_ups -= 1
-                    self.power_down = SpawnRandom()
-
-        # for tank in self.tanks.sprite_list:
-        #     alive = tank.is_alive()
-        #     if alive == False:
-        #         # self.count = 30
-        #         # explosion = Explosion(self.explosion_texture_list)
-        #         # explosion.center_x = tank.center_x
-        #         # explosion.center_y = tank.center_y
-
-        #         # explosion.update()
-        #         # self.explosions_list.append(explosion)
-        #         name = tank.name
-        #         tank.kill()
-        #         self.switch_game_over_view(name)
-                
+                    self.power_down = SpawnRandom()           
         
     def wrap(self):
         
@@ -255,6 +251,16 @@ class GameView(arcade.View):
             self.bullet.bullet_sprite_list.update_animation()
         if self.explosions_list is not None:
             self.explosions_list.update()
+
+    # potential usage for collision between players
+    # def player_collision(self):
+    #     collision = arcade.check_for_collision(self.tanks.player1, self.tanks.player2)
+    #     if collision:
+    #         for tank in self.tanks.sprite_list:
+    #             tank.set_life(-25)
+
+    # def end_game(self,name):
+    #     self.switch_game_over_view(name)
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """

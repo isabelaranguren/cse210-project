@@ -16,3 +16,5 @@ class Explosion(arcade.Sprite):
             
         else:
             self.remove_from_sprite_lists()
+
+        return self.current_texture 
