@@ -38,6 +38,8 @@ class GameView(arcade.View):
         self.window.set_mouse_visible(False)
         self.physics_engine = None
         self.physics_engine2 = None
+        self.physics_engine3 = None
+        self.physics_engine4 = None
         self.bullet_list = None
         self.explosions_list = None
         self.all_sprites = arcade.SpriteList(use_spatial_hash= True)
@@ -69,6 +71,8 @@ class GameView(arcade.View):
         self.explosions_list = arcade.SpriteList()
         self.physics_engine = arcade.PhysicsEngineSimple(self.tanks.player1, self.ground.ground_sprite_list)
         self.physics_engine2 = arcade.PhysicsEngineSimple(self.tanks.player2, self.ground.ground_sprite_list)
+        self.physics_engine3 = arcade.PhysicsEngineSimple(self.tanks.player1, self.tanks.sprite_list)
+        self.physics_engine4 = arcade.PhysicsEngineSimple(self.tanks.player2, self.tanks.sprite_list)
     
     def on_draw(self):
         arcade.start_render()
@@ -95,8 +99,11 @@ class GameView(arcade.View):
         
         self.physics_engine.update()
         self.physics_engine2.update()
+        self.physics_engine3.update()
+        self.physics_engine4.update()
         self.explosions_list.update()
         
+        # handle bullet collisions
         bullets = len(self.bullet.bullet_sprite_list)
 
         if bullets > 0:
@@ -139,6 +146,7 @@ class GameView(arcade.View):
                 # TODO DELAY GAME OVER VIEW
                 # self.switch_game_over_view(name)
 
+        # handle power ups
         power_ups = len(self.power_up.sprite_list)
         power_downs = len(self.power_down.sprite_list)
 
@@ -240,6 +248,14 @@ class GameView(arcade.View):
             self.bullet.bullet_sprite_list.update_animation()
         if self.explosions_list is not None:
             self.explosions_list.update()
+
+    # potential usage for collision between players
+    # def player_collision(self):
+    #     collision = arcade.check_for_collision(self.tanks.player1, self.tanks.player2)
+    #     if collision:
+    #         for tank in self.tanks.sprite_list:
+    #             tank.set_life(-25)
+
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
