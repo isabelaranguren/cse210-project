@@ -107,7 +107,11 @@ class GameView(arcade.View):
                 if len(hit_list_wall) > 0:
                     self.bullet.bullet_bounce(bullet, bullet.angle)
                     
-                if len(hit_list_tank) > 0:    
+                if len(hit_list_tank) > 0:
+                    for tank in self.tanks.sprite_list:
+                        life = tank.get_life()
+                        if life <= 25:
+                            self.count = 224
                     explosion = Explosion(self.explosion_texture_list)
                     # set explosion center to location of first hit in list
                     explosion.center_x = hit_list_tank[0].center_x
@@ -126,6 +130,14 @@ class GameView(arcade.View):
                     arcade.play_sound(self.tank_explode,.5)
                     bullet.kill()
                     bullets -= 1
+        
+        for tank in self.tanks.sprite_list:
+            alive = tank.is_alive()
+            if alive == False:
+                name = tank.name
+                tank.kill()
+                # TODO DELAY GAME OVER VIEW
+                # self.switch_game_over_view(name)
 
         power_ups = len(self.power_up.sprite_list)
         power_downs = len(self.power_down.sprite_list)
@@ -195,25 +207,7 @@ class GameView(arcade.View):
                         arcade.play_sound(self.powerdown_sound, .8)
                     power_up.kill()
                     power_ups -= 1
-                    self.power_down = SpawnRandom()
-
-        for tank in self.tanks.sprite_list:
-            alive = tank.is_alive()
-            if alive == False:
-                self.count = 30
-                self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
-                explosion = Explosion(self.explosion_texture_list)
-                explosion.center_x = tank.center_x
-                explosion.center_y = tank.center_y
-                
-                cur_text = explosion.update()
-                self.explosions_list.append(explosion)
-
-                if cur_text == self.count - 1:
-                    name = tank.name
-                    tank.kill()
-                    self.switch_game_over_view(name)
-                
+                    self.power_down = SpawnRandom()           
         
     def wrap(self):
         
