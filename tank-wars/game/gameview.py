@@ -143,8 +143,11 @@ class GameView(arcade.View):
             if alive == False:
                 name = tank.name
                 tank.kill()
+                # arcade.finish_render()
+                # arcade.schedule(self.end_game(name),90)
+                # arcade.unschedule(self.end_game(name))
                 # TODO DELAY GAME OVER VIEW
-                # self.switch_game_over_view(name)
+                self.switch_game_over_view(name)
 
         # handle power ups
         power_ups = len(self.power_up.sprite_list)
@@ -256,6 +259,8 @@ class GameView(arcade.View):
     #         for tank in self.tanks.sprite_list:
     #             tank.set_life(-25)
 
+    # def end_game(self,name):
+    #     self.switch_game_over_view(name)
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
