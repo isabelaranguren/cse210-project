@@ -1,4 +1,5 @@
 from pathlib import Path
+from random import randint
 
 home = Path.home()
 assets: Path = Path(__file__).parent / 'assets'
@@ -30,19 +31,19 @@ GROUND_Y = 32
 
 
 #Tanks
-TANK_Y = 125
+TANK_Y = randint(0, 500)
 TANK_SCALE = 0.85
 TANK_SPEED = 2
 TANK_ANGLE_SPEED = 2
 #Player 1
-PLAYER1_X = 150
+PLAYER1_X = randint(450, 810)
 PLAYER1_SPRITE = ":resources:images/topdown_tanks/tank_blue.png"
 # PLAYER1_SPRITE = assets / 'tank-pack' / 'tanks_tankGrey1.png'
 MAP = assets / 'map.tmx'
 #player 2
 # PLAYER2_SPRITE = assets / 'tank-pack' / 'tanks_tankGreen1.png'
 PLAYER2_SPRITE = ":resources:images/topdown_tanks/tank_red.png"
-PLAYER2_X = 600
+PLAYER2_X = randint(50, 450)
 
 GAME_OVER = assets / 'game-over.jpg'
 BACKGROUND = assets / 'background.png'
