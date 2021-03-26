@@ -62,7 +62,10 @@ class Bullet:
         self.bullet.angle = math.degrees(math.atan2(self.bullet.change_y, self.bullet.change_x))
         # self.bullet.velocity = constants.BULLET_INITIAL_VELOCITY
         self.bullet_sprite_list.append(self.bullet)
-        arcade.play_sound(self.bullet.tank_fire,.4)
+        try:
+            arcade.play_sound(self.bullet.tank_fire,.4)
+        except Exception:
+            pass
         # Convert angle in degrees to radians.
         self.bullet.update()
     

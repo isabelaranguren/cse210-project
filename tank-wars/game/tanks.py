@@ -22,22 +22,21 @@ class Tanks(arcade.Sprite):
         Reed Hunsaker
         Isabel Aranguren
     """
+
     def __init__(self):
         super().__init__()
-        
 
-        #common tank values
-        self._life = 3000
+        # common tank values
+        self._life = 1000
         self.cur_health = 300
         self.speed = 0
         self.center_y = constants.TANK_Y
         self.scale = constants.TANK_SCALE
-     
-        #player textures load
-        self.player1_texture = arcade.load_texture(file_name = constants.PLAYER1_SPRITE)
-        self.player2_texture = arcade.load_texture(file_name = constants.PLAYER2_SPRITE)
-        
+        self.invincible = False
 
+        # player textures load
+        self.player1_texture = arcade.load_texture(file_name=constants.PLAYER1_SPRITE)
+        self.player2_texture = arcade.load_texture(file_name=constants.PLAYER2_SPRITE)
 
     def is_alive(self):
         """checks to see if take is alive
@@ -48,12 +47,10 @@ class Tanks(arcade.Sprite):
             return False
         else:
             return True
-    
-    
+
     def set_life(self, points_change):
         self._life += points_change
-    
-    
+
     def get_life(self):
         return self._life
     

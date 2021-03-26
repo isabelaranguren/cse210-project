@@ -83,7 +83,7 @@ class GameView(arcade.View):
         
         self.ground.ground_sprite_list.draw()
         self.power.sprite_list.draw()
-        
+
         if self.bullet.bullet_sprite_list is not None:
             self.bullet.bullet_sprite_list.draw()
         if self.explosions_list is not None:
@@ -105,8 +105,8 @@ class GameView(arcade.View):
 
                 if len(hit_list_wall) > 0:
                     self.bullet.bullet_bounce(bullet, bullet.angle)
-                    
-                if len(hit_list_tank) > 0:    
+
+                if len(hit_list_tank) > 0:
                     explosion = Explosion(self.explosion_texture_list)
                     # set explosion center to location of first hit in list
                     explosion.center_x = hit_list_tank[0].center_x
@@ -121,10 +121,10 @@ class GameView(arcade.View):
                     bullets -= 1
                 
                 for tank in hit_list_tank:
-                    tank.set_life(-25)
-                    arcade.play_sound(self.tank_explode,.5)
-                    bullet.kill()
-                    bullets -= 1
+                        tank.set_life(-25)
+                        arcade.play_sound(self.tank_explode,.5)
+                        bullet.kill()
+                        bullets -= 1
 
         powers = len(self.power.sprite_list)
 
@@ -138,17 +138,20 @@ class GameView(arcade.View):
                     power.kill()
                     powers -= 1
                     self.power = SpawnRandom()
-                    # self.power_down = SpawnPowerDown()
+                    # self.power = arcade.schedule(SpawnRandom(), 3)
+                    # arcade.unschedule(SpawnRandom())
 
                 # Paired with checker above in bullet collision checks. destroys/blocks bullet
                 if len(hit_list_bullet) > 0:
-                    """if self.power.sprite_list[-1].get_value() == 2:
+                    if self.power.sprite_list[-1].get_value() == 2:
                         for angle in range(0, 360, 15):
-                            if bullets < 30:
-                                self.bullet.shoot_bullet(self.power.sprite_list[-1]._get_center_x(), self.power.sprite_list[-1]._get_center_y(), angle)"""
+                            self.bullet.shoot_bullet(self.power.sprite_list[-1]._get_center_x(), self.power.sprite_list[-1]._get_center_y(), angle)
+
                     power.kill()
                     powers -= 1
                     self.power = SpawnRandom()
+                    # self.power = arcade.schedule(SpawnRandom(), 3)
+                    # arcade.unschedule(SpawnRandom())
 
                 for tank in hit_list_tank:
                     # We should combine the entire powerups checker to work for any amount of powerups.
@@ -163,9 +166,10 @@ class GameView(arcade.View):
                         # this next if statement is still experimental. it needs delays between shots
                     if self.power.sprite_list[-1].get_value() == 2:
                         # This stops the bullets from spawning if there are more than 30 on the map
-                        if bullets < 30:
-                            for angle in range(0, 360, 15):
-                                self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), tank.angle + angle)
+                        for angle in range(0, 360, 15):
+                            bullets += 1
+                            self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), tank.angle + angle)
+
                     power.kill()
                     powers -= 1
                     self.power = SpawnRandom()
@@ -174,13 +178,6 @@ class GameView(arcade.View):
         for tank in self.tanks.sprite_list:
             alive = tank.is_alive()
             if alive == False:
-                # self.count = 75
-                # explosion = Explosion(self.explosion_texture_list)
-                # explosion.center_x = tank.center_x
-                # explosion.center_y = tank.center_y
-
-                # explosion.update()
-                # self.explosions_list.append(explosion)
                 name = tank.name
                 tank.kill()
                 self.switch_game_over_view(name)
