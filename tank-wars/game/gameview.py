@@ -28,7 +28,7 @@ class GameView(arcade.View):
         Reed Hunsaker
         Adrianna Lund
         Isabel Aranguren
-        Jordan 
+        Jordan McIntyre
     """
 
     def __init__(self):
