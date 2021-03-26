@@ -10,6 +10,8 @@ from game.explosion import Explosion
 from game.game_over_view import GameOverView
 from typing import Optional
 import math
+import time
+
 
 class GameView(arcade.View):
     """ Game view for Tank Wars
@@ -28,32 +30,35 @@ class GameView(arcade.View):
         Isabel Aranguren
         Jordan 
     """
+
     def __init__(self):
         super().__init__()
-        
+
         self._score = Score()
         self.texture = arcade.load_texture(constants.BACKGROUND)
-        
-        self.window.set_mouse_visible(False)
+
+        # self.window.set_mouse_visible(False)
         self.physics_engine = None
         self.physics_engine2 = None
+        self.physics_engine3 = None
+        self.physics_engine4 = None
         self.bullet_list = None
         self.explosions_list = None
-        self.all_sprites = arcade.SpriteList(use_spatial_hash= True)
-        
+        self.all_sprites = arcade.SpriteList(use_spatial_hash=True)
+
         self.powerup_sound = arcade.load_sound(constants.POWERUPS_SOUND)
         self.powerdown_sound = arcade.load_sound(constants.POWERDOWN_SOUND)
         self.tank_explode = arcade.load_sound(constants.EXPLOSION_SOUND)
         self.explosion_texture_list = []
 
-        columns = 16
-        self.count = 18
-        sprite_width = 256
-        sprite_height = 256
-        file_name = ":resources:images/spritesheets/explosion.png"
+        self.columns = 16
+        self.count = 16
+        self.sprite_width = 256
+        self.sprite_height = 256
+        self.file_name = ":resources:images/spritesheets/explosion.png"
 
-        self.explosion_texture_list = arcade.load_spritesheet(file_name, sprite_width, sprite_height, columns, self.count)
-
+        self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height,
+                                                              self.columns, self.count)
 
     def setup(self):
         """
@@ -64,10 +69,12 @@ class GameView(arcade.View):
         self.bullet = Bullet()
 
         self.power = SpawnRandom()
-        self.explosion_list = arcade.SpriteList()
+
         self.explosions_list = arcade.SpriteList()
         self.physics_engine = arcade.PhysicsEngineSimple(self.tanks.player1, self.ground.ground_sprite_list)
         self.physics_engine2 = arcade.PhysicsEngineSimple(self.tanks.player2, self.ground.ground_sprite_list)
+        self.physics_engine3 = arcade.PhysicsEngineSimple(self.tanks.player1, self.tanks.sprite_list)
+        self.physics_engine4 = arcade.PhysicsEngineSimple(self.tanks.player2, self.tanks.sprite_list)
 
     def on_draw(self):
         arcade.start_render()
@@ -76,11 +83,11 @@ class GameView(arcade.View):
         self.texture.draw_sized(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2,
                                 constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         self.tanks.sprite_list.draw()
-        
+
         for tank in self.tanks.sprite_list:
             tank.draw_life_bar()
             tank.draw_life_number()
-        
+
         self.ground.ground_sprite_list.draw()
         self.power.sprite_list.draw()
 
@@ -90,13 +97,16 @@ class GameView(arcade.View):
             self.explosions_list.draw()
 
     def on_update(self, delta_time: float):
-        
+
         self.physics_engine.update()
         self.physics_engine2.update()
+        self.physics_engine3.update()
+        self.physics_engine4.update()
         self.explosions_list.update()
 
-        bullets = len(self.bullet.bullet_sprite_list)
+        # handle bullet collisions
 
+        bullets = len(self.bullet.bullet_sprite_list)
 
         if bullets > 0:
             for bullet in self.bullet.bullet_sprite_list:
@@ -107,6 +117,11 @@ class GameView(arcade.View):
                     self.bullet.bullet_bounce(bullet, bullet.angle)
 
                 if len(hit_list_tank) > 0:
+                    for tank in self.tanks.sprite_list:
+                        life = tank.get_life()
+                        if life <= 25:
+                            self.count = 224
+
                     explosion = Explosion(self.explosion_texture_list)
                     # set explosion center to location of first hit in list
                     explosion.center_x = hit_list_tank[0].center_x
@@ -119,12 +134,23 @@ class GameView(arcade.View):
                 elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
                     bullet.kill()
                     bullets -= 1
-                
+
                 for tank in hit_list_tank:
-                        tank.set_life(-25)
-                        arcade.play_sound(self.tank_explode,.5)
-                        bullet.kill()
-                        bullets -= 1
+                    tank.set_life(-25)
+                    arcade.play_sound(self.tank_explode, .5)
+                    bullet.kill()
+                    bullets -= 1
+
+        for tank in self.tanks.sprite_list:
+            alive = tank.is_alive()
+            if alive == False:
+                name = tank.name
+                tank.kill()
+                # arcade.finish_render()
+                # arcade.schedule(self.end_game(name),90)
+                # arcade.unschedule(self.end_game(name))
+                # TODO DELAY GAME OVER VIEW
+                self.switch_game_over_view(name)
 
         powers = len(self.power.sprite_list)
 
@@ -145,7 +171,8 @@ class GameView(arcade.View):
                 if len(hit_list_bullet) > 0:
                     if self.power.sprite_list[-1].get_value() == 2:
                         for angle in range(0, 360, 15):
-                            self.bullet.shoot_bullet(self.power.sprite_list[-1]._get_center_x(), self.power.sprite_list[-1]._get_center_y(), angle)
+                            self.bullet.shoot_bullet(self.power.sprite_list[-1]._get_center_x(),
+                                                     self.power.sprite_list[-1]._get_center_y(), angle)
 
                     power.kill()
                     powers -= 1
@@ -158,7 +185,7 @@ class GameView(arcade.View):
                     if self.power.sprite_list[-1].get_value() == 0:
                         print("Tis a bomb")
                         tank.set_life(-25)
-                        arcade.play_sound(self.powerdown_sound,.8)
+                        arcade.play_sound(self.powerdown_sound, .8)
                     if self.power.sprite_list[-1].get_value() == 1:
                         print("Tis a power up")
                         tank.set_life(50)
@@ -174,17 +201,15 @@ class GameView(arcade.View):
                     powers -= 1
                     self.power = SpawnRandom()
 
-
         for tank in self.tanks.sprite_list:
             alive = tank.is_alive()
             if alive == False:
                 name = tank.name
                 tank.kill()
                 self.switch_game_over_view(name)
-                
-        
+
     def wrap(self):
-        
+
         # Check player1 for out-of-bounds
         if self.tanks.player1.left < 0:
             self.tanks.player1.left = 0
@@ -215,6 +240,16 @@ class GameView(arcade.View):
         if self.explosions_list is not None:
             self.explosions_list.update()
 
+    # potential usage for collision between players
+    # def player_collision(self):
+    #     collision = arcade.check_for_collision(self.tanks.player1, self.tanks.player2)
+    #     if collision:
+    #         for tank in self.tanks.sprite_list:
+    #             tank.set_life(-25)
+
+    # def end_game(self,name):
+    #     self.switch_game_over_view(name)
+
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
 
@@ -224,7 +259,8 @@ class GameView(arcade.View):
         elif key == arcade.key.UP:
             self.tanks.player1.speed = -constants.TANK_SPEED
         elif key == arcade.key.SPACE:
-            self.bullet.shoot_bullet(self.tanks.player1._get_center_x(), self.tanks.player1._get_center_y(), self.tanks.player1.angle)
+            self.bullet.shoot_bullet(self.tanks.player1._get_center_x(), self.tanks.player1._get_center_y(),
+                                     self.tanks.player1.angle)
 
 
         elif key == arcade.key.S:
@@ -232,14 +268,15 @@ class GameView(arcade.View):
         elif key == arcade.key.W:
             self.tanks.player2.speed = -constants.TANK_SPEED
         elif key == arcade.key.Q:
-            self.bullet.shoot_bullet(self.tanks.player2._get_center_x(), self.tanks.player2._get_center_y(), self.tanks.player2.angle)
+            self.bullet.shoot_bullet(self.tanks.player2._get_center_x(), self.tanks.player2._get_center_y(),
+                                     self.tanks.player2.angle)
 
         # Rotate left/right
         elif key == arcade.key.LEFT:
             self.tanks.player1.change_angle = constants.TANK_ANGLE_SPEED
         elif key == arcade.key.RIGHT:
             self.tanks.player1.change_angle = -constants.TANK_ANGLE_SPEED
-        
+
         elif key == arcade.key.A:
             self.tanks.player2.change_angle = constants.TANK_ANGLE_SPEED
         elif key == arcade.key.D:
@@ -247,6 +284,7 @@ class GameView(arcade.View):
 
         elif key == arcade.key.ESCAPE:
             quit()
+
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. """
 
@@ -254,12 +292,12 @@ class GameView(arcade.View):
             self.tanks.player1.speed = 0
         elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
             self.tanks.player1.change_angle = 0
-        
+
         elif key == arcade.key.W or key == arcade.key.S:
             self.tanks.player2.speed = 0
         elif key == arcade.key.A or key == arcade.key.D:
             self.tanks.player2.change_angle = 0
-    
+
     def switch_game_over_view(self, loser):
         game_over = GameOverView(loser)
         self.window.show_view(game_over)
