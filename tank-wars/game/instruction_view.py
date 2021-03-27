@@ -27,8 +27,8 @@ class MainView(arcade.View):
         left_column_x = self.window.width // 4
         right_column_x = 3 * self.window.width // 4
 
-        self.settings_texture = arcade.load_texture(constants.SETTINGS_SPRITE)
-        self.settings_button = Settings_Button(game = self.window, normal_texture= self.settings_texture)
+        # self.settings_texture = arcade.load_texture(constants.SETTINGS_SPRITE)
+        # self.settings_button = Settings_Button(game = self.window, normal_texture= self.settings_texture)
 
         self.play_texture = arcade.load_texture(constants.PLAY_SPRITE)
         self.play_button = Button(GameView(), self.window, normal_texture= self.play_texture)
@@ -38,7 +38,7 @@ class MainView(arcade.View):
         self.instruct_button = Button(InstructionView(), self.window, normal_texture = self.instruct_texture, 
         y = constants.BUTTON_Y - 100)
 
-        self.ui_manager.add_ui_element(self.settings_button)
+        # self.ui_manager.add_ui_element(self.settings_button)
         self.ui_manager.add_ui_element(self.play_button)
         self.ui_manager.add_ui_element(self.instruct_button)
         
@@ -70,19 +70,19 @@ class Button(UIImageButton):
         self.window.show_view(self.view)
 
 
-class Settings_Button(UIImageButton):
-    def __init__(self, game, x = constants.SETTINGS_X, y = constants.SETTINGS_Y,
-    height = constants.BUTTON_HEIGHT + 50, width = constants.BUTTON_WIDTH + 50, normal_texture = None):
-        super().__init__(center_x= x, center_y= y, normal_texture= normal_texture)
-        self.center_x = x
-        self.center_y = y
-        self.window = game
+# class Settings_Button(UIImageButton):
+#     def __init__(self, game, x = constants.SETTINGS_X, y = constants.SETTINGS_Y,
+#     height = constants.BUTTON_HEIGHT + 50, width = constants.BUTTON_WIDTH + 50, normal_texture = None):
+#         super().__init__(center_x= x, center_y= y, normal_texture= normal_texture)
+#         self.center_x = x
+#         self.center_y = y
+#         self.window = game
 
 
-    def on_click(self):
-        view = SettingsView()
-        view.setup()
-        self.window.show_view(view)
+#     def on_click(self):
+#         view = SettingsView()
+#         view.setup()
+#         self.window.show_view(view)
 
 
 class InstructionView(arcade.View):
@@ -116,31 +116,31 @@ class InstructionView(arcade.View):
         arcade.set_background_color(arcade.color.ANTIQUE_BRONZE)
 
 
-class SettingsView(arcade.View):
-    def __init__(self):
-        super().__init__()
-        self.ui_manager = UIManager()
+# class SettingsView(arcade.View):
+#     def __init__(self):
+#         super().__init__()
+#         self.ui_manager = UIManager()
 
-    def on_show(self):
-        self.setup()
+#     def on_show(self):
+#         self.setup()
     
-    def on_hide_view(self):
-        self.ui_manager.unregister_handlers()
+#     def on_hide_view(self):
+#         self.ui_manager.unregister_handlers()
     
-    def setup(self):
-        self.ui_manager.purge_ui_elements()
+#     def setup(self):
+#         self.ui_manager.purge_ui_elements()
 
-        self.back_texture = arcade.load_texture(constants.BACK_SPRITE)
-        self.back_button = Button(MainView(), self.window, x = constants.BACK_X, y = constants.BACK_Y,
-        normal_texture= self.back_texture)
+#         self.back_texture = arcade.load_texture(constants.BACK_SPRITE)
+#         self.back_button = Button(MainView(), self.window, x = constants.BACK_X, y = constants.BACK_Y,
+#         normal_texture= self.back_texture)
 
-        self.ui_manager.add_ui_element(self.back_button)
+#         self.ui_manager.add_ui_element(self.back_button)
     
-    def on_draw(self):
-        """ Draw this view """
-        arcade.start_render()
-        arcade.draw_text("Settings text", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2, 
-                        color = arcade.color.AERO_BLUE, anchor_x= 'center')
+#     def on_draw(self):
+#         """ Draw this view """
+#         arcade.start_render()
+#         arcade.draw_text("Settings text", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2, 
+#                         color = arcade.color.AERO_BLUE, anchor_x= 'center')
     
-    def on_show_view(self):
-        arcade.set_background_color(arcade.color.ANTIQUE_BRONZE)
+#     def on_show_view(self):
+#         arcade.set_background_color(arcade.color.ANTIQUE_BRONZE)
