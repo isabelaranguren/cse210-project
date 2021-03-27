@@ -52,7 +52,7 @@ class GameView(arcade.View):
         self.name = ""
 
         self.columns = 16
-        self.count = 16
+        self.count = 8
         self.sprite_width = 256
         self.sprite_height = 256
         self.file_name = ":resources:images/spritesheets/explosion.png"
@@ -126,7 +126,8 @@ class GameView(arcade.View):
                     for tank in self.tanks.sprite_list:
                         life = tank.get_life()
                         if life <= 25:
-                            self.count = 224
+                            self.count = 50
+                            self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
                     explosion = Explosion(self.explosion_texture_list)
                     # set explosion center to location of first hit in list
                     explosion.center_x = hit_list_tank[0].center_x

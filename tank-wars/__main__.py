@@ -13,7 +13,8 @@ class Window(arcade.Window):
         self.music = arcade.load_sound(constants.MAIN_SCREEN_SOUND)
         arcade.play_sound(self.music,0.1, looping = True)
     def reset_gameview(self):
-        gameview = GameView()
+        gameview = Game
+        View()
         return gameview
 
 def main():
