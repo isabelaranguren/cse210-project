@@ -49,6 +49,6 @@ class SpawnRandom:
     """
     def __init__(self):
         self.sprite_list = arcade.SpriteList()
-        random_number = randint(0, 3)
+        random_number = randint(0, 2)
         self.power = PowerUp(random_number)
         self.sprite_list.append(self.power)

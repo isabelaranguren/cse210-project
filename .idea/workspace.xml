@@ -27,66 +27,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8cab66a-17c0-4b05-8efc-7abaa815cb6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ReleaseCanidate.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/Settings.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/backButton.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/instructionsButton.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/kenney_topdowntanksredux/License.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/kenney_topdowntanksredux/PNG/Retina/tileSand1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/kenney_topdowntanksredux/PNG/Retina/tileSand2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/map.tmx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/replayutton.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/settingswheel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/startButton.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert_body1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert_body2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert_body3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert_body4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankDesert_body5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGreen_body1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGreen_body2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGreen_body3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGreen_body4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGreen_body5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGrey1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGrey2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGrey3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGrey4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankGrey5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy_body1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy_body2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy_body3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy_body4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankNavy_body5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankTracks1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankTracks2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankTracks3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankTracks4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankTracks5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankTracks6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tank-wars/game/assets/tank-pack/tanks_tankTracks7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/cse210-project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tank-wars/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tank-wars/game/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tank-wars/game/explosion.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/explosion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tank-wars/game/gameview.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/gameview.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tank-wars/game/instruction_view.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/instruction_view.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tank-wars/game/score.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/score.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tank-wars/game/powerups.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/powerups.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tank-wars/game/tanks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/tanks.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

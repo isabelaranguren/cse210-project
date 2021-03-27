@@ -21,7 +21,7 @@ MAIN_SCREEN_SOUND = assets / 'sounds' / 'IntroScreen.mp3'
 POWERUPS_SOUND = assets / 'sounds' / 'powerup.ogg'
 POWERDOWN_SOUND = assets / 'sounds' / 'powerdown.flac'
 
-DEFAULT_VOLUME = 0.0
+DEFAULT_VOLUME = 0.3
 
 #sprites
 #ground

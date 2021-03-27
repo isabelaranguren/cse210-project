@@ -132,8 +132,10 @@ class GameView(arcade.View):
                     self.explosions_list.append(explosion)
 
                 elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
-                    bullet.kill()
-                    bullets -= 1
+                    self.bullet.bullet_bounce(bullet, bullet.angle)
+                    # self.bullet.shoot_bullet(bullet._get_center_x(), bullet._get_center_y(), bullet.angle)
+                    # bullet.kill()
+                    # bullets -= 1
 
                 for tank in hit_list_tank:
                     tank.set_life(-25)
@@ -167,10 +169,10 @@ class GameView(arcade.View):
                     # self.power = arcade.schedule(SpawnRandom(), 3)
                     # arcade.unschedule(SpawnRandom())
 
-                # Paired with checker above in bullet collision checks. destroys/blocks bullet
+                # Paired with checker above in bullet collision checks. should destroy/block bullet
                 if len(hit_list_bullet) > 0:
                     if self.power.sprite_list[-1].get_value() == 2:
-                        for angle in range(0, 360, 15):
+                        for angle in range(0, 360, 60):
                             self.bullet.shoot_bullet(self.power.sprite_list[-1]._get_center_x(),
                                                      self.power.sprite_list[-1]._get_center_y(), angle)
 
@@ -181,21 +183,20 @@ class GameView(arcade.View):
                     # arcade.unschedule(SpawnRandom())
 
                 for tank in hit_list_tank:
-                    # We should combine the entire powerups checker to work for any amount of powerups.
                     if self.power.sprite_list[-1].get_value() == 0:
                         print("Tis a bomb")
                         tank.set_life(-25)
                         arcade.play_sound(self.powerdown_sound, .8)
-                    if self.power.sprite_list[-1].get_value() == 1:
+                    elif self.power.sprite_list[-1].get_value() == 1:
                         print("Tis a power up")
                         tank.set_life(50)
                         arcade.play_sound(self.powerup_sound)
                         # this next if statement is still experimental. it needs delays between shots
-                    if self.power.sprite_list[-1].get_value() == 2:
+                    elif self.power.sprite_list[-1].get_value() == 2:
                         # This stops the bullets from spawning if there are more than 30 on the map
-                        for angle in range(0, 360, 15):
+                        for angle in range(0, 360, 60):
                             bullets += 1
-                            self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), tank.angle + angle)
+                            self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), (tank.angle + angle))
 
                     power.kill()
                     powers -= 1
