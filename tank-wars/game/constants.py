@@ -102,6 +102,16 @@ SETTINGS_SPRITE = assets / 'settings.png'
 SETTINGS_WIDTH = 100
 SETTINGS_HEIGHT = 100
 
+#toggle defaluts
+
+TOGGLE_X= SCREEN_WIDTH /3
+
+TOGGLE_Y = SCREEN_HEIGHT /3
+
+TOGGLE_ON_SPRITE = assets / "soundOn.png"
+
+TOGGLE_OFF_SRITE =  assets / "soundOff.png"
+
 #back button
 
 BACK_SPRITE = assets / 'backButton.png'

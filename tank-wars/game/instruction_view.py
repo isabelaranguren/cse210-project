@@ -1,5 +1,5 @@
 import arcade
-from arcade.gui import UIImageButton, UIManager
+from arcade.gui import UIImageButton, UIManager, UIToggle
 import game.constants as constants
 from game.gameview import GameView
 
@@ -123,6 +123,7 @@ class SettingsView(arcade.View):
 
     def on_show(self):
         self.setup()
+        self.texture = arcade.load_texture(constants.CAMO)
     
     def on_hide_view(self):
         self.ui_manager.unregister_handlers()
@@ -134,13 +135,39 @@ class SettingsView(arcade.View):
         self.back_button = Button(MainView(), self.window, x = constants.BACK_X, y = constants.BACK_Y,
         normal_texture= self.back_texture)
 
+
+        self.normal_sound_texture = arcade.load_texture(constants.TOGGLE_ON_SPRITE)
+        self.pressed_sound_texture = arcade.load_texture(constants.TOGGLE_OFF_SRITE)
+        self.sound_toggle = SoundToggle(normal = self.normal_sound_texture, pressed = self.pressed_sound_texture,
+        game = self.window)
+
         self.ui_manager.add_ui_element(self.back_button)
+        self.ui_manager.add_ui_element(self.sound_toggle)
     
     def on_draw(self):
         """ Draw this view """
         arcade.start_render()
+        self.texture.draw_sized(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2,
+                                constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         arcade.draw_text("Settings text", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2, 
                         color = arcade.color.AERO_BLUE, anchor_x= 'center')
+        
     
-    def on_show_view(self):
-        arcade.set_background_color(arcade.color.ANTIQUE_BRONZE)
+    # def on_show_view(self):
+    #     arcade.set_background_color(arcade.color.ANTIQUE_BRONZE)
+
+class SoundToggle(UIImageButton):
+    def __init__(self, normal, pressed, game):
+        super().__init__(center_x=constants.TOGGLE_X, center_y= constants.TOGGLE_Y,
+        normal_texture= normal)
+        self.normal = normal
+        self.new_normal = pressed
+        self.window = game
+    
+    def on_click(self):
+        if self.normal_texture == self.normal:
+            self.normal_texture = self.new_normal
+            self.window.master_volume = 0.0
+        elif self.normal_texture == self.new_normal:
+            self.normal_texture = self.new_normal
+            self.window.master_volume = 0.5
