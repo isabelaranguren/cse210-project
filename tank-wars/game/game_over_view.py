@@ -2,7 +2,15 @@ import arcade
 from game import constants
 
 class GameOverView(arcade.View):
-    """ View to show when game is over """
+    """ View to show when game is over 
+    Stereotype:
+        Information Holder
+    Attributes:
+
+    Contributors:
+        Reed Hundsaker
+        Isabel Aranguren
+    """
 
     def __init__(self, loser):
         """ This is run once when we switch to this view """
@@ -19,7 +27,7 @@ class GameOverView(arcade.View):
                                 constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         arcade.draw_text(f"{self.win_text}", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 4-75,
                          arcade.color.WHITE, font_size=20, anchor_x="center")
-        arcade.draw_text(f"Blue Tank: {self.window.score.get_score_player1()} | Red Tank: {self.window.score.get_score_player2()}", 
+        arcade.draw_text(f"Black Tank: {self.window.score.get_score_player1()} | Red Tank: {self.window.score.get_score_player2()}", 
         constants.SCREEN_WIDTH / 2,
         constants.SCREEN_HEIGHT / 6 -75,
         arcade.color.WHITE, 
