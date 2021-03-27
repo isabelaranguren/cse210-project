@@ -14,7 +14,8 @@ import time
 
 
 class GameView(arcade.View):
-    """ Game view for Tank Wars
+    """ Game view for Tank Wars. The responsibility of 
+    this class of objects is to control the sequence of play
     Stereotype:
         Controller
     Attributes:
@@ -29,6 +30,7 @@ class GameView(arcade.View):
         Adrianna Lund
         Isabel Aranguren
         Jordan McIntyre
+        Juliano Nascimiento
     """
 
     def __init__(self):

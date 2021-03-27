@@ -4,7 +4,6 @@ from game.gameview import GameView
 from game.instruction_view import MainView
 from game.score import Score
 
-
 class Window(arcade.Window):
     def __init__(self):
         super().__init__(constants.X_CONSTANT, constants.Y_CONSTANT, constants.TITLE)

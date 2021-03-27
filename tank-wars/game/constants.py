@@ -21,7 +21,7 @@ MAIN_SCREEN_SOUND = assets / 'sounds' / 'IntroScreen.mp3'
 POWERUPS_SOUND = assets / 'sounds' / 'powerup.ogg'
 POWERDOWN_SOUND = assets / 'sounds' / 'powerdown.flac'
 
-DEFAULT_VOLUME = 0.0
+DEFAULT_VOLUME = 0.2
 
 #sprites
 #ground
@@ -37,7 +37,7 @@ TANK_SPEED = 2
 TANK_ANGLE_SPEED = 2
 #Player 1
 PLAYER1_X = randint(450, 810)
-PLAYER1_SPRITE = ":resources:images/topdown_tanks/tank_blue.png"
+PLAYER1_SPRITE = ":resources:images/topdown_tanks/tank_dark.png"
 # PLAYER1_SPRITE = assets / 'tank-pack' / 'tanks_tankGrey1.png'
 MAP = assets / 'map.tmx'
 #player 2
@@ -47,7 +47,7 @@ PLAYER2_X = randint(50, 450)
 
 GAME_OVER = assets / 'game-over.jpg'
 BACKGROUND = assets / 'background.png'
-CAMO = assets / 'camo.png'
+CAMO = assets / 'main-bkg.png'
 
 WALLS = assets / '1bitpack' / 'Tilemap' / 'sample_urban2.tmx'
 TILE_SCALING = 1.5
@@ -76,9 +76,8 @@ HEALTH_NUMBER_OFFSET_Y = -25
 #Buttons
 
 BUTTON_Y = 175
-
-BUTTON_WIDTH = 48
-BUTTON_HEIGHT = 48
+BUTTON_WIDTH = 32
+BUTTON_HEIGHT = 32
 
 #Play Buttons
 
@@ -86,11 +85,12 @@ PLAY_X = 425
 
 PLAY_SPRITE = assets / "startButton.png"
 
+PLACEHOLDER = assets / 'bkg.png'
 
 #instructions button
 
 INSTRUCT_X = 100
-
+INSTRUCTION_BKG = assets / 'instructions.png'
 INSTRUCT_SPRITE = assets / "instructionsButton.png"
 
 #Setting Buttons
@@ -99,25 +99,16 @@ SETTINGS_X = 815
 SETTINGS_Y = 495
 
 SETTINGS_SPRITE = assets / 'settings.png'
-SETTINGS_WIDTH = 100
-SETTINGS_HEIGHT = 100
+SETTINGS_WIDTH = 50
+SETTINGS_HEIGHT = 50
 
 #back button
 
 BACK_SPRITE = assets / 'backButton.png'
 
-BACK_X = 125
+BACK_X = 780
 
-BACK_Y = 50
-
-#explosion
-# EXPLOSION_TEXTURE_LIST = []
-# columns = 16
-# count = 60
-# sprite_width = 256
-# sprite_height = 256
-# file_name = ":resources:images/spritesheets/explosion.png"
-
+BACK_Y = 490
 
 #time
 FRAME_LENGTH = 0.1

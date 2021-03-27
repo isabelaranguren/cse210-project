@@ -4,7 +4,6 @@ import game.constants as constants
 class Explosion(arcade.Sprite):
     def __init__(self, texture_list):
         super().__init__()
-
         self.current_texture = 0
         self.textures = texture_list
         
