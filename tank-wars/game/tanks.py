@@ -1,6 +1,7 @@
 import arcade
 import game.constants as constants
 import math
+from random import randint
 
 
 class Tanks(arcade.Sprite):
@@ -22,22 +23,21 @@ class Tanks(arcade.Sprite):
         Reed Hunsaker
         Isabel Aranguren
     """
+
     def __init__(self):
         super().__init__()
-        
 
-        #common tank values
+        # common tank values
         self._life = 300
         self.cur_health = 300
         self.speed = 0
-        self.center_y = constants.TANK_Y
+        # self.center_y = constants.TANK_Y
         self.scale = constants.TANK_SCALE
-     
-        #player textures load
-        self.player1_texture = arcade.load_texture(file_name = constants.PLAYER1_SPRITE)
-        self.player2_texture = arcade.load_texture(file_name = constants.PLAYER2_SPRITE)
-        
+        self.invincible = False
 
+        # player textures load
+        self.player1_texture = arcade.load_texture(file_name=constants.PLAYER1_SPRITE)
+        self.player2_texture = arcade.load_texture(file_name=constants.PLAYER2_SPRITE)
 
     def is_alive(self):
         """checks to see if take is alive
@@ -48,12 +48,10 @@ class Tanks(arcade.Sprite):
             return False
         else:
             return True
-    
-    
+
     def set_life(self, points_change):
         self._life += points_change
-    
-    
+
     def get_life(self):
         return self._life
     
@@ -115,7 +113,8 @@ class Player1(Tanks):
     def __init__(self):
         super().__init__()
         self.name = 0
-        self.center_x = constants.PLAYER1_X
+        self.center_x = randint(450, 810)
+        self.center_y = randint(250, 500)
         self.texture = self.player1_texture
 
 class Player2(Tanks):
@@ -131,7 +130,8 @@ class Player2(Tanks):
     def __init__(self):
         super().__init__()
         self.name = 1
-        self.center_x = constants.PLAYER2_X
+        self.center_x = randint(50, 450)
+        self.center_y = randint(10, 250)
         self.texture = self.player2_texture
 
 class Run:

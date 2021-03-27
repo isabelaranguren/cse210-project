@@ -1,25 +1,30 @@
 import arcade
 import game.constants as constants
 from game.gameview import GameView
-from game.instruction_view import InstructionView
+from game.instruction_view import MainView
 from game.score import Score
 
 
 class Window(arcade.Window):
     def __init__(self):
         super().__init__(constants.X_CONSTANT, constants.Y_CONSTANT, constants.TITLE)
+
+        self.master_volume = constants.DEFAULT_VOLUME
+
         self.score = Score()
-        self.start_view = InstructionView()
-        self.music = arcade.load_sound(constants.MAIN_SCREEN_SOUND)
-        arcade.play_sound(self.music,0.1, looping = True)
+        self.start_view = MainView()
+        self.background_music = arcade.Sound(constants.MAIN_SCREEN_SOUND)
+        self.background_music.play(self.master_volume, loop = True)
+
     def reset_gameview(self):
         gameview = Game
         View()
         return gameview
+    
 
 def main():
     window = Window()
-    start_view = InstructionView()
+    start_view = MainView()
     window.show_view(start_view)
     arcade.run()
 
