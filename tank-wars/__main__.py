@@ -17,8 +17,7 @@ class Window(arcade.Window):
         self.background_music.play(self.master_volume, loop = True)
 
     def reset_gameview(self):
-        gameview = Game
-        View()
+        gameview = GameView()
         return gameview
     
 
