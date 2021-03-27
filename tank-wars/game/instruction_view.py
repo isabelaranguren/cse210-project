@@ -27,8 +27,14 @@ class MainView(arcade.View):
         left_column_x = self.window.width // 4
         right_column_x = 3 * self.window.width // 4
 
-        self.settings_texture = arcade.load_texture(constants.SETTINGS_SPRITE)
-        self.settings_button = Settings_Button(game = self.window, normal_texture= self.settings_texture)
+        # self.settings_texture = arcade.load_texture(constants.SETTINGS_SPRITE)
+        # self.settings_button = Settings_Button(game = self.window, normal_texture= self.settings_texture)
+
+        self.normal_sound_texture = arcade.load_texture(constants.TOGGLE_ON_SPRITE)
+        self.pressed_sound_texture = arcade.load_texture(constants.TOGGLE_OFF_SRITE)
+        self.sound_toggle = SoundToggle(normal = self.normal_sound_texture, pressed = self.pressed_sound_texture,
+        game = self.window)
+
 
         self.play_texture = arcade.load_texture(constants.PLAY_SPRITE)
         self.play_button = Button(GameView(), self.window, normal_texture= self.play_texture)
@@ -38,7 +44,8 @@ class MainView(arcade.View):
         self.instruct_button = Button(InstructionView(), self.window, normal_texture = self.instruct_texture, 
         y = constants.BUTTON_Y - 100)
 
-        self.ui_manager.add_ui_element(self.settings_button)
+        # self.ui_manager.add_ui_element(self.settings_button)
+        self.ui_manager.add_ui_element(self.sound_toggle)
         self.ui_manager.add_ui_element(self.play_button)
         self.ui_manager.add_ui_element(self.instruct_button)
         
@@ -157,17 +164,18 @@ class SettingsView(arcade.View):
     #     arcade.set_background_color(arcade.color.ANTIQUE_BRONZE)
 
 class SoundToggle(UIImageButton):
+    #TODO: resize and fix one click problem
     def __init__(self, normal, pressed, game):
-        super().__init__(center_x=constants.TOGGLE_X, center_y= constants.TOGGLE_Y,
+        super().__init__(center_x=constants.SETTINGS_X, center_y= constants.SETTINGS_Y,
         normal_texture= normal)
         self.normal = normal
         self.new_normal = pressed
         self.window = game
     
     def on_click(self):
-        if self.normal_texture == self.normal:
+        if self.window.master_volume != 0.0:
             self.normal_texture = self.new_normal
             self.window.master_volume = 0.0
-        elif self.normal_texture == self.new_normal:
+        elif self.window.master_volume != 0.5:
             self.normal_texture = self.new_normal
             self.window.master_volume = 0.5
