@@ -128,10 +128,14 @@ class GameView(arcade.View):
 
                 if len(hit_list_tank) > 0:
                     for tank in self.tanks.sprite_list:
+                        alive = tank.is_alive()
                         life = tank.get_life()
-                        if life <= 25:
+                        if alive == False:
                             self.count = 50
                             self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
+                            self.name = tank.name
+                            self.game_ending = True
+                            tank.kill()
                     explosion = Explosion(self.explosion_texture_list)
                     # set explosion center to location of first hit in list
                     explosion.center_x = hit_list_tank[0].center_x
@@ -151,12 +155,13 @@ class GameView(arcade.View):
                     bullet.kill()
                     bullets -= 1
 
-        for tank in self.tanks.sprite_list:
-            alive = tank.is_alive()
-            if alive == False:
-                self.name = tank.name
-                self.game_ending = True
-                tank.kill()
+        # for tank in self.tanks.sprite_list:
+        #     alive = tank.is_alive()
+        #     if alive == False:
+        #         self.name = tank.name
+        #         self.game_ending = True
+                
+        #         tank.kill()
                 
 
         powers = len(self.power.sprite_list)
@@ -208,25 +213,18 @@ class GameView(arcade.View):
                     powers -= 1
                     self.power = SpawnRandom()
 
-        for tank in self.tanks.sprite_list:
-            alive = tank.is_alive()
-            if alive == False:
-                name = tank.name
-                tank.kill()
-                self.switch_game_over_view(name)
-
-                for tank in hit_list_tank:
-                    if self.power_up.sprite_list[-1].description == "Good":
-                        print("Tis a power up")
-                        tank.set_life(50)
-                        arcade.play_sound(self.powerup_sound)
-                    if self.power_up.sprite_list[-1].description == "Bad":
-                        print("Tis a bomb")
-                        tank.set_life(-25)
-                        arcade.play_sound(self.powerdown_sound, .8)
-                    power_up.kill()
-                    power_ups -= 1
-                    self.power_down = SpawnRandom()           
+            for tank in hit_list_tank:
+                if self.power_up.sprite_list[-1].description == "Good":
+                    print("Tis a power up")
+                    tank.set_life(50)
+                    arcade.play_sound(self.powerup_sound)
+                if self.power_up.sprite_list[-1].description == "Bad":
+                    print("Tis a bomb")
+                    tank.set_life(-25)
+                    arcade.play_sound(self.powerdown_sound, .8)
+                power_up.kill()
+                power_ups -= 1
+                self.power_down = SpawnRandom()           
 
     def end_game(self,name):
         self.switch_game_over_view(name)    
