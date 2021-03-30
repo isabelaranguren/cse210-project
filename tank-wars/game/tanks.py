@@ -28,8 +28,8 @@ class Tanks(arcade.Sprite):
         super().__init__()
 
         # common tank values
-        self._life = 10000
-        self.cur_health = 300
+        self._life = 300
+        self.cur_health = self._life
         self.speed = 0
         # self.center_y = constants.TANK_Y
         self.scale = constants.TANK_SCALE
@@ -149,6 +149,13 @@ class Run:
         self.sprite_list = arcade.SpriteList()
         self.player1 = Player1()
         self.player2 = Player2()
+        # self.flag1 = Player1()
+        # self.flag2 = Player2()
+
+        # self.flag1.set_life(2000)
+        # self.flag2.set_life(2000)
 
         self.sprite_list.append(self.player1)
         self.sprite_list.append(self.player2)
+        # self.sprite_list.append(self.flag1)
+        # self.sprite_list.append(self.flag2)

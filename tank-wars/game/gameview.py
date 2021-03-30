@@ -127,6 +127,7 @@ class GameView(arcade.View):
                     self.bullet.bullet_bounce(bullet, bullet.angle)
 
                 if len(hit_list_tank) > 0:
+                    # somewhere in here, this is making both tans explode large if only one has 25 health left
                     for tank in self.tanks.sprite_list:
                         life = tank.get_life()
                         if life <= 25:
@@ -142,10 +143,11 @@ class GameView(arcade.View):
                     self.explosions_list.append(explosion)
 
                 elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
-                    self.bullet.bullet_bounce(bullet, bullet.angle)
-                    # self.bullet.shoot_bullet(bullet._get_center_x(), bullet._get_center_y(), bullet.angle)
-                    # bullet.kill()
-                    # bullets -= 1
+                    # uncomment the line below to have the bullets bounce off the edge of the screen
+
+                    # self.bullet.bullet_bounce(bullet, bullet.angle)
+                    bullet.kill()
+                    bullets -= 1
 
                 for tank in hit_list_tank:
                     tank.set_life(-25)
@@ -216,7 +218,7 @@ class GameView(arcade.View):
                 tank.kill()
                 self.switch_game_over_view(name)
 
-                for tank in hit_list_tank:
+                """                for tank in hit_list_tank:
                     if self.power_up.sprite_list[-1].description == "Good":
                         print("Tis a power up")
                         tank.set_life(50)
@@ -227,7 +229,7 @@ class GameView(arcade.View):
                         arcade.play_sound(self.powerdown_sound, .8)
                     power_up.kill()
                     power_ups -= 1
-                    self.power_down = SpawnRandom()           
+                    self.power_down = SpawnRandom()      """
 
     def end_game(self,name):
         self.switch_game_over_view(name)    

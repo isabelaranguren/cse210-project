@@ -19,18 +19,15 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/main" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Jordan" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8cab66a-17c0-4b05-8efc-7abaa815cb6f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tank-wars/game/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tank-wars/game/gameview.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/gameview.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tank-wars/game/powerups.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/powerups.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tank-wars/game/tanks.py" beforeDir="false" afterPath="$PROJECT_DIR$/tank-wars/game/tanks.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +70,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="Jordan" />
                       </list>
                     </value>
                   </entry>
@@ -87,10 +84,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="781" y="370" key="SettingsEditor" timestamp="1616718804600">
+    <state x="781" y="370" key="SettingsEditor" timestamp="1617129494101">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="781" y="370" key="SettingsEditor/0.23.2560.1417@0.23.2560.1417" timestamp="1616718804600" />
+    <state x="781" y="370" key="SettingsEditor/0.23.2560.1417@0.23.2560.1417" timestamp="1617129494101" />
     <state x="945" y="348" width="670" height="676" key="search.everywhere.popup" timestamp="1616696158100">
       <screen x="0" y="23" width="2560" height="1417" />
     </state>
