@@ -133,6 +133,11 @@ class GameView(arcade.View):
                         if alive == False:
                             self.count = 50
                             self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
+                            explosion = Explosion(self.explosion_texture_list)
+                            explosion.center_x = tank.center_x
+                            explosion.center_y = tank.center_y
+                            explosion.update()
+                            self.explosions_list.append(explosion)
                             self.name = tank.name
                             self.game_ending = True
                             tank.kill()
