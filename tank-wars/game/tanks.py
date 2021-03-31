@@ -50,9 +50,18 @@ class Tanks(arcade.Sprite):
             return True
 
     def set_life(self, points_change):
+        """
+        Changes the value of life in a Tank
+        Args:
+            points_change:
+        Returns: None
+        """
         self._life += points_change
 
     def get_life(self):
+        """
+        Returns: self._life
+        """
         return self._life
     
     
