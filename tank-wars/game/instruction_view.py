@@ -1,5 +1,5 @@
 import arcade
-from arcade.gui import UIImageButton, UIManager
+from arcade.gui import UIImageButton, UIManager, UIToggle
 import game.constants as constants
 from game.gameview import GameView
 
@@ -30,6 +30,12 @@ class MainView(arcade.View):
         # self.settings_texture = arcade.load_texture(constants.SETTINGS_SPRITE)
         # self.settings_button = Settings_Button(game = self.window, normal_texture= self.settings_texture)
 
+        # self.normal_sound_texture = arcade.load_texture(constants.TOGGLE_ON_SPRITE)
+        # self.pressed_sound_texture = arcade.load_texture(constants.TOGGLE_OFF_SRITE)
+        # self.sound_toggle = SoundToggle(normal = self.normal_sound_texture, pressed = self.pressed_sound_texture,
+        # game = self.window)
+
+
         self.play_texture = arcade.load_texture(constants.PLAY_SPRITE)
         self.play_button = Button(GameView(), self.window, normal_texture= self.play_texture, y = constants.BUTTON_Y + 20)
 
@@ -39,6 +45,7 @@ class MainView(arcade.View):
         y = constants.BUTTON_Y - 70)
 
         # self.ui_manager.add_ui_element(self.settings_button)
+        # self.ui_manager.add_ui_element(self.sound_toggle)
         self.ui_manager.add_ui_element(self.play_button)
         self.ui_manager.add_ui_element(self.instruct_button)
         
@@ -112,16 +119,16 @@ class InstructionView(arcade.View):
         arcade.load_texture(constants.CAMO)
 
 
-class SettingsView(arcade.View):
-    def __init__(self):
-        super().__init__()
-        self.texture = arcade.load_texture(constants.PLACEHOLDER)
+# class SettingsView(arcade.View):
+#     def __init__(self):
+#         super().__init__()
+#         self.texture = arcade.load_texture(constants.PLACEHOLDER)
 
-        self.ui_manager = UIManager()
+#         self.ui_manager = UIManager()
 
 #     def on_show(self):
 #         self.setup()
-    
+
 #     def on_hide_view(self):
 #         self.ui_manager.unregister_handlers()
     
