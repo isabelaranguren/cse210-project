@@ -17,7 +17,7 @@ class GameView(arcade.View):
     """ Game view for Tank Wars. The responsibility of 
     this class of objects is to control the sequence of play
     Stereotype:
-        Controller
+        Coordinator, Structurer, Service Provider
     Attributes:
         _score (Score): initalizes the score class
         texture (arcade.load_texture): load background texture
