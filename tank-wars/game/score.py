@@ -23,7 +23,6 @@ class Score(Tanks):
         super().__init__()
         self._score_player1 = 0
         self._score_player2 = 0
-        # self._set_text(f"Score: {self._score}")
     
     def add_score_player1(self):
         """Adds the given points to the running total and updates the text.
@@ -32,7 +31,6 @@ class Score(Tanks):
             points (integer): The points to add.
         """
         self._score_player1 += 1
-        # self.set_text(f"Score: {self._score}")
     def add_score_player2(self):
         """Adds the given points to the running total and updates the text.
         Args:

@@ -111,7 +111,6 @@ class GameView(arcade.View):
         self.physics_engine.update()
         self.physics_engine2.update()
         self.physics_engine3.update()
-        # self.physics_engine4.update()
         self.explosions_list.update()
 
         # handle bullet collisions
@@ -123,33 +122,7 @@ class GameView(arcade.View):
                 hit_list_wall = arcade.check_for_collision_with_list(bullet, self.ground.ground_sprite_list)
                 hit_list_tank = arcade.check_for_collision_with_list(bullet, self.tanks.sprite_list)
 
-                if len(hit_list_wall) > 0:
-                    self.bullet.bullet_bounce(bullet, bullet.angle)
-
-                if len(hit_list_tank) > 0:
-                    for tank in self.tanks.sprite_list:
-                        life = tank.get_life()
-                        if life <= 25:
-                            self.count = 50
-                            self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
-                    explosion = Explosion(self.explosion_texture_list)
-                    # set explosion center to location of first hit in list
-                    explosion.center_x = hit_list_tank[0].center_x
-                    explosion.center_y = hit_list_tank[0].center_y
-
-                    # update explosion (sets first image)
-                    explosion.update()
-                    self.explosions_list.append(explosion)
-
-                elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
-                    bullet.kill()
-                    bullets -= 1
-
-                for tank in hit_list_tank:
-                    tank.set_life(-25)
-                    arcade.play_sound(self.tank_explode, .5)
-                    bullet.kill()
-                    bullets -= 1
+                self.bullet_shooting_update(bullet, bullets, hit_list_tank, hit_list_wall)
 
         for tank in self.tanks.sprite_list:
             alive = tank.is_alive()
@@ -224,9 +197,39 @@ class GameView(arcade.View):
                         print("Tis a bomb")
                         tank.set_life(-25)
                         arcade.play_sound(self.powerdown_sound, .8)
-                    power_up.kill()
-                    power_ups -= 1
+                    self.power_up.kill()
+                    self.power_ups -= 1
                     self.power_down = SpawnRandom()           
+
+    def bullet_shooting_update(self, bullet, bullets, hit_list_tank, hit_list_wall):
+        if len(hit_list_wall) > 0:
+            self.bullet.bullet_bounce(bullet, bullet.angle)
+
+        if len(hit_list_tank) > 0:
+            for tank in self.tanks.sprite_list:
+                life = tank.get_life()
+                if life <= 25:
+                    self.count = 50
+                    self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
+            explosion = Explosion(self.explosion_texture_list)
+            # set explosion center to location of first hit in list
+            explosion.center_x = hit_list_tank[0].center_x
+            explosion.center_y = hit_list_tank[0].center_y
+
+            # update explosion (sets first image)
+            explosion.update()
+            self.explosions_list.append(explosion)
+
+        elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
+            bullet.kill()
+            bullets -= 1
+
+        for tank in hit_list_tank:
+            tank.set_life(-25)
+            arcade.play_sound(self.tank_explode, .5)
+            bullet.kill()
+            bullets -= 1
+
 
     def end_game(self,name):
         self.switch_game_over_view(name)    
