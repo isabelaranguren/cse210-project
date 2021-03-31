@@ -21,10 +21,15 @@ class GameView(arcade.View):
     Attributes:
         _score (Score): initalizes the score class
         texture (arcade.load_texture): load background texture
+        game_ending (Boolean): triggers final game actions
+        name (String): name of losing player
         physicis_engine (None): declares physics engine variable
         physics_engine2 (None): declares physics engine 2 variable
-        bullet_list (None): declares bullet list bariable
+        physics_engine3 (None): declares physics engine 2 variable
+        physics_engine4 (None): declares physics engine 2 variable
+        bullet_list (None): declares bullet list variable
         explosion_list (None): declares explosion list variable
+        explosion_texture_list (List): declares texture list used for explosion
     Contributors:
         Reed Hunsaker
         Adrianna Lund
@@ -57,7 +62,6 @@ class GameView(arcade.View):
         # sprite lists
         self.bullet_list = None
         self.explosions_list = None
-        self.all_sprites = arcade.SpriteList(use_spatial_hash=True)
         self.explosion_texture_list = []
 
         # sounds
@@ -123,11 +127,11 @@ class GameView(arcade.View):
             Isabel Aranguren
             Jordan McIntyre
         """
-        # if game is ending - update the last explosion, then go to the gameover view
+        # if game is ending - update the last explosion, then go to the game over view
         if self.game_ending:
             self.explosions_list.update()
             if not self.explosions_list:
-                self.end_game(self.name)
+                self.switch_game_over_view(self.name)
             return
 
         self.physics_engine.update()
@@ -192,12 +196,6 @@ class GameView(arcade.View):
         for tank in self.tanks.sprite_list:
             alive = tank.is_alive()
             if alive == False:
-                self.game_ending = True
-                self.count = 50
-                self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
-                self.name = tank.name
-                tank.kill()
-
                 # TODO: Why is this powerup code inside this for loop? - can we move it out and move the for loop up by the collision code?
                 for tank in hit_list_tank:
                     # powerup
@@ -219,10 +217,8 @@ class GameView(arcade.View):
         if len(hit_list_tank) > 0:
             for tank in self.tanks.sprite_list:
                 life = tank.get_life()
-                if life <= 25:
-                    self.count = 50
-                    self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
-            explosion = Explosion(self.explosion_texture_list)
+                explosion = Explosion(self.explosion_texture_list)
+                
             # set explosion center to location of first hit in list
             explosion.center_x = hit_list_tank[0].center_x
             explosion.center_y = hit_list_tank[0].center_y
@@ -231,6 +227,7 @@ class GameView(arcade.View):
             explosion.update()
             self.explosions_list.append(explosion)
 
+        # if bullet leaves screen, kill it
         elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
             bullet.kill()
             bullets -= 1
@@ -240,12 +237,33 @@ class GameView(arcade.View):
             arcade.play_sound(self.tank_explode, .5)
             bullet.kill()
             bullets -= 1
+        
+        # check tank health & set final explosion
+        for tank in self.tanks.sprite_list:
+            alive = tank.is_alive()
+            if alive == False:
+                self.game_ending = True
+                self.count = 50
+                self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
+                explosion = Explosion(self.explosion_texture_list)
 
+                # set explosion center to location of first hit in list
+                explosion.center_x = tank.center_x
+                explosion.center_y = tank.center_y
 
-    def end_game(self,name):
-        self.switch_game_over_view(name)    
+                # update explosion (sets first image)
+                explosion.update()
+                self.explosions_list.append(explosion)
+                self.name = tank.name
+                tank.kill()  
 
     def wrap(self):
+        """Keeps players on screen and kills bullets off screen. 
+        Contributors:
+            Adrianna Lund
+        """
+        # TODO: DOUBLE CHECK THIS METHOD COMMENT
+
         # Check player1 for out-of-bounds
         if self.tanks.player1.left < 0:
             self.tanks.player1.left = 0
@@ -268,6 +286,7 @@ class GameView(arcade.View):
         elif self.tanks.player2.top > constants.SCREEN_HEIGHT - 1:
             self.tanks.player2.top = constants.SCREEN_HEIGHT - 1
 
+        # TODO: WHAT IS THIS/WHY IS IT IN THIS METHOD?
         self.tanks.player1.update()
         self.tanks.player2.update()
         if self.bullet.bullet_sprite_list is not None:
@@ -282,7 +301,7 @@ class GameView(arcade.View):
             Adrianna Lund
             Reed Hunsaker
         """
-        # Forward/back
+        # Forward/back - PLAYER 1
         if key == arcade.key.DOWN:
             self.tanks.player1.speed = constants.TANK_SPEED
         elif key == arcade.key.UP:
@@ -291,7 +310,7 @@ class GameView(arcade.View):
             self.bullet.shoot_bullet(self.tanks.player1._get_center_x(), self.tanks.player1._get_center_y(),
                                      self.tanks.player1.angle)
 
-
+        # Forward/back - PLAYER 2
         elif key == arcade.key.S:
             self.tanks.player2.speed = constants.TANK_SPEED
         elif key == arcade.key.W:
@@ -300,17 +319,19 @@ class GameView(arcade.View):
             self.bullet.shoot_bullet(self.tanks.player2._get_center_x(), self.tanks.player2._get_center_y(),
                                      self.tanks.player2.angle)
 
-        # Rotate left/right
+        # Rotate left/right - PLAYER 1
         elif key == arcade.key.LEFT:
             self.tanks.player1.change_angle = constants.TANK_ANGLE_SPEED
         elif key == arcade.key.RIGHT:
             self.tanks.player1.change_angle = -constants.TANK_ANGLE_SPEED
 
+        # Rotate left/right - PLAYER 2
         elif key == arcade.key.A:
             self.tanks.player2.change_angle = constants.TANK_ANGLE_SPEED
         elif key == arcade.key.D:
             self.tanks.player2.change_angle = -constants.TANK_ANGLE_SPEED
 
+        # Quit key
         elif key == arcade.key.ESCAPE:
             quit()
 
@@ -320,11 +341,13 @@ class GameView(arcade.View):
             Adrianna Lund
             Reed Hunsaker
         """
+        # Resets speed/angle on key release - PLAYER 1
         if key == arcade.key.UP or key == arcade.key.DOWN:
             self.tanks.player1.speed = 0
         elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
             self.tanks.player1.change_angle = 0
 
+        # Resets speed/angle on key release - PLAYER 2
         elif key == arcade.key.W or key == arcade.key.S:
             self.tanks.player2.speed = 0
         elif key == arcade.key.A or key == arcade.key.D:
