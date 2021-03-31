@@ -35,7 +35,6 @@ class GameView(arcade.View):
         Adrianna Lund
         Isabel Aranguren
         Jordan McIntyre
-        Juliano Nascimiento
     """
 
     def __init__(self):
@@ -218,7 +217,7 @@ class GameView(arcade.View):
             for tank in self.tanks.sprite_list:
                 life = tank.get_life()
                 explosion = Explosion(self.explosion_texture_list)
-                
+
             # set explosion center to location of first hit in list
             explosion.center_x = hit_list_tank[0].center_x
             explosion.center_y = hit_list_tank[0].center_y
