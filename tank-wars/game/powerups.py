@@ -32,6 +32,8 @@ class PowerUp(arcade.Sprite):
     def get_value(self):
         """
         Returns: self.value
+        Contributors:
+            Jordan McIntyre
         """
         return self.value
 

@@ -164,10 +164,10 @@ class GameView(arcade.View):
                     powers -= 1
                     self.power = SpawnRandom()
 
-                # Paired with checker above in bullet collision checks. destroys/blocks bullet
+                # Paired with checker above in bullet collision checks. should destroy/block bullet
                 if len(hit_list_bullet) > 0:
                     if self.power.sprite_list[-1].get_value() == 2:
-                        for angle in range(0, 360, 15):
+                        for angle in range(0, 360, 60):
                             self.bullet.shoot_bullet(self.power.sprite_list[-1]._get_center_x(),
                                                      self.power.sprite_list[-1]._get_center_y(), angle)
 
@@ -176,43 +176,27 @@ class GameView(arcade.View):
                     self.power = SpawnRandom()
 
                 for tank in hit_list_tank:
-                    # We should combine the entire powerups checker to work for any amount of powerups.
                     if self.power.sprite_list[-1].get_value() == 0:
                         tank.set_life(-25)
                         arcade.play_sound(self.powerdown_sound, .8)
-                    if self.power.sprite_list[-1].get_value() == 1:
+                    elif self.power.sprite_list[-1].get_value() == 1:
                         tank.set_life(50)
                         arcade.play_sound(self.powerup_sound)
                         # this next if statement is still experimental. it needs delays between shots
-                    if self.power.sprite_list[-1].get_value() == 2:
+                    elif self.power.sprite_list[-1].get_value() == 2:
                         # This stops the bullets from spawning if there are more than 30 on the map
-                        for angle in range(0, 360, 15):
+                        for angle in range(0, 360, 60):
                             bullets += 1
-                            self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), tank.angle + angle)
+                            self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), (tank.angle + angle))
 
                     power.kill()
                     powers -= 1
-                    self.power = SpawnRandom()
-
-        # # checks for end of game flag
-        # for tank in self.tanks.sprite_list:
-        #     alive = tank.is_alive()
-        #     if alive == False:
-        #         # TODO: Why is this powerup code inside this for loop? - can we move it out and move the for loop up by the collision code?
-        #         for tank in hit_list_tank:
-        #             # powerup
-        #             if self.power_up.sprite_list[-1].description == "Good":
-        #                 tank.set_life(50)
-        #                 arcade.play_sound(self.powerup_sound)
-        #             # powerdown
-        #             if self.power_up.sprite_list[-1].description == "Bad":
-        #                 tank.set_life(-25)
-        #                 arcade.play_sound(self.powerdown_sound, .8)
-        #             self.power_up.kill()
-        #             self.power_ups -= 1
-        #             self.power_down = SpawnRandom()           
+                    self.power = SpawnRandom()         
 
     def bullet_shooting_update(self, bullet, bullets, hit_list_tank, hit_list_wall):
+        '''
+        TODO: WRITE COMMENT
+        '''
         if len(hit_list_wall) > 0:
             self.bullet.bullet_bounce(bullet, bullet.angle)
 
@@ -234,6 +218,7 @@ class GameView(arcade.View):
             bullet.kill()
             bullets -= 1
 
+        # play sound and kill bullet from hit lists
         for tank in hit_list_tank:
             tank.set_life(-25)
             arcade.play_sound(self.tank_explode, .5)
@@ -260,12 +245,11 @@ class GameView(arcade.View):
                 tank.kill()  
 
     def wrap(self):
-        """Keeps players on screen and kills bullets off screen. 
+        """Keeps players on screen and kills bullets off screen and updates sprite movement. 
         Contributors:
             Adrianna Lund
+            Jordan McIntyre
         """
-        # TODO: DOUBLE CHECK THIS METHOD COMMENT
-
         # Check player1 for out-of-bounds
         if self.tanks.player1.left < 0:
             self.tanks.player1.left = 0
@@ -288,7 +272,7 @@ class GameView(arcade.View):
         elif self.tanks.player2.top > constants.SCREEN_HEIGHT - 1:
             self.tanks.player2.top = constants.SCREEN_HEIGHT - 1
 
-        # TODO: WHAT IS THIS/WHY IS IT IN THIS METHOD?
+        # Update animations/sprites
         self.tanks.player1.update()
         self.tanks.player2.update()
         if self.bullet.bullet_sprite_list is not None:
