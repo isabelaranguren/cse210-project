@@ -28,8 +28,8 @@ class Tanks(arcade.Sprite):
         super().__init__()
 
         # common tank values
-        self._life = 10000
-        self.cur_health = 300
+        self._life = 300
+        self.cur_health = self._life
         self.speed = 0
         # self.center_y = constants.TANK_Y
         self.scale = constants.TANK_SCALE
