@@ -194,23 +194,23 @@ class GameView(arcade.View):
                     powers -= 1
                     self.power = SpawnRandom()
 
-        # checks for end of game flag
-        for tank in self.tanks.sprite_list:
-            alive = tank.is_alive()
-            if alive == False:
-                # TODO: Why is this powerup code inside this for loop? - can we move it out and move the for loop up by the collision code?
-                for tank in hit_list_tank:
-                    # powerup
-                    if self.power_up.sprite_list[-1].description == "Good":
-                        tank.set_life(50)
-                        arcade.play_sound(self.powerup_sound)
-                    # powerdown
-                    if self.power_up.sprite_list[-1].description == "Bad":
-                        tank.set_life(-25)
-                        arcade.play_sound(self.powerdown_sound, .8)
-                    self.power_up.kill()
-                    self.power_ups -= 1
-                    self.power_down = SpawnRandom()           
+        # # checks for end of game flag
+        # for tank in self.tanks.sprite_list:
+        #     alive = tank.is_alive()
+        #     if alive == False:
+        #         # TODO: Why is this powerup code inside this for loop? - can we move it out and move the for loop up by the collision code?
+        #         for tank in hit_list_tank:
+        #             # powerup
+        #             if self.power_up.sprite_list[-1].description == "Good":
+        #                 tank.set_life(50)
+        #                 arcade.play_sound(self.powerup_sound)
+        #             # powerdown
+        #             if self.power_up.sprite_list[-1].description == "Bad":
+        #                 tank.set_life(-25)
+        #                 arcade.play_sound(self.powerdown_sound, .8)
+        #             self.power_up.kill()
+        #             self.power_ups -= 1
+        #             self.power_down = SpawnRandom()           
 
     def bullet_shooting_update(self, bullet, bullets, hit_list_tank, hit_list_wall):
         if len(hit_list_wall) > 0:
