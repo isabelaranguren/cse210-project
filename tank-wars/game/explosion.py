@@ -12,7 +12,7 @@ class Explosion(arcade.Sprite):
         Adrianna Lund
     """
     def __init__(self, texture_list):
-        """ Initializes variables for the Explosion class
+        """ Declares variables for the Explosion class
         Contributors:
             Adrianna Lund
         """
