@@ -18,6 +18,7 @@ class PowerUp(arcade.Sprite):
         texture (power_texture): initializes power up texture
     Contributors:
         Jordan McIntyre
+        Adrianna Lund
         """
     def __init__(self, value):
         super().__init__()
@@ -34,6 +35,7 @@ class PowerUp(arcade.Sprite):
         Returns: self.value
         Contributors:
             Jordan McIntyre
+            Adrianna Lund
         """
         return self.value
 

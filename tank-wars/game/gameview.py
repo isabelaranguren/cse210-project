@@ -194,9 +194,13 @@ class GameView(arcade.View):
                     self.power = SpawnRandom()         
 
     def bullet_shooting_update(self, bullet, bullets, hit_list_tank, hit_list_wall):
-        '''
-        TODO: WRITE COMMENT
-        '''
+        """ Updates bullets and explosions.
+        Contributors:
+            Reed Hunsaker
+            Adrianna Lund
+            Isabel Aranguren
+            Jordan McIntyre
+        """
         if len(hit_list_wall) > 0:
             self.bullet.bullet_bounce(bullet, bullet.angle)
 
