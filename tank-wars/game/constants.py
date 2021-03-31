@@ -16,8 +16,6 @@ Y_CONSTANT = 540
 TANK_FIRE = assets / 'sounds' / 'tank-fire.wav'
 EXPLOSION_SOUND = assets / 'sounds' / 'Explosion+7.wav'
 MAIN_SCREEN_SOUND = assets / 'sounds' / 'IntroScreen.mp3'
-# GAME_BACKGROUND_SOUND = assets / 'sounds' / ''
-# GAME_OVER_SOUND = assets / 'sounds' / ''
 POWERUPS_SOUND = assets / 'sounds' / 'powerup.ogg'
 POWERDOWN_SOUND = assets / 'sounds' / 'powerdown.flac'
 
@@ -38,10 +36,8 @@ TANK_ANGLE_SPEED = 2
 #Player 1
 PLAYER1_X = randint(450, 810)
 PLAYER1_SPRITE = ":resources:images/topdown_tanks/tank_dark.png"
-# PLAYER1_SPRITE = assets / 'tank-pack' / 'tanks_tankGrey1.png'
 MAP = assets / 'map.tmx'
 #player 2
-# PLAYER2_SPRITE = assets / 'tank-pack' / 'tanks_tankGreen1.png'
 PLAYER2_SPRITE = ":resources:images/topdown_tanks/tank_red.png"
 PLAYER2_X = randint(50, 450)
 

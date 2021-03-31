@@ -98,6 +98,9 @@ class GameView(arcade.View):
         """ Draws the game screen.
         Contributors:
             Reed Hunsaker
+            Adrianna Lund
+            Jordan McIntyre
+            Isabel Aranguren
         """
         arcade.start_render()
 
