@@ -18,6 +18,7 @@ class PowerUp(arcade.Sprite):
         texture (power_texture): initializes power up texture
     Contributors:
         Jordan McIntyre
+        Adrianna Lund
         """
     def __init__(self, value):
         super().__init__()
@@ -26,13 +27,15 @@ class PowerUp(arcade.Sprite):
         self.center_y = randint(25, constants.Y_CONSTANT - 25)
         self.center_x = randint(25, constants.X_CONSTANT - 25)
         self.value = value
-
         self.power_texture = arcade.load_texture(file_name=constants.HEALTH_POWER_UP_SPRITE)
         self.texture = self.power_texture
 
     def get_value(self):
         """
         Returns: self.value
+        Contributors:
+            Jordan McIntyre
+            Adrianna Lund
         """
         return self.value
 
@@ -49,6 +52,6 @@ class SpawnRandom:
     """
     def __init__(self):
         self.sprite_list = arcade.SpriteList()
-        random_number = randint(0, 3)
+        random_number = randint(0, 2)
         self.power = PowerUp(random_number)
         self.sprite_list.append(self.power)
