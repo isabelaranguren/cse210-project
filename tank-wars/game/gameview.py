@@ -35,6 +35,7 @@ class GameView(arcade.View):
         Adrianna Lund
         Isabel Aranguren
         Jordan McIntyre
+        Juliano Nascimiento
     """
 
     def __init__(self):
@@ -46,6 +47,7 @@ class GameView(arcade.View):
             Adrianna Lund
             Isabel Aranguren
             Jordan McIntyre
+            Juliano Nascimiento
         """
         super().__init__()
 
