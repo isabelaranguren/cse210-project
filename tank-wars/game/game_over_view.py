@@ -39,6 +39,12 @@ class GameOverView(arcade.View):
         game_view = self.window.reset_gameview()
         game_view.setup()
         self.window.show_view(game_view)
+
+    def on_key_press(self, symbol: int, modifiers: int):
+        """ If the user presses a key, restart the game. """
+        game_view = self.window.reset_gameview()
+        game_view.setup()
+        self.window.show_view(game_view)
     
     def winner(self):
         if self.loser == 0:
@@ -46,6 +52,6 @@ class GameOverView(arcade.View):
             self.win_text = "Red Tank Wins!"
         elif self.loser == 1:
             self.window.score.add_score_player1()
-            self.win_text = "Blue Tank Wins!"
+            self.win_text = "Black Tank Wins!"
         else:
             self.win_text = '404 no winner found'
