@@ -195,6 +195,8 @@ class GameView(arcade.View):
             bullets -= 1
         # check tank health & set final explosion
         for tank in self.tanks.sprite_list:
+            # tank only dies at zero life from a mystery box if a bullet is being updated. kill tank elsewhere
+            # TODO: add a kill tank checker not dependant on bullets updating
             alive = tank.is_alive()
             if alive == False:
                 self.game_ending = True
