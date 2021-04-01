@@ -21,6 +21,15 @@ class PowerUp(arcade.Sprite):
         Adrianna Lund
         """
     def __init__(self, value):
+        """Initalize the PowerUp class
+        
+        Attributes:
+            self (PowerUp): An instance of the PowerUp
+            value (integer): 0 is power down, 1 is power up, 2 is explode
+        Contributors:
+            Reed Hunsaker
+            Jordan McIntyre
+        """
         super().__init__()
         self.speed = 0
         self.scale = constants.TANK_SCALE/2
@@ -33,6 +42,8 @@ class PowerUp(arcade.Sprite):
     def get_value(self):
         """
         Returns: self.value
+        Args:
+            self (PowerUp): An instance of PowerUp
         Contributors:
             Jordan McIntyre
             Adrianna Lund
@@ -51,6 +62,14 @@ class SpawnRandom:
         Jordan McIntyre
     """
     def __init__(self):
+        """
+        Initialize SpawnRandom class
+        Args:
+            self (SpawnRandom): An instance of SpawnRandom
+        Contributors:
+            Jordan McIntyre
+            Adrianna Lund
+        """
         self.sprite_list = arcade.SpriteList()
         random_number = randint(0, 2)
         self.power = PowerUp(random_number)
