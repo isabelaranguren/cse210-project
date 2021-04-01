@@ -11,7 +11,6 @@ class Score(Tanks):
         set_text (Actor): Writes score
     Contributors:
             Isabel Aranguren
-         
     """
     def __init__(self):
         """The class constructor. Invokes the superclass constructor, initializes points to zero, sets the position and updates the text.

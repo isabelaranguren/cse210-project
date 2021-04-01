@@ -26,7 +26,7 @@ class Tanks(arcade.Sprite):
 
     def __init__(self):
         """Initalize the tanks class
-        Attributes:
+        Args:
             self (Tanks): an instance of Tanks
         Contributors:
             Reed Hunsaker
@@ -47,7 +47,7 @@ class Tanks(arcade.Sprite):
 
     def is_alive(self):
         """checks to see if take is alive
-        Attributes:
+        Args:
             self (Tanks): an instance of Tanks
         Contributors:
             Reed Hunsaker
@@ -75,7 +75,7 @@ class Tanks(arcade.Sprite):
     
     def draw_life_number(self):
         """ Draw how many hit points we have
-        Attributes:
+        Args:
             self (Tanks): An instance of the tank class
         contributors:
             Isabel Aranguren
@@ -90,7 +90,7 @@ class Tanks(arcade.Sprite):
 
     def draw_life_bar(self):
         """ Draw the health bar 
-        Attributes:
+        Args:
             self (Tanks): An instance of the tank class
         contributors:
             Isabel Aranguren
@@ -114,7 +114,7 @@ class Tanks(arcade.Sprite):
 
     def update(self):
         """ Updates the sprite as it rotates on the screen
-        Attributes:
+        Args:
             self (Tanks): An instance of the tank class
         Contributors:
             Reed Hunsaker
@@ -141,7 +141,7 @@ class Player1(Tanks):
     """
     def __init__(self):
         """Initalize the player 1 class
-        Attributes:
+        Args:
             self (Player1): An instance of Player1
         Contributors:
             Reed Hunsaker
@@ -164,7 +164,7 @@ class Player2(Tanks):
     """
     def __init__(self):
         """Initalize the player 2 class
-        Attributes:
+        Args:
             self (Player2): An instance of Player2
         Contributors:
             Reed Hunsaker
@@ -188,7 +188,7 @@ class Run:
     """
     def __init__(self):
         """Initalize the Run class
-        Attributes:
+        Args:
             self (Run): An instance of Run
         Contributors:
             Reed Hunsaker

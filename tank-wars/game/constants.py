@@ -40,7 +40,7 @@ PLAYER1_SPRITE = ":resources:images/topdown_tanks/tank_dark.png"
 MAP = assets / 'map.tmx'
 
 #Player 2
-PLAYER2_SPRITE = ":resources:images/topdown_tanks/tank_red.png"
+PLAYER2_SPRITE = ":resources:images/topdown_tanks/tank_green.png"
 PLAYER2_X = randint(50, 450)
 
 #Views

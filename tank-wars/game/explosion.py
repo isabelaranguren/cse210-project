@@ -13,6 +13,10 @@ class Explosion(arcade.Sprite):
     """
     def __init__(self, texture_list):
         """ Declares variables for the Explosion class
+        Args:
+            self (Explosion): an instance of GameView
+            texture_list: list of explosion images
+
         Contributors:
             Adrianna Lund
         """
@@ -23,6 +27,9 @@ class Explosion(arcade.Sprite):
     
     def update(self):
         """ Progresses through the list of images for the explosion, then removes them from the sprite lists
+        Args:
+            self (Explosion): an instance of GameView
+            
         Contributors:
             Adrianna Lund
         """
