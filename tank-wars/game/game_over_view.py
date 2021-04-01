@@ -46,6 +46,6 @@ class GameOverView(arcade.View):
             self.win_text = "Red Tank Wins!"
         elif self.loser == 1:
             self.window.score.add_score_player1()
-            self.win_text = "Blue Tank Wins!"
+            self.win_text = "Black Tank Wins!"
         else:
             self.win_text = '404 no winner found'

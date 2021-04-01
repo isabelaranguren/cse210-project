@@ -1,8 +1,8 @@
 # Tank Wars 
 
-Tank Wars is the remake of the famous artillery game in retro pixel graphics!
-Your goal is to destroy the enemy tanks by careful calibration of your next shot.
-The game is easy to learn but hard to master.
+Tank Wars is a fast-moving two-player game. While moving around the map be sure
+to avoid enemy fire! Watch for wood crates for a random surprise - it could be
+an increase or decrease of life or something entirely different!
 
 ```
 python3 -m pip install arcade
@@ -40,8 +40,12 @@ root                           (project root folder)
       +-- bullet.py
       +-- constants.py 
       +-- explosion.py
+      +-- game_over_view.py
+      +-- gameview.py
       +-- ground.py
       +-- instruction_view.py
+      +-- powerups.py
+      +-- score.py
       +-- tanks.py   
   +-- __init__.py              (python package file)
   +-- __main__.py              (entry point for program)
