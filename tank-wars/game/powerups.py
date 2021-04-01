@@ -42,6 +42,8 @@ class PowerUp(arcade.Sprite):
     def get_value(self):
         """
         Returns: self.value
+        Args:
+            self (PowerUp): An instance of PowerUp
         Contributors:
             Jordan McIntyre
             Adrianna Lund
@@ -60,6 +62,14 @@ class SpawnRandom:
         Jordan McIntyre
     """
     def __init__(self):
+        """
+        Initialize SpawnRandom class
+        Args:
+            self (SpawnRandom): An instance of SpawnRandom
+        Contributors:
+            Jordan McIntyre
+            Adrianna Lund
+        """
         self.sprite_list = arcade.SpriteList()
         random_number = randint(0, 2)
         self.power = PowerUp(random_number)
