@@ -18,7 +18,8 @@ class Score(Tanks):
         
         Args:
             self (Score): an instance of Score.
-        
+        Contributors:
+            Isabel Aranguren
         """
         super().__init__()
         self._score_player1 = 0
@@ -29,6 +30,8 @@ class Score(Tanks):
         Args:
             self (Score): An instance of Score.
             points (integer): The points to add.
+        Contributors:
+            Isabel Aranguren
         """
         self._score_player1 += 1
     def add_score_player2(self):
@@ -36,11 +39,25 @@ class Score(Tanks):
         Args:
             self (Score): An instance of Score.
             points (integer): The points to add.
+        Contributors:
+            Isabel Aranguren
         """
         self._score_player2 += 1
 
     def get_score_player1(self):
+        """gets player 1 score
+        Args:
+            self (Score): An instance of Score.
+        Contributors:
+            Isabel Aranguren
+        """
         return self._score_player1
     
     def get_score_player2(self):
+        """gets player 2 score
+        Args:
+            self (Score): An instance of Score.
+        Contributors:
+            Isabel Aranguren
+        """
         return self._score_player2
