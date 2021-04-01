@@ -37,14 +37,22 @@ class Bullet:
         Adrianna Lund
     """
     def __init__(self):
+        """Initialize the Bullet class
+
+        Attributes:
+            self (Bullet): an instance of Bullet.
+        Contributors:
+            Reed Hunsaker
+            Adrianna Lund
+        """
         super().__init__()
         self.bullet_sprite_list = arcade.SpriteList()
-        self.bounce = 0
         
     def shoot_bullet(self,tank_x, tank_y, tank_angle):
         """Function to shoot the bullet and to rotate bullet to match tank angle
 
         Attributes:
+            self (Bullet): an instance of Bullet.
             tank_x (integer): x position of tank
             tank_y (integer): y position of tank
             tank_angle (integer): angle of tank
@@ -70,6 +78,16 @@ class Bullet:
         self.bullet.update()
     
     def bullet_bounce(self, bullet, tank_angle):
+        """Changes bullet direction when sprite interacts with wall
+
+        Atrributes:
+            self (Bullet): an instance of Bullet
+            bullet (object): Bullet object initiated in GameView
+            tank_angle (float): Angle of the bullet
+        Contributors:
+            Reed Hunsaker
+            Adrianna Lund
+        """
         bullet.change_y = -math.cos(math.radians(np.pi + tank_angle)) * self.bullet.speed
         bullet.change_x = math.sin(math.radians(np.pi + tank_angle)) * self.bullet.speed
         bullet.angle = math.degrees(math.atan2(bullet.change_y, bullet.change_x))
