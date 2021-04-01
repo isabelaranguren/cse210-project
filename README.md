@@ -37,16 +37,16 @@ root                           (project root folder)
   +-- docs                     (general info)
   +-- game                     (specific game classes)
     +-- assets                 (game source) 
-      +-- bullet.py
-      +-- constants.py 
-      +-- explosion.py
-      +-- game_over_view.py
-      +-- gameview.py
-      +-- ground.py
-      +-- instruction_view.py
-      +-- powerups.py
-      +-- score.py
-      +-- tanks.py   
+    +-- bullet.py
+    +-- constants.py 
+    +-- explosion.py
+    +-- game_over_view.py
+    +-- gameview.py
+    +-- ground.py
+    +-- instruction_view.py
+    +-- powerups.py
+    +-- score.py
+    +-- tanks.py   
   +-- __init__.py              (python package file)
   +-- __main__.py              (entry point for program)
 +-- LICENSE                    (License info)
