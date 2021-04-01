@@ -39,6 +39,8 @@ class GameView(arcade.View):
 
     def __init__(self):
         """ Declares variables for the GameView class
+        Args:
+            self (Gameview): an instance of Gameview
         Contributors:
             Reed Hunsaker
             Adrianna Lund
@@ -79,6 +81,8 @@ class GameView(arcade.View):
 
     def setup(self):
         """ Set up the game and initializes variables.
+        Args:
+            self (Gameview): an instance of Gameview
         Contributors:
             Reed Hunsaker
             Adrianna Lund
@@ -96,6 +100,8 @@ class GameView(arcade.View):
     
     def on_draw(self):
         """ Draws the game screen.
+        Args:
+            self (Gameview): an instance of Gameview
         Contributors:
             Reed Hunsaker
             Adrianna Lund
@@ -123,6 +129,9 @@ class GameView(arcade.View):
 
     def on_update(self, delta_time: float):
         """ Updates the game screen.
+        Args:
+            self (Gameview): instance of Gameview
+            delta_time: essential for updates to run
         Contributors:
             Reed Hunsaker
             Adrianna Lund
@@ -182,19 +191,41 @@ class GameView(arcade.View):
                     elif self.power.sprite_list[-1].get_value() == 1:
                         tank.set_life(50)
                         arcade.play_sound(self.powerup_sound)
-                        # this next if statement is still experimental. it needs delays between shots
                     elif self.power.sprite_list[-1].get_value() == 2:
-                        # This stops the bullets from spawning if there are more than 30 on the map
                         for angle in range(0, 360, 60):
                             bullets += 1
                             self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), (tank.angle + angle))
 
                     power.kill()
                     powers -= 1
-                    self.power = SpawnRandom()         
+                    self.power = SpawnRandom()
+
+        # check tank health & set final explosion
+        for tank in self.tanks.sprite_list:
+            alive = tank.is_alive()
+            if alive == False:
+                self.game_ending = True
+                self.count = 50
+                self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
+                explosion = Explosion(self.explosion_texture_list)
+
+                # set explosion center to location of first hit in list
+                explosion.center_x = tank.center_x
+                explosion.center_y = tank.center_y
+
+                # update explosion (sets first image)
+                explosion.update()
+                self.explosions_list.append(explosion)
+                self.name = tank.name
+                tank.kill()      
 
     def bullet_shooting_update(self, bullet, bullets, hit_list_tank, hit_list_wall):
         """ Updates bullets and explosions.
+        Args:
+            bullet: the length of the sprite list
+            bullets: individual bullet objects
+            hit_list_tank: list of tanks that were hit
+            hit_list_wall: list of bullets that hit a wall
         Contributors:
             Reed Hunsaker
             Adrianna Lund
@@ -228,28 +259,11 @@ class GameView(arcade.View):
             arcade.play_sound(self.tank_explode, .5)
             bullet.kill()
             bullets -= 1
-        
-        # check tank health & set final explosion
-        for tank in self.tanks.sprite_list:
-            alive = tank.is_alive()
-            if alive == False:
-                self.game_ending = True
-                self.count = 50
-                self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
-                explosion = Explosion(self.explosion_texture_list)
-
-                # set explosion center to location of first hit in list
-                explosion.center_x = tank.center_x
-                explosion.center_y = tank.center_y
-
-                # update explosion (sets first image)
-                explosion.update()
-                self.explosions_list.append(explosion)
-                self.name = tank.name
-                tank.kill()  
 
     def wrap(self):
         """Keeps players on screen and kills bullets off screen and updates sprite movement. 
+        Args:
+            self (Gameview): an instance of Gameview
         Contributors:
             Adrianna Lund
             Jordan McIntyre
@@ -287,6 +301,11 @@ class GameView(arcade.View):
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. 
+        Args: 
+            self (Explosion): an instance of GameView
+            key: the key that was pressed
+            modifiers: modifier keys that were pressed
+
         Contributors:
             Adrianna Lund
             Reed Hunsaker
@@ -327,6 +346,10 @@ class GameView(arcade.View):
 
     def on_key_release(self, key, modifiers):
         """Called when the user releases a key. 
+        Args:
+            self (Explosion): an instance of GameView
+            key: the key that was pressed
+            modifiers: modifier keys that were pressed
         Contributors:
             Adrianna Lund
             Reed Hunsaker
@@ -345,6 +368,9 @@ class GameView(arcade.View):
 
     def switch_game_over_view(self, loser):
         """ Call the game over screen.
+        Args:
+            self (Explosion): an instance of GameView
+            loser: 0 or 1 to pass the winner
         Contributors:
             Reed Hunsaker
         """
