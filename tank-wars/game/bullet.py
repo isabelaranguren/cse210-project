@@ -17,6 +17,14 @@ class BulletSprite(arcade.Sprite):
         Adrianna Lund
     """
     def __init__(self):
+        """Initialize the BulletSprite class
+
+        Args:
+            self (BulletSprite): an instance of BulletSprite.
+        Contributors:
+            Reed Hunsaker
+            Adrianna Lund
+        """
         super().__init__()
 
         self.texture = arcade.load_texture(file_name= constants.BULLET_SPRITE)
@@ -39,7 +47,7 @@ class Bullet:
     def __init__(self):
         """Initialize the Bullet class
 
-        Attributes:
+        Args:
             self (Bullet): an instance of Bullet.
         Contributors:
             Reed Hunsaker
@@ -51,7 +59,7 @@ class Bullet:
     def shoot_bullet(self,tank_x, tank_y, tank_angle):
         """Function to shoot the bullet and to rotate bullet to match tank angle
 
-        Attributes:
+        Args:
             self (Bullet): an instance of Bullet.
             tank_x (integer): x position of tank
             tank_y (integer): y position of tank
@@ -77,7 +85,7 @@ class Bullet:
     def bullet_bounce(self, bullet, tank_angle):
         """Changes bullet direction when sprite interacts with wall
 
-        Atrributes:
+        Args:
             self (Bullet): an instance of Bullet
             bullet (object): Bullet object initiated in GameView
             tank_angle (float): Angle of the bullet

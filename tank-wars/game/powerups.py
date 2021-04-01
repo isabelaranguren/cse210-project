@@ -21,6 +21,15 @@ class PowerUp(arcade.Sprite):
         Adrianna Lund
         """
     def __init__(self, value):
+        """Initalize the PowerUp class
+        
+        Attributes:
+            self (PowerUp): An instance of the PowerUp
+            value (integer): 0 is power down, 1 is power up, 2 is explode
+        Contributors:
+            Reed Hunsaker
+            Jordan McIntyre
+        """
         super().__init__()
         self.speed = 0
         self.scale = constants.TANK_SCALE/2
