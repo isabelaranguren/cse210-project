@@ -25,6 +25,12 @@ class Tanks(arcade.Sprite):
     """
 
     def __init__(self):
+        """Initalize the tanks class
+        Attributes:
+            self (Tanks): an instance of Tanks
+        Contributors:
+            Reed Hunsaker
+        """
         super().__init__()
 
         # common tank values
@@ -41,6 +47,8 @@ class Tanks(arcade.Sprite):
 
     def is_alive(self):
         """checks to see if take is alive
+        Attributes:
+            self (Tanks): an instance of Tanks
         Contributors:
             Reed Hunsaker
         """
@@ -66,7 +74,12 @@ class Tanks(arcade.Sprite):
     
     
     def draw_life_number(self):
-        """ Draw how many hit points we have """
+        """ Draw how many hit points we have
+        Attributes:
+            self (Tanks): An instance of the tank class
+        contributors:
+            Isabel Aranguren
+        """
 
         health_string = f"{self._life}/{self.cur_health}"
         arcade.draw_text(health_string,
@@ -76,7 +89,12 @@ class Tanks(arcade.Sprite):
                          color=arcade.color.WHITE)
 
     def draw_life_bar(self):
-        """ Draw the health bar """
+        """ Draw the health bar 
+        Attributes:
+            self (Tanks): An instance of the tank class
+        contributors:
+            Isabel Aranguren
+        """
 
         # Draw the 'unhealthy' background
         if self.cur_health < self._life:
@@ -96,6 +114,8 @@ class Tanks(arcade.Sprite):
 
     def update(self):
         """ Updates the sprite as it rotates on the screen
+        Attributes:
+            self (Tanks): An instance of the tank class
         Contributors:
             Reed Hunsaker
         """
@@ -120,6 +140,12 @@ class Player1(Tanks):
         Reed Hunsaker
     """
     def __init__(self):
+        """Initalize the player 1 class
+        Attributes:
+            self (Player1): An instance of Player1
+        Contributors:
+            Reed Hunsaker
+        """
         super().__init__()
         self.name = 0
         self.center_x = randint(450, 810)
@@ -137,6 +163,12 @@ class Player2(Tanks):
         Reed Hunsaker
     """
     def __init__(self):
+        """Initalize the player 2 class
+        Attributes:
+            self (Player2): An instance of Player2
+        Contributors:
+            Reed Hunsaker
+        """
         super().__init__()
         self.name = 1
         self.center_x = randint(50, 450)
@@ -155,6 +187,12 @@ class Run:
         Reed Hunsaker
     """
     def __init__(self):
+        """Initalize the Run class
+        Attributes:
+            self (Run): An instance of Run
+        Contributors:
+            Reed Hunsaker
+        """
         self.sprite_list = arcade.SpriteList()
         self.player1 = Player1()
         self.player2 = Player2()

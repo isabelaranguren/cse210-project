@@ -5,6 +5,9 @@ from game.instruction_view import MainView
 from game.score import Score
 
 class Window(arcade.Window):
+    """
+    TODO: comment here
+    """
     def __init__(self):
         super().__init__(constants.X_CONSTANT, constants.Y_CONSTANT, constants.TITLE)
 
@@ -16,11 +19,19 @@ class Window(arcade.Window):
         self.background_music.play(self.master_volume, loop = True)
 
     def reset_gameview(self):
+        """
+            TODO: comment here
+        """
         gameview = GameView()
         return gameview
     
 
 def main():
+    """
+    TODO: comment here
+    Returns:
+
+    """
     window = Window()
     start_view = MainView()
     window.show_view(start_view)

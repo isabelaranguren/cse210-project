@@ -83,7 +83,7 @@ class GameView(arcade.View):
         self.explosions_list = arcade.SpriteList()
         self.physics_engine = arcade.PhysicsEngineSimple(self.tanks.player1, self.ground.ground_sprite_list)
         self.physics_engine2 = arcade.PhysicsEngineSimple(self.tanks.player2, self.ground.ground_sprite_list)
-        self.physics_engine3 = arcade.PhysicsEngineSimple(self.tanks.player1, self.tanks.sprite_list)
+        self.physics_engine3 = arcade.PhysicsEngineSimple(self.tanks.player2, self.tanks.sprite_list)
     def on_draw(self):
         """ Draws the game screen.
         Contributors:
@@ -131,6 +131,10 @@ class GameView(arcade.View):
                 hit_list_wall = arcade.check_for_collision_with_list(bullet, self.ground.ground_sprite_list)
                 hit_list_tank = arcade.check_for_collision_with_list(bullet, self.tanks.sprite_list)
                 self.bullet_shooting_update(bullet, bullets, hit_list_tank, hit_list_wall)
+# <<<<<<< HEAD
+# =======
+
+# >>>>>>> main
         # powerups
         powers = len(self.power.sprite_list)
         if powers > 0:
@@ -166,34 +170,8 @@ class GameView(arcade.View):
                             self.bullet.shoot_bullet(tank._get_center_x(), tank._get_center_y(), (tank.angle + angle))
                     power.kill()
                     powers -= 1
+# <<<<<<< HEAD
                     self.power = SpawnRandom()
-    def bullet_shooting_update(self, bullet, bullets, hit_list_tank, hit_list_wall):
-        '''
-        TODO: WRITE COMMENT
-        '''
-        if len(hit_list_wall) > 0:
-            self.bullet.bullet_bounce(bullet, bullet.angle)
-        if len(hit_list_tank) > 0:
-            for tank in self.tanks.sprite_list:
-                life = tank.get_life()
-                explosion = Explosion(self.explosion_texture_list)
-            # set explosion center to location of first hit in list
-            explosion.center_x = hit_list_tank[0].center_x
-            explosion.center_y = hit_list_tank[0].center_y
-            # update explosion (sets first image)
-            explosion.update()
-            self.explosions_list.append(explosion)
-        # if bullet leaves screen, kill it
-        elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
-            bullet.kill()
-            bullets -= 1
-        # play sound and kill bullet from hit lists
-        for tank in hit_list_tank:
-            tank.set_life(-25)
-            arcade.play_sound(self.tank_explode, .5)
-            bullet.kill()
-            bullets -= 1
-        # check tank health & set final explosion
         for tank in self.tanks.sprite_list:
             # tank only dies at zero life from a mystery box if a bullet is being updated. kill tank elsewhere
             # TODO: add a kill tank checker not dependant on bullets updating
@@ -211,8 +189,64 @@ class GameView(arcade.View):
                 self.explosions_list.append(explosion)
                 self.name = tank.name
                 tank.kill()
+
+    def bullet_shooting_update(self, bullet, bullets, hit_list_tank, hit_list_wall):
+        """ Updates bullets and explosions.
+        Contributors:
+            Reed Hunsaker
+            Adrianna Lund
+            Isabel Aranguren
+            Jordan McIntyre
+        """
+# >>>>>>> main
+        if len(hit_list_wall) > 0:
+            self.bullet.bullet_bounce(bullet, bullet.angle)
+        if len(hit_list_tank) > 0:
+            for tank in self.tanks.sprite_list:
+                life = tank.get_life()
+                explosion = Explosion(self.explosion_texture_list)
+            # set explosion center to location of first hit in list
+            explosion.center_x = hit_list_tank[0].center_x
+            explosion.center_y = hit_list_tank[0].center_y
+            # update explosion (sets first image)
+            explosion.update()
+            self.explosions_list.append(explosion)
+        # if bullet leaves screen, kill it
+        elif bullet.bottom > constants.SCREEN_HEIGHT or bullet.top < 0 or bullet.right < 0 or bullet.left > constants.SCREEN_WIDTH:
+            bullet.kill()
+            bullets -= 1
+# <<<<<<< HEAD
+# =======
+
+# >>>>>>> main
+        # play sound and kill bullet from hit lists
+        for tank in hit_list_tank:
+            tank.set_life(-25)
+            arcade.play_sound(self.tank_explode, .5)
+            bullet.kill()
+            bullets -= 1
+        # check tank health & set final explosion
+        # for tank in self.tanks.sprite_list:
+        #     # tank only dies at zero life from a mystery box if a bullet is being updated. kill tank elsewhere
+        #     # TODO: add a kill tank checker not dependant on bullets updating
+        #     alive = tank.is_alive()
+        #     if alive == False:
+        #         self.game_ending = True
+        #         self.count = 50
+        #         self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
+        #         explosion = Explosion(self.explosion_texture_list)
+        #         # set explosion center to location of first hit in list
+        #         explosion.center_x = tank.center_x
+        #         explosion.center_y = tank.center_y
+        #         # update explosion (sets first image)
+        #         explosion.update()
+        #         self.explosions_list.append(explosion)
+        #         self.name = tank.name
+        #         tank.kill()
     def wrap(self):
+# <<<<<<< HEAD
         """Keeps players on screen and kills bullets off screen and updates sprite movement.
+# >>>>>>> main
         Contributors:
             Adrianna Lund
             Jordan McIntyre
@@ -235,6 +269,10 @@ class GameView(arcade.View):
             self.tanks.player2.bottom = 0
         elif self.tanks.player2.top > constants.SCREEN_HEIGHT - 1:
             self.tanks.player2.top = constants.SCREEN_HEIGHT - 1
+# <<<<<<< HEAD
+# =======
+
+# >>>>>>> main
         # Update animations/sprites
         self.tanks.player1.update()
         self.tanks.player2.update()
