@@ -43,7 +43,7 @@ class GameOverView(arcade.View):
                                 constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
         arcade.draw_text(f"{self.win_text}", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 4-75,
                          arcade.color.WHITE, font_size=20, anchor_x="center")
-        arcade.draw_text(f"Press a key to play again!", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT *(3/4),
+        arcade.draw_text("Press a key to play again!", constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT *(3/4),
                          arcade.color.WHITE, font_size=20, anchor_x="center")
         arcade.draw_text(f"Black Tank: {self.window.score.get_score_player1()} | Green Tank: {self.window.score.get_score_player2()}", 
         constants.SCREEN_WIDTH / 2,

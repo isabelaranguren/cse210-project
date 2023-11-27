@@ -22,7 +22,7 @@ DEFAULT_VOLUME = 0.2
 #Sprites
 
 #Ground
-GROUND_SPRITE = f":resources:images/tiles/dirtRight.png"
+GROUND_SPRITE = ":resources:images/tiles/dirtRight.png"
 GROUND_SCALE = 1
 GROUND_Y = 32
 
