@@ -204,8 +204,7 @@ class GameView(arcade.View):
 
         # check tank health & set final explosion
         for tank in self.tanks.sprite_list:
-            alive = tank.is_alive()
-            if alive == False:
+            if (alive := tank.is_alive()) == False:
                 self.game_ending = True
                 self.count = 50
                 self.explosion_texture_list = arcade.load_spritesheet(self.file_name, self.sprite_width, self.sprite_height, self.columns, self.count)
