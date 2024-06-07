@@ -1,5 +1,5 @@
 from pathlib import Path
-from random import randint
+import secrets
 
 home = Path.home()
 assets: Path = Path(__file__).parent / 'assets'
@@ -27,19 +27,19 @@ GROUND_SCALE = 1
 GROUND_Y = 32
 
 #Tanks
-TANK_Y = randint(0, 500)
+TANK_Y = secrets.SystemRandom().randint(0, 500)
 TANK_SCALE = 0.85
 TANK_SPEED = 2
 TANK_ANGLE_SPEED = 2
 
 #Player 1
-PLAYER1_X = randint(450, 810)
+PLAYER1_X = secrets.SystemRandom().randint(450, 810)
 PLAYER1_SPRITE = ":resources:images/topdown_tanks/tank_dark.png"
 MAP = assets / 'map.tmx'
 
 #Player 2
 PLAYER2_SPRITE = ":resources:images/topdown_tanks/tank_green.png"
-PLAYER2_X = randint(50, 450)
+PLAYER2_X = secrets.SystemRandom().randint(50, 450)
 
 #Views
 GAME_OVER = assets / 'game-over.jpg'
