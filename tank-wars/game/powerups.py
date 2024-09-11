@@ -1,6 +1,6 @@
 import arcade
 import game.constants as constants
-from random import randint
+import secrets
 
 
 class PowerUp(arcade.Sprite):
@@ -33,8 +33,8 @@ class PowerUp(arcade.Sprite):
         super().__init__()
         self.speed = 0
         self.scale = constants.TANK_SCALE/2
-        self.center_y = randint(25, constants.Y_CONSTANT - 25)
-        self.center_x = randint(25, constants.X_CONSTANT - 25)
+        self.center_y = secrets.SystemRandom().randint(25, constants.Y_CONSTANT - 25)
+        self.center_x = secrets.SystemRandom().randint(25, constants.X_CONSTANT - 25)
         self.value = value
         self.power_texture = arcade.load_texture(file_name=constants.HEALTH_POWER_UP_SPRITE)
         self.texture = self.power_texture
@@ -71,6 +71,6 @@ class SpawnRandom:
             Adrianna Lund
         """
         self.sprite_list = arcade.SpriteList()
-        random_number = randint(0, 2)
+        random_number = secrets.SystemRandom().randint(0, 2)
         self.power = PowerUp(random_number)
         self.sprite_list.append(self.power)

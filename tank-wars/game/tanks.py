@@ -1,7 +1,7 @@
 import arcade
 import game.constants as constants
 import math
-from random import randint
+import secrets
 
 
 class Tanks(arcade.Sprite):
@@ -139,8 +139,8 @@ class Player1(Tanks):
         """
         super().__init__()
         self.name = 0
-        self.center_x = randint(450, 810)
-        self.center_y = randint(250, 500)
+        self.center_x = secrets.SystemRandom().randint(450, 810)
+        self.center_y = secrets.SystemRandom().randint(250, 500)
         self.texture = self.player1_texture
 
 class Player2(Tanks):
@@ -162,8 +162,8 @@ class Player2(Tanks):
         """
         super().__init__()
         self.name = 1
-        self.center_x = randint(50, 450)
-        self.center_y = randint(10, 250)
+        self.center_x = secrets.SystemRandom().randint(50, 450)
+        self.center_y = secrets.SystemRandom().randint(10, 250)
         self.texture = self.player2_texture
 
 class Run:
